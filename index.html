@@ -91,7 +91,6 @@ body{
 
 h1{
     text-align:center;
-
     margin:0;
 
     font-size:27px;
@@ -105,8 +104,7 @@ h1{
 
     font-size:13px;
 
-    margin:
-    8px 0 25px;
+    margin:8px 0 25px;
 }
 
 .label{
@@ -116,13 +114,11 @@ h1{
 
     font-size:13px;
 
-    margin:
-    0 4px 7px;
+    margin:0 4px 7px;
 }
 
 input{
     width:100%;
-
     height:52px;
 
     border:1px solid #30363d;
@@ -132,11 +128,9 @@ input{
     outline:none;
 
     background:#0d1117;
-
     color:#fff;
 
-    padding:
-    0 15px;
+    padding:0 15px;
 
     font-size:15px;
 
@@ -153,11 +147,9 @@ input:focus{
 
 button{
     width:100%;
-
     height:54px;
 
     border:0;
-
     border-radius:15px;
 
     background:
@@ -170,7 +162,6 @@ button{
     color:white;
 
     font-size:16px;
-
     font-weight:800;
 
     cursor:pointer;
@@ -178,6 +169,7 @@ button{
 
 button:disabled{
     opacity:.6;
+    cursor:not-allowed;
 }
 
 #message{
@@ -250,7 +242,6 @@ button:disabled{
 
 </head>
 
-
 <body>
 
 <div class="container">
@@ -269,7 +260,6 @@ JACK
 أنشئ حسابك في JACK VIP
 </div>
 
-
 <label class="label">
 اسم المستخدم
 </label>
@@ -280,7 +270,6 @@ type="text"
 placeholder="أدخل اسم المستخدم"
 autocomplete="off"
 >
-
 
 <label class="label">
 كلمة المرور
@@ -293,11 +282,9 @@ placeholder="أدخل كلمة المرور"
 autocomplete="new-password"
 >
 
-
 <button id="createAccount">
 فتح الحساب
 </button>
-
 
 <div id="message"></div>
 
@@ -307,7 +294,6 @@ autocomplete="new-password"
 
 
 <script type="module">
-
 
 import {
     initializeApp
@@ -332,7 +318,7 @@ from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
 
 
 // ========================================
-// FIREBASE JACKVIP
+// Firebase JACKVIP
 // ========================================
 
 const firebaseConfig = {
@@ -395,7 +381,7 @@ document.getElementById("message");
 
 
 // ========================================
-// توليد رقم حساب 7 أرقام
+// رقم حساب 7 أرقام
 // ========================================
 
 function generateAccountNumber(){
@@ -423,8 +409,6 @@ async function(){
     password.value;
 
 
-    // التحقق من الاسم
-
     if(name.length < 2){
 
         message.className =
@@ -436,8 +420,6 @@ async function(){
         return;
     }
 
-
-    // التحقق من كلمة المرور
 
     if(pass.length < 6){
 
@@ -463,9 +445,9 @@ async function(){
 
     try{
 
-        // ====================================
-        // إنشاء رقم حساب
-        // ====================================
+        // =================================
+        // توليد رقم حساب غير مستخدم
+        // =================================
 
         let accountNumber;
 
@@ -495,9 +477,9 @@ async function(){
         }
 
 
-        // ====================================
-        // إنشاء مستخدم Firebase Auth
-        // ====================================
+        // =================================
+        // إنشاء Firebase Authentication
+        // =================================
 
         const email =
         accountNumber +
@@ -516,35 +498,29 @@ async function(){
         userCredential.user.uid;
 
 
-        // ====================================
-        // بيانات الحساب
-        // ====================================
+        // =================================
+        // بيانات المستخدم
+        // =================================
 
         const userData = {
 
-            username:
-            name,
+            username:name,
 
-            accountNumber:
-            accountNumber,
+            accountNumber:accountNumber,
 
-            uid:
-            uid,
+            uid:uid,
 
-            balance:
-            0,
+            balance:0,
 
-            active:
-            true,
+            active:true,
 
-            createdAt:
-            Date.now()
+            createdAt:Date.now()
         };
 
 
-        // ====================================
-        // حفظ بيانات المستخدم
-        // ====================================
+        // =================================
+        // حفظ المستخدم في Database
+        // =================================
 
         await set(
             ref(
@@ -555,9 +531,9 @@ async function(){
         );
 
 
-        // ====================================
+        // =================================
         // حفظ رقم الحساب
-        // ====================================
+        // =================================
 
         await set(
             ref(
@@ -571,9 +547,9 @@ async function(){
         );
 
 
-        // ====================================
+        // =================================
         // نجاح
-        // ====================================
+        // =================================
 
         message.className =
         "success";
@@ -600,44 +576,28 @@ async function(){
 
 
         username.value = "";
-
         password.value = "";
 
 
-    }catch(error){
+    }
+    catch(error){
 
-        console.error(error);
+        console.error(
+            "Firebase Error:",
+            error
+        );
+
 
         message.className =
         "error";
 
 
-        if(
-            error.code ===
-            "auth/email-already-in-use"
-        ){
-
-            message.textContent =
-            "حدث تعارض، حاول مرة أخرى.";
-
-        }
-
-        else if(
-            error.code ===
-            "auth/weak-password"
-        ){
-
-            message.textContent =
-            "كلمة المرور ضعيفة.";
-
-        }
-
-        else{
-
-            message.textContent =
-            "حدث خطأ أثناء إنشاء الحساب.";
-        }
-
+        // إظهار الخطأ الحقيقي
+        message.textContent =
+        "خطأ Firebase: " +
+        error.code +
+        " — " +
+        error.message;
     }
 
 
@@ -649,5 +609,4 @@ async function(){
 </script>
 
 </body>
-
 </html>
