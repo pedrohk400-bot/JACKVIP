@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>JACK VIP - فتح حساب</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "Segoe UI",
+    Arial,
+    sans-serif;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+
+    color:#fff;
+
+    background:
+    radial-gradient(
+        circle at top,
+        #3b1018,
+        #0d1117 48%,
+        #070a0e
+    );
+}
+
+.container{
+    width:100%;
+    max-width:430px;
+}
+
+.card{
+    background:rgba(22,27,34,.94);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:24px;
+
+    padding:28px 22px;
+
+    box-shadow:
+    0 25px 70px rgba(0,0,0,.45);
+
+    backdrop-filter:blur(18px);
+}
+
+.logo{
+    width:75px;
+    height:75px;
+
+    margin:0 auto 15px;
+
+    border-radius:22px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:21px;
+    font-weight:900;
+
+    background:
+    linear-gradient(
+        145deg,
+        #d50000,
+        #850000
+    );
+
+    box-shadow:
+    0 10px 30px rgba(213,0,0,.35);
+}
+
+h1{
+    text-align:center;
+
+    margin:0;
+
+    font-size:27px;
+    font-weight:800;
+}
+
+.subtitle{
+    text-align:center;
+
+    color:#8b949e;
+
+    font-size:13px;
+
+    margin:
+    8px 0 25px;
+}
+
+.label{
+    display:block;
+
+    color:#c9d1d9;
+
+    font-size:13px;
+
+    margin:
+    0 4px 7px;
+}
+
+input{
+    width:100%;
+
+    height:52px;
+
+    border:1px solid #30363d;
+
+    border-radius:14px;
+
+    outline:none;
+
+    background:#0d1117;
+
+    color:#fff;
+
+    padding:
+    0 15px;
+
+    font-size:15px;
+
+    margin-bottom:17px;
+}
+
+input:focus{
+    border-color:#d50000;
+
+    box-shadow:
+    0 0 0 3px
+    rgba(213,0,0,.12);
+}
+
+button{
+    width:100%;
+
+    height:54px;
+
+    border:0;
+
+    border-radius:15px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #d50000,
+        #a00000
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:800;
+
+    cursor:pointer;
+}
+
+button:disabled{
+    opacity:.6;
+}
+
+#message{
+    margin-top:18px;
+
+    text-align:center;
+
+    font-size:13px;
+
+    line-height:1.7;
+}
+
+.error{
+    color:#ff6b6b;
+}
+
+.success{
+    color:#7ee787;
+}
+
+.loading{
+    color:#8b949e;
+}
+
+.account-box{
+    margin-top:18px;
+
+    padding:18px;
+
+    background:#0d1117;
+
+    border:1px solid #30363d;
+
+    border-radius:15px;
+
+    text-align:center;
+}
+
+.account-label{
+    color:#8b949e;
+
+    font-size:12px;
+
+    margin-bottom:7px;
+}
+
+.account-number{
+    color:#fff;
+
+    font-size:25px;
+
+    font-weight:900;
+
+    letter-spacing:4px;
+
+    direction:ltr;
+}
+
+.balance{
+    margin-top:12px;
+
+    color:#7ee787;
+
+    font-size:18px;
+
+    font-weight:800;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+<div class="card">
+
+<div class="logo">
+JACK
+</div>
+
+<h1>
+فتح حساب
+</h1>
+
+<div class="subtitle">
+أنشئ حسابك في JACK VIP
+</div>
+
+
+<label class="label">
+اسم المستخدم
+</label>
+
+<input
+id="username"
+type="text"
+placeholder="أدخل اسم المستخدم"
+autocomplete="off"
+>
+
+
+<label class="label">
+كلمة المرور
+</label>
+
+<input
+id="password"
+type="password"
+placeholder="أدخل كلمة المرور"
+autocomplete="new-password"
+>
+
+
+<button id="createAccount">
+فتح الحساب
+</button>
+
+
+<div id="message"></div>
+
+</div>
+
+</div>
+
+
+<script type="module">
+
+
+import {
+    initializeApp
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    createUserWithEmailAndPassword
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+import {
+    getDatabase,
+    ref,
+    get,
+    set
+}
+from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
+
+
+// ========================================
+// FIREBASE JACKVIP
+// ========================================
+
+const firebaseConfig = {
+
+    apiKey:
+    "AIzaSyDLKiFoim5ooJpKZ5RU5sEFAWBzXxxgLU",
+
+    authDomain:
+    "jackvip-6c21c.firebaseapp.com",
+
+    databaseURL:
+    "https://jackvip-6c21c-default-rtdb.firebaseio.com",
+
+    projectId:
+    "jackvip-6c21c",
+
+    storageBucket:
+    "jackvip-6c21c.firebasestorage.app",
+
+    messagingSenderId:
+    "752938359994",
+
+    appId:
+    "1:752938359994:web:454885a4fb2cc9560e3683",
+
+    measurementId:
+    "G-NWF5SS7F1G"
+};
+
+
+// ========================================
+// تشغيل Firebase
+// ========================================
+
+const app =
+initializeApp(firebaseConfig);
+
+const auth =
+getAuth(app);
+
+const db =
+getDatabase(app);
+
+
+// ========================================
+// عناصر الصفحة
+// ========================================
+
+const username =
+document.getElementById("username");
+
+const password =
+document.getElementById("password");
+
+const createAccount =
+document.getElementById("createAccount");
+
+const message =
+document.getElementById("message");
+
+
+// ========================================
+// توليد رقم حساب 7 أرقام
+// ========================================
+
+function generateAccountNumber(){
+
+    return Math.floor(
+        1000000 +
+        Math.random() * 9000000
+    ).toString();
+
+}
+
+
+// ========================================
+// فتح الحساب
+// ========================================
+
+createAccount.addEventListener(
+"click",
+async function(){
+
+    const name =
+    username.value.trim();
+
+    const pass =
+    password.value;
+
+
+    // التحقق من الاسم
+
+    if(name.length < 2){
+
+        message.className =
+        "error";
+
+        message.textContent =
+        "أدخل اسم مستخدم صحيح.";
+
+        return;
+    }
+
+
+    // التحقق من كلمة المرور
+
+    if(pass.length < 6){
+
+        message.className =
+        "error";
+
+        message.textContent =
+        "كلمة المرور يجب أن تكون 6 أحرف أو أرقام على الأقل.";
+
+        return;
+    }
+
+
+    createAccount.disabled =
+    true;
+
+    message.className =
+    "loading";
+
+    message.textContent =
+    "جاري إنشاء الحساب...";
+
+
+    try{
+
+        // ====================================
+        // إنشاء رقم حساب
+        // ====================================
+
+        let accountNumber;
+
+        let exists = true;
+
+
+        while(exists){
+
+            accountNumber =
+            generateAccountNumber();
+
+
+            const accountRef =
+            ref(
+                db,
+                "accountNumbers/" +
+                accountNumber
+            );
+
+
+            const snapshot =
+            await get(accountRef);
+
+
+            exists =
+            snapshot.exists();
+        }
+
+
+        // ====================================
+        // إنشاء مستخدم Firebase Auth
+        // ====================================
+
+        const email =
+        accountNumber +
+        "@jackvip.firebaseapp.com";
+
+
+        const userCredential =
+        await createUserWithEmailAndPassword(
+            auth,
+            email,
+            pass
+        );
+
+
+        const uid =
+        userCredential.user.uid;
+
+
+        // ====================================
+        // بيانات الحساب
+        // ====================================
+
+        const userData = {
+
+            username:
+            name,
+
+            accountNumber:
+            accountNumber,
+
+            uid:
+            uid,
+
+            balance:
+            0,
+
+            active:
+            true,
+
+            createdAt:
+            Date.now()
+        };
+
+
+        // ====================================
+        // حفظ بيانات المستخدم
+        // ====================================
+
+        await set(
+            ref(
+                db,
+                "users/" + uid
+            ),
+            userData
+        );
+
+
+        // ====================================
+        // حفظ رقم الحساب
+        // ====================================
+
+        await set(
+            ref(
+                db,
+                "accountNumbers/" +
+                accountNumber
+            ),
+            {
+                uid:uid
+            }
+        );
+
+
+        // ====================================
+        // نجاح
+        // ====================================
+
+        message.className =
+        "success";
+
+        message.innerHTML =
+
+        "تم فتح الحساب بنجاح!" +
+
+        '<div class="account-box">' +
+
+        '<div class="account-label">' +
+        "رقم الحساب" +
+        "</div>" +
+
+        '<div class="account-number">' +
+        accountNumber +
+        "</div>" +
+
+        '<div class="balance">' +
+        "الرصيد: 0" +
+        "</div>" +
+
+        "</div>";
+
+
+        username.value = "";
+
+        password.value = "";
+
+
+    }catch(error){
+
+        console.error(error);
+
+        message.className =
+        "error";
+
+
+        if(
+            error.code ===
+            "auth/email-already-in-use"
+        ){
+
+            message.textContent =
+            "حدث تعارض، حاول مرة أخرى.";
+
+        }
+
+        else if(
+            error.code ===
+            "auth/weak-password"
+        ){
+
+            message.textContent =
+            "كلمة المرور ضعيفة.";
+
+        }
+
+        else{
+
+            message.textContent =
+            "حدث خطأ أثناء إنشاء الحساب.";
+        }
+
+    }
+
+
+    createAccount.disabled =
+    false;
+
+});
+
+</script>
+
+</body>
+
+</html>
