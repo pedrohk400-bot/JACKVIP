@@ -2,10 +2,13 @@
 <html lang="ar" dir="rtl">
 
 <head>
+
 <meta charset="UTF-8">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>JACK VIP - فتح حساب</title>
 
@@ -13,100 +16,922 @@
 
 *{
     box-sizing:border-box;
+    margin:0;
+    padding:0;
     font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "SF Pro Display",
-    "Segoe UI",
-    Arial,
-    sans-serif;
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "Segoe UI",
+        Arial,
+        sans-serif;
 }
 
 body{
-    margin:0;
+
     min-height:100vh;
 
     display:flex;
     justify-content:center;
     align-items:center;
 
-    padding:20px;
-
-    color:#fff;
-
     background:
-    radial-gradient(
-        circle at top,
-        #3b1018,
-        #0d1117 48%,
-        #070a0e
-    );
+        radial-gradient(
+            circle at top,
+            #242424 0%,
+            #101010 45%,
+            #050505 100%
+        );
+
+    color:white;
+
+    padding:20px;
 }
+
 
 .container{
+
     width:100%;
-    max-width:430px;
-}
+    max-width:390px;
 
-.card{
-    background:rgba(22,27,34,.94);
+    padding:30px 24px;
 
-    border:1px solid rgba(255,255,255,.08);
-
-    border-radius:24px;
-
-    padding:28px 22px;
-
-    box-shadow:
-    0 25px 70px rgba(0,0,0,.45);
-
-    backdrop-filter:blur(18px);
-}
-
-.logo{
-    width:75px;
-    height:75px;
-
-    margin:0 auto 15px;
-
-    border-radius:22px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:21px;
-    font-weight:900;
+    border-radius:28px;
 
     background:
-    linear-gradient(
-        145deg,
-        #d50000,
-        #850000
-    );
+        rgba(255,255,255,0.07);
+
+    border:
+        1px solid rgba(255,255,255,0.12);
 
     box-shadow:
-    0 10px 30px rgba(213,0,0,.35);
+        0 25px 70px rgba(0,0,0,0.55);
+
+    backdrop-filter:
+        blur(25px);
+
+    -webkit-backdrop-filter:
+        blur(25px);
 }
 
-h1{
+
+.logo{
+
     text-align:center;
-    margin:0;
 
-    font-size:27px;
+    font-size:42px;
+
     font-weight:800;
+
+    letter-spacing:2px;
+
+    margin-bottom:5px;
+
 }
+
+
+.vip{
+
+    text-align:center;
+
+    font-size:14px;
+
+    color:#aaa;
+
+    margin-bottom:30px;
+
+}
+
+
+.title{
+
+    text-align:center;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    margin-bottom:8px;
+
+}
+
 
 .subtitle{
+
     text-align:center;
 
-    color:#8b949e;
+    color:#999;
 
-    font-size:13px;
+    font-size:14px;
 
-    margin:8px 0 25px;
+    margin-bottom:25px;
+
 }
 
+
+.input-group{
+
+    margin-bottom:16px;
+
+}
+
+
+label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#ddd;
+
+    font-size:14px;
+
+}
+
+
+input{
+
+    width:100%;
+
+    height:54px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:16px;
+
+    padding:0 17px;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    border:
+        1px solid rgba(255,255,255,0.10);
+
+    color:white;
+
+    font-size:16px;
+
+    direction:rtl;
+
+    transition:0.2s;
+}
+
+
+input:focus{
+
+    border-color:#ff1744;
+
+    background:
+        rgba(255,255,255,0.11);
+
+}
+
+
+input::placeholder{
+
+    color:#777;
+
+}
+
+
+button{
+
+    width:100%;
+
+    height:55px;
+
+    border:none;
+
+    border-radius:17px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff1744,
+            #d50032
+        );
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    margin-top:8px;
+
+    box-shadow:
+        0 10px 25px rgba(255,23,68,0.25);
+
+    transition:0.2s;
+
+}
+
+
+button:active{
+
+    transform:scale(0.98);
+
+}
+
+
+button:disabled{
+
+    opacity:0.6;
+
+    cursor:not-allowed;
+
+}
+
+
+#message{
+
+    margin-top:20px;
+
+    text-align:center;
+
+    line-height:1.8;
+
+    font-size:14px;
+
+    word-break:break-word;
+
+}
+
+
+.account-box{
+
+    margin-top:15px;
+
+    padding:16px;
+
+    border-radius:16px;
+
+    background:
+        rgba(0,200,83,0.08);
+
+    border:
+        1px solid rgba(0,200,83,0.2);
+
+}
+
+
+.account-number{
+
+    font-size:26px;
+
+    font-weight:800;
+
+    direction:ltr;
+
+    letter-spacing:2px;
+
+    margin-top:5px;
+
+}
+
+
+.balance{
+
+    margin-top:8px;
+
+    color:#aaa;
+
+}
+
+
+.footer{
+
+    text-align:center;
+
+    margin-top:25px;
+
+    color:#666;
+
+    font-size:12px;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <div class="logo">
+        JACK
+    </div>
+
+
+    <div class="vip">
+        VIP
+    </div>
+
+
+    <div class="title">
+        فتح حساب
+    </div>
+
+
+    <div class="subtitle">
+        أنشئ حسابك في JACK VIP
+    </div>
+
+
+    <form id="registerForm">
+
+
+        <div class="input-group">
+
+            <label>
+                اسم المستخدم
+            </label>
+
+            <input
+                id="name"
+                type="text"
+                placeholder="أدخل اسم المستخدم"
+                autocomplete="off"
+                required
+            >
+
+        </div>
+
+
+        <div class="input-group">
+
+            <label>
+                كلمة المرور
+            </label>
+
+            <input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                autocomplete="new-password"
+                required
+            >
+
+        </div>
+
+
+        <button
+            id="registerButton"
+            type="submit"
+        >
+            فتح الحساب
+        </button>
+
+
+    </form>
+
+
+    <div id="message"></div>
+
+
+    <div class="footer">
+        JACK VIP
+    </div>
+
+
+</div>
+
+
+
+<script type="module">
+
+
+/* ========================================
+   FIREBASE IMPORTS
+======================================== */
+
+import {
+    initializeApp
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+
+
+import {
+    getAuth,
+    createUserWithEmailAndPassword,
+    deleteUser
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+
+import {
+    getDatabase,
+    ref,
+    get,
+    set
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-database.js";
+
+
+
+/* ========================================
+   FIREBASE CONFIG
+======================================== */
+
+const firebaseConfig = {
+
+    apiKey:
+        "AIzaSyDLKiFoim5ooJpKZ5RU5sEFAWBzXxxgLU",
+
+    authDomain:
+        "jackvip-6c21c.firebaseapp.com",
+
+    databaseURL:
+        "https://jackvip-6c21c-default-rtdb.firebaseio.com",
+
+    projectId:
+        "jackvip-6c21c",
+
+    storageBucket:
+        "jackvip-6c21c.firebasestorage.app",
+
+    messagingSenderId:
+        "752938359994",
+
+    appId:
+        "1:752938359994:web:454885a4fb2cc9560e3683",
+
+    measurementId:
+        "G-NWF5SS7F1G"
+};
+
+
+
+/* ========================================
+   INITIALIZE FIREBASE
+======================================== */
+
+const app =
+    initializeApp(firebaseConfig);
+
+
+const auth =
+    getAuth(app);
+
+
+const db =
+    getDatabase(app);
+
+
+
+/* ========================================
+   ELEMENTS
+======================================== */
+
+const form =
+    document.getElementById(
+        "registerForm"
+    );
+
+
+const nameInput =
+    document.getElementById(
+        "name"
+    );
+
+
+const passwordInput =
+    document.getElementById(
+        "password"
+    );
+
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+
+const registerButton =
+    document.getElementById(
+        "registerButton"
+    );
+
+
+
+/* ========================================
+   GENERATE 7 DIGIT ACCOUNT
+======================================== */
+
+function generateAccountNumber(){
+
+    return Math.floor(
+        1000000 +
+        Math.random() * 9000000
+    ).toString();
+
+}
+
+
+
+/* ========================================
+   SHOW MESSAGE
+======================================== */
+
+function showMessage(
+    text,
+    color = "#ffffff"
+){
+
+    message.style.color =
+        color;
+
+    message.textContent =
+        text;
+
+}
+
+
+
+/* ========================================
+   REGISTER
+======================================== */
+
+form.addEventListener(
+    "submit",
+    async function(event){
+
+        event.preventDefault();
+
+
+        /* ====================================
+           GET INPUT
+        ==================================== */
+
+        const username =
+            nameInput.value.trim();
+
+
+        const password =
+            passwordInput.value;
+
+
+
+        /* ====================================
+           VALIDATION
+        ==================================== */
+
+        if(username.length < 2){
+
+            showMessage(
+                "اسم المستخدم يجب أن يكون حرفين على الأقل.",
+                "#ff3b30"
+            );
+
+            return;
+        }
+
+
+        if(password.length < 6){
+
+            showMessage(
+                "كلمة المرور يجب أن تكون 6 أحرف أو أرقام على الأقل.",
+                "#ff3b30"
+            );
+
+            return;
+        }
+
+
+
+        /* ====================================
+           DISABLE BUTTON
+        ==================================== */
+
+        registerButton.disabled =
+            true;
+
+        registerButton.textContent =
+            "جاري إنشاء الحساب...";
+
+
+        showMessage(
+            "جاري إنشاء الحساب...",
+            "#aaaaaa"
+        );
+
+
+
+        let success =
+            false;
+
+        let lastError =
+            null;
+
+
+
+        /* ====================================
+           TRY 5 TIMES
+        ==================================== */
+
+        for(
+            let attempt = 0;
+            attempt < 5;
+            attempt++
+        ){
+
+            let accountNumber =
+                generateAccountNumber();
+
+
+            let email =
+                accountNumber +
+                "@jackvip.firebaseapp.com";
+
+
+            let userCredential =
+                null;
+
+
+
+            try{
+
+
+                /* ==================================
+                   STEP 1
+                   CREATE AUTH USER FIRST
+
+                   مهم:
+                   هنا المستخدم يصبح authenticated
+                   قبل قراءة Realtime Database
+                ================================== */
+
+                userCredential =
+                    await createUserWithEmailAndPassword(
+                        auth,
+                        email,
+                        password
+                    );
+
+
+                const user =
+                    userCredential.user;
+
+
+                const uid =
+                    user.uid;
+
+
+
+                /* ==================================
+                   STEP 2
+                   CHECK ACCOUNT NUMBER
+
+                   الآن auth != null
+                ================================== */
+
+                const accountRef =
+                    ref(
+                        db,
+                        "accountNumbers/" +
+                        accountNumber
+                    );
+
+
+                const accountSnapshot =
+                    await get(
+                        accountRef
+                    );
+
+
+
+                /* ==================================
+                   IF ACCOUNT NUMBER EXISTS
+
+                   نحذف مستخدم Auth
+                   ونحاول برقم آخر
+                ================================== */
+
+                if(
+                    accountSnapshot.exists()
+                ){
+
+                    try{
+
+                        await deleteUser(
+                            user
+                        );
+
+                    }catch(cleanError){
+
+                        console.log(
+                            cleanError
+                        );
+
+                    }
+
+                    continue;
+                }
+
+
+
+                /* ==================================
+                   STEP 3
+                   SAVE USER DATA
+                ================================== */
+
+                const userRef =
+                    ref(
+                        db,
+                        "users/" +
+                        uid
+                    );
+
+
+                await set(
+                    userRef,
+                    {
+
+                        username:
+                            username,
+
+                        accountNumber:
+                            accountNumber,
+
+                        uid:
+                            uid,
+
+                        balance:
+                            0,
+
+                        active:
+                            true,
+
+                        createdAt:
+                            Date.now()
+
+                    }
+                );
+
+
+
+                /* ==================================
+                   STEP 4
+                   SAVE ACCOUNT NUMBER
+                ================================== */
+
+                await set(
+                    accountRef,
+                    {
+
+                        uid:
+                            uid
+
+                    }
+                );
+
+
+
+                /* ==================================
+                   SUCCESS
+                ================================== */
+
+                success =
+                    true;
+
+
+                message.style.color =
+                    "#00c853";
+
+
+                message.innerHTML = `
+
+                    <div class="account-box">
+
+                        تم إنشاء الحساب بنجاح ✅
+
+                        <div class="account-number">
+                            ${accountNumber}
+                        </div>
+
+                        <div class="balance">
+                            الرصيد: 0
+                        </div>
+
+                    </div>
+
+                `;
+
+
+                form.reset();
+
+
+                break;
+
+
+
+            }catch(error){
+
+
+                console.error(
+                    "Firebase Error:",
+                    error
+                );
+
+
+                lastError =
+                    error;
+
+
+
+                /* ==================================
+                   CLEANUP
+
+                   لو Auth اتعمل لكن قاعدة البيانات
+                   فشلت، نحذف المستخدم
+                ================================== */
+
+                if(
+                    userCredential &&
+                    auth.currentUser
+                ){
+
+                    try{
+
+                        await deleteUser(
+                            auth.currentUser
+                        );
+
+                    }catch(cleanError){
+
+                        console.log(
+                            "Cleanup:",
+                            cleanError
+                        );
+
+                    }
+
+                }
+
+
+                break;
+
+            }
+
+        }
+
+
+
+        /* ========================================
+           ERROR
+        ======================================== */
+
+        if(!success){
+
+            let errorCode =
+                lastError?.code ||
+                "unknown";
+
+
+            let errorMessage =
+                lastError?.message ||
+                "حدث خطأ غير معروف.";
+
+
+            showMessage(
+
+                "خطأ Firebase: " +
+                errorCode +
+                " — " +
+                errorMessage,
+
+                "#ff3b30"
+
+            );
+
+        }
+
+
+
+        /* ========================================
+           ENABLE BUTTON
+        ======================================== */
+
+        registerButton.disabled =
+            false;
+
+        registerButton.textContent =
+            "فتح الحساب";
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
 .label{
     display:block;
 
