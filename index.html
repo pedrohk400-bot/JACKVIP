@@ -9,134 +9,53 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap');
 
-:root{
---red:#ff1838;
---bg:#050506;
---white:#f7f7fb;
---muted:#aaa5ad;
---line:#ff183855;
-}
+:root{--red:#ff1838;--bg:#050506;--white:#f7f7fb;--muted:#aaa5ad;--line:#ff183855}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-margin:0;
-background:radial-gradient(ellipse at 50% 0%,#30050b,transparent 44%),linear-gradient(180deg,#080708,#030304 72%);
-font-family:'Cairo',Tahoma,Arial,sans-serif;
-color:var(--white);
-line-height:1.85;
-}
+body{margin:0;background:radial-gradient(ellipse at 50% 0%,#30050b,transparent 44%),linear-gradient(180deg,#080708,#030304 72%);font-family:Cairo,Tahoma,Arial,sans-serif;color:var(--white);line-height:1.85}
 button,input{font:inherit}
 a{color:inherit}
 .wrap{max-width:1150px;margin:auto;padding:0 18px}
-header{
-padding:17px 0 29px;
-background:linear-gradient(120deg,#080708,#120507,#070607);
-border-bottom:1px solid #ff183833;
-}
-.top{
-display:flex;align-items:center;justify-content:space-between;gap:14px;
-border:1px solid var(--line);border-radius:22px;padding:10px 15px;
-background:#090708bb;
-}
+header{padding:17px 0 29px;background:linear-gradient(120deg,#080708,#120507,#070607);border-bottom:1px solid #ff183833}
+.top{display:flex;align-items:center;justify-content:space-between;gap:14px;border:1px solid var(--line);border-radius:22px;padding:10px 15px;background:#090708bb}
 .brand{display:flex;align-items:center;gap:11px}
-.logo{
-width:46px;height:46px;border-radius:15px;
-background:linear-gradient(145deg,#ff2946,#760014);
-display:grid;place-items:center;font-weight:900;
-}
+.logo{width:46px;height:46px;border-radius:15px;background:linear-gradient(145deg,#ff2946,#760014);display:grid;place-items:center;font-weight:900}
 .brand h1{font:900 22px 'Tajawal',sans-serif;margin:0}
 .brand h1 span,.hero h2 span{color:var(--red)}
 .brand small{display:block;color:#aaa;font-size:11px}
-.adminlink,button{
-border:1px solid #ff344f88;border-radius:13px;
-padding:9px 15px;background:linear-gradient(135deg,#e8002a9c,#680015a8);
-color:#fff;cursor:pointer;font-weight:800;text-decoration:none;
-}
+.adminlink,button{border:1px solid #ff344f88;border-radius:13px;padding:9px 15px;background:linear-gradient(135deg,#e8002a9c,#680015a8);color:#fff;cursor:pointer;font-weight:800;text-decoration:none}
+button.secondary{background:#ff183812}
 .hero{padding:40px 0 18px}
-.welcome{
-display:inline-block;border:1px solid #ff183866;border-radius:999px;
-padding:3px 13px;color:#ff8b9a;background:#ff183811;font-size:12px;
-}
+.welcome{display:inline-block;border:1px solid #ff183866;border-radius:999px;padding:3px 13px;color:#ff8b9a;background:#ff183811;font-size:12px}
 .hero h2{font:900 clamp(30px,5vw,54px)/1.3 'Tajawal',sans-serif;margin:12px 0}
 .hero p{max-width:720px;color:#c3bcc3}
-.searchbox{
-margin-top:22px;display:flex;gap:10px;background:#100a0c;
-border:1px solid var(--line);padding:8px;border-radius:16px;
-}
-.searchbox input{
-border:0;flex:1;outline:none;background:transparent;color:#fff;
-min-width:0;padding:8px;
-}
-button.secondary{background:#ff183812}
+.searchbox{margin-top:22px;display:flex;gap:10px;background:#100a0c;border:1px solid var(--line);padding:8px;border-radius:16px}
+.searchbox input{border:0;flex:1;outline:none;background:transparent;color:#fff;min-width:0;padding:8px}
 main{padding:27px 0 50px}
-.sectionhead{
-display:flex;align-items:center;justify-content:space-between;gap:12px;
-margin:13px 0 17px;
-}
+.sectionhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:13px 0 17px}
 .sectionhead h3{font:800 24px 'Tajawal',sans-serif;margin:0}
 .muted{color:var(--muted);font-size:13px}
 .status{font-size:13px;color:#ff9eab;margin-top:12px}
 .filters{display:flex;gap:9px;overflow:auto;padding:4px 0 17px}
-.chip{
-white-space:nowrap;border:1px solid #ff18383b;border-radius:999px;
-padding:7px 15px;background:#11090b;color:#ddd;
-}
+.chip{white-space:nowrap;border:1px solid #ff18383b;border-radius:999px;padding:7px 15px;background:#11090b;color:#ddd}
 .chip.active{background:#ff183827;color:#ff9eab;border-color:var(--red)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:15px}
-.lesson{
-background:linear-gradient(145deg,#160b0eeb,#090809f5);
-border:1px solid #ff263d4a;border-radius:20px;padding:18px;
-display:flex;flex-direction:column;min-height:215px;
-}
-.tag{
-display:inline-flex;background:#ff18381b;color:#ff8c9d;
-border:1px solid #ff183844;border-radius:9px;padding:3px 9px;
-font-size:12px;align-self:flex-start;
-}
+.lesson{background:linear-gradient(145deg,#160b0eeb,#090809f5);border:1px solid #ff263d4a;border-radius:20px;padding:18px;display:flex;flex-direction:column;min-height:215px}
+.tag{display:inline-flex;background:#ff18381b;color:#ff8c9d;border:1px solid #ff183844;border-radius:9px;padding:3px 9px;font-size:12px;align-self:flex-start}
 .lesson h4{font:800 20px/1.5 'Tajawal',sans-serif;margin:12px 0 5px}
 .lesson p{color:#b8b0b8;margin:0 0 18px;font-size:14px;white-space:pre-wrap}
 .lesson button{margin-top:auto;align-self:flex-start}
-.empty{
-background:#100a0c;border:1px solid #ff183833;border-radius:16px;
-padding:18px;color:#bcb4bc;grid-column:1/-1;
-}
-dialog{
-border:1px solid #ff183866;border-radius:22px;padding:0;
-width:min(760px,calc(100% - 24px));max-height:85vh;
-background:#090708;color:#fff;
-}
+.empty{background:#100a0c;border:1px solid #ff183833;border-radius:16px;padding:18px;color:#bcb4bc;grid-column:1/-1}
+dialog{border:1px solid #ff183866;border-radius:22px;padding:0;width:min(760px,calc(100% - 24px));max-height:85vh;background:#090708;color:#fff}
 dialog::backdrop{background:#020203d9}
-.modalhead{
-padding:17px 20px;background:#20060b;
-border-bottom:1px solid #ff183833;
-display:flex;justify-content:space-between;gap:10px;align-items:center;
-}
+.modalhead{padding:17px 20px;background:#20060b;border-bottom:1px solid #ff183833;display:flex;justify-content:space-between;gap:10px;align-items:center}
 .modalhead h3{font:800 23px 'Tajawal',sans-serif;margin:0}
-.modalbody{
-padding:22px;white-space:pre-wrap;overflow-wrap:anywhere;
-color:#e8e3e8;line-height:2;font-size:16px;
-}
-footer{
-text-align:center;padding:22px;color:#858087;font-size:13px;
-border-top:1px solid #ff183822;
-}
-@media(max-width:600px){
-.wrap{padding:0 13px}
-.top{padding:9px 10px}
-.brand h1{font-size:19px}
-.logo{width:41px;height:41px}
-.adminlink{padding:7px 10px;font-size:12px}
-.hero{padding-top:30px}
-.hero p{font-size:14px}
-.searchbox{flex-direction:column}
-.searchbox button{width:100%}
-.sectionhead h3{font-size:21px}
-.grid{grid-template-columns:1fr}
-.lesson{min-height:190px}
-}
+.modalbody{padding:22px;white-space:pre-wrap;overflow-wrap:anywhere;color:#e8e3e8;line-height:2;font-size:16px}
+.modalactions{padding:0 22px 22px;display:flex;gap:10px;flex-wrap:wrap}
+footer{text-align:center;padding:22px;color:#858087;font-size:13px;border-top:1px solid #ff183822}
+@media(max-width:600px){.wrap{padding:0 13px}.top{padding:9px 10px}.brand h1{font-size:19px}.logo{width:41px;height:41px}.adminlink{padding:7px 10px;font-size:12px}.hero{padding-top:30px}.hero p{font-size:14px}.searchbox{flex-direction:column}.searchbox button{width:100%}.sectionhead h3{font-size:21px}.grid{grid-template-columns:1fr}.lesson{min-height:190px}}
 </style>
 </head>
-
 <body>
 <header>
 <div class="wrap">
@@ -150,7 +69,6 @@ border-top:1px solid #ff183822;
     </div>
     <a class="adminlink" href="admin.html">لوحة الإدارة ↗</a>
   </div>
-
   <div class="hero">
     <span class="welcome">مرحباً بك في</span>
     <h2>PED <span>SAN</span><br>اتعلّم اليوم، واصنع مستقبلك.</h2>
@@ -175,9 +93,7 @@ border-top:1px solid #ff183822;
   </div>
 </main>
 
-<footer>
-© <span id="year"></span> PED SAN — التعلّم مستمر، والتطوير ما بوقف.
-</footer>
+<footer>© <span id="year"></span> PED SAN — التعلّم مستمر، والتطوير ما بوقف.</footer>
 
 <dialog id="lessonDialog">
   <div class="modalhead">
@@ -186,19 +102,16 @@ border-top:1px solid #ff183822;
   </div>
   <div id="modalCategory" style="padding:10px 22px 0"></div>
   <div class="modalbody" id="modalContent"></div>
+  <div class="modalactions">
+    <button id="copyLesson">📋 نسخ شرح الدرس</button>
+    <button id="copyTitle" class="secondary">نسخ عنوان الدرس</button>
+  </div>
 </dialog>
 
 <script type="module">
-import { initializeApp } from
-"https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
 
-import {
-  getDatabase,
-  ref,
-  onValue
-} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
-
-/* إعدادات مشروع PED SAN */
 const firebaseConfig = {
   apiKey: "AIzaSyC393Ko1pqXlXQGP3iyoXau9zDm8JLlQUA",
   authDomain: "ped-37b14.firebaseapp.com",
@@ -213,12 +126,10 @@ const firebaseConfig = {
 const statusEl = document.getElementById("status");
 const lessonsEl = document.getElementById("lessons");
 const filtersEl = document.getElementById("filters");
-
 let allLessons = [];
 let category = "الكل";
 
-document.getElementById("year").textContent =
-  new Date().getFullYear();
+document.getElementById("year").textContent = new Date().getFullYear();
 
 function setStatus(message) {
   statusEl.textContent = message;
@@ -231,54 +142,35 @@ function safeText(value) {
 function renderFilters() {
   const categories = [
     "الكل",
-    ...new Set(
-      allLessons
-        .map(item => safeText(item.category).trim())
-        .filter(Boolean)
-    )
+    ...new Set(allLessons.map(item => safeText(item.category).trim()).filter(Boolean))
   ];
 
   filtersEl.replaceChildren();
 
   categories.forEach(name => {
     const button = document.createElement("button");
-    button.className =
-      "chip" + (name === category ? " active" : "");
+    button.className = "chip" + (name === category ? " active" : "");
     button.textContent = name;
-
     button.onclick = () => {
       category = name;
       renderFilters();
       renderLessons();
     };
-
     filtersEl.appendChild(button);
   });
 }
 
 function renderLessons() {
-  const query = document.getElementById("search")
-    .value.trim().toLocaleLowerCase();
+  const query = document.getElementById("search").value.trim().toLocaleLowerCase();
 
   const filtered = allLessons.filter(item => {
-    const matchesCategory =
-      category === "الكل" || item.category === category;
-
-    const matchesSearch = [
-      item.title,
-      item.summary,
-      item.category,
-      item.content
-    ].some(value =>
-      safeText(value).toLocaleLowerCase().includes(query)
-    );
-
+    const matchesCategory = category === "الكل" || item.category === category;
+    const matchesSearch = [item.title, item.summary, item.category, item.content]
+      .some(value => safeText(value).toLocaleLowerCase().includes(query));
     return matchesCategory && matchesSearch;
   });
 
-  document.getElementById("count").textContent =
-    filtered.length + " درس";
-
+  document.getElementById("count").textContent = filtered.length + " درس";
   lessonsEl.replaceChildren();
 
   if (!filtered.length) {
@@ -287,14 +179,12 @@ function renderLessons() {
     empty.textContent = allLessons.length
       ? "ما لقينا درس مطابق للبحث."
       : "لسه ما تمت إضافة دروس. تابعنا قريباً.";
-
     lessonsEl.appendChild(empty);
     return;
   }
 
   filtered.sort((a, b) =>
-    Number(b.updatedAt || b.createdAt || 0) -
-    Number(a.updatedAt || a.createdAt || 0)
+    Number(b.updatedAt || b.createdAt || 0) - Number(a.updatedAt || a.createdAt || 0)
   );
 
   filtered.forEach(item => {
@@ -309,9 +199,7 @@ function renderLessons() {
     title.textContent = safeText(item.title || "درس بدون عنوان");
 
     const summary = document.createElement("p");
-    summary.textContent = safeText(
-      item.summary || "افتح الدرس لقراءة الشرح الكامل."
-    );
+    summary.textContent = safeText(item.summary || "افتح الدرس لقراءة الشرح الكامل.");
 
     const button = document.createElement("button");
     button.textContent = "اقرأ الدرس";
@@ -323,87 +211,87 @@ function renderLessons() {
 }
 
 function openLesson(item) {
-  document.getElementById("modalTitle").textContent =
-    safeText(item.title || "الدرس");
-
-  document.getElementById("modalCategory").textContent =
-    "المجال: " + safeText(item.category || "عام");
-
-  document.getElementById("modalContent").textContent =
-    safeText(item.content || item.summary || "لا يوجد محتوى.");
-
+  document.getElementById("modalTitle").textContent = safeText(item.title || "الدرس");
+  document.getElementById("modalCategory").textContent = "المجال: " + safeText(item.category || "عام");
+  document.getElementById("modalContent").textContent = safeText(item.content || item.summary || "لا يوجد محتوى.");
   document.getElementById("lessonDialog").showModal();
 }
+
+async function copyText(text) {
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+    } else {
+      const area = document.createElement("textarea");
+      area.value = text;
+      area.style.position = "fixed";
+      area.style.top = "0";
+      area.style.right = "100%";
+      document.body.appendChild(area);
+      area.focus();
+      area.select();
+      const success = document.execCommand("copy");
+      area.remove();
+      if (!success) throw new Error("copy failed");
+    }
+
+    alert("تم النسخ بنجاح ✅");
+  } catch (error) {
+    alert("تعذر النسخ. حاول فتح الموقع عبر HTTPS ثم أعد المحاولة.");
+  }
+}
+
+document.getElementById("copyLesson").onclick = () => {
+  const title = document.getElementById("modalTitle").textContent;
+  const categoryText = document.getElementById("modalCategory").textContent;
+  const content = document.getElementById("modalContent").textContent;
+  copyText(title + "\n" + categoryText + "\n\n" + content);
+};
+
+document.getElementById("copyTitle").onclick = () => {
+  copyText(document.getElementById("modalTitle").textContent);
+};
 
 document.getElementById("closeModal").onclick = () => {
   document.getElementById("lessonDialog").close();
 };
 
-document.getElementById("search").addEventListener(
-  "input",
-  renderLessons
-);
+document.getElementById("search").addEventListener("input", renderLessons);
 
 document.getElementById("clearSearch").onclick = () => {
   document.getElementById("search").value = "";
   renderLessons();
 };
 
-/* الاتصال بقاعدة بيانات Firebase */
 try {
   const app = initializeApp(firebaseConfig);
   const database = getDatabase(app);
 
-  onValue(
-    ref(database, "lessons"),
-    snapshot => {
-      const data = snapshot.val() || {};
+  onValue(ref(database, "lessons"), snapshot => {
+    const data = snapshot.val() || {};
+    allLessons = Object.entries(data)
+      .filter(([id, value]) => value && typeof value === "object")
+      .map(([id, value]) => ({...value, id}));
 
-      allLessons = Object.entries(data)
-        .filter(([id, value]) =>
-          value && typeof value === "object"
-        )
-        .map(([id, value]) => ({
-          ...value,
-          id
-        }));
-
-      setStatus(
-        "متصل بقاعدة البيانات — يتم تحديث الدروس تلقائياً."
-      );
-
-      renderFilters();
-      renderLessons();
-    },
-    error => {
-      console.error("Firebase database error:", error);
-
-      setStatus(
-        "تعذّر تحميل الدروس: " + error.message
-      );
-
-      lessonsEl.replaceChildren();
-
-      const message = document.createElement("div");
-      message.className = "empty";
-      message.textContent =
-        "فشل تحميل الدروس. راجع قواعد Realtime Database واتصال الإنترنت.";
-
-      lessonsEl.appendChild(message);
-    }
-  );
+    setStatus("متصل بقاعدة البيانات — يتم تحديث الدروس تلقائياً.");
+    renderFilters();
+    renderLessons();
+  }, error => {
+    console.error("Firebase database error:", error);
+    setStatus("تعذّر تحميل الدروس: " + error.message);
+    lessonsEl.replaceChildren();
+    const message = document.createElement("div");
+    message.className = "empty";
+    message.textContent = "فشل تحميل الدروس. راجع قواعد Realtime Database واتصال الإنترنت.";
+    lessonsEl.appendChild(message);
+  });
 } catch (error) {
   console.error("Firebase initialization error:", error);
-
   setStatus("تعذّر تشغيل Firebase: " + error.message);
-
   lessonsEl.replaceChildren();
-
   const message = document.createElement("div");
   message.className = "empty";
-  message.textContent =
-    "تعذّر تهيئة Firebase. تحقق من إعدادات المشروع واتصال الإنترنت.";
-
+  message.textContent = "تعذّر تهيئة Firebase. تحقق من إعدادات المشروع واتصال الإنترنت.";
   lessonsEl.appendChild(message);
 }
 </script>
