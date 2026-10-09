@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#087f5b">
+<title>إدارة PED SAN</title>
+<style>
+:root{--g:#087f5b;--g2:#0ba678;--ink:#12352b;--muted:#6b7c75;--line:#e2eee8;--bg:#f3faf6}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#e9f8ef,#f8fbf9 280px);font-family:Tahoma,Arial,sans-serif;color:var(--ink);line-height:1.7}.wrap{max-width:950px;margin:auto;padding:20px 15px 45px}
+header{background:linear-gradient(135deg,#07583f,#0b9c70);color:white;border-radius:23px;padding:22px;margin-bottom:18px}header h1{margin:0;font-size:24px}header p{margin:5px 0 0;color:#e4fff3}.panel{background:white;border:1px solid var(--line);border-radius:20px;padding:20px;margin:14px 0;box-shadow:0 12px 35px #0b5a3d10}.panel h2{margin:0 0 14px;font-size:19px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{display:flex;flex-direction:column;gap:6px}.wide{grid-column:1/-1}label{font-size:13px;color:var(--muted)}input,textarea{font:inherit;border:1px solid var(--line);border-radius:12px;padding:12px;width:100%;background:#fff;color:var(--ink)}textarea{min-height:180px;resize:vertical}button,.btn{font:inherit;border:0;border-radius:12px;padding:11px 15px;background:var(--g);color:white;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block}button.secondary{background:#e8f7ef;color:var(--g)}button.danger{background:#b42332}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}.msg{padding:12px 14px;border-radius:12px;background:#e8f7ef;color:#07583f;margin:10px 0;white-space:pre-wrap}.msg.error{background:#fff0f0;color:#a51d2d}.hidden{display:none!important}.lessonrow{border:1px solid var(--line);border-radius:14px;padding:13px;margin:10px 0;display:flex;align-items:center;justify-content:space-between;gap:12px}.lessonrow strong{display:block}.lessonrow small{color:var(--muted)}.rowactions{display:flex;gap:6px;flex-wrap:wrap}.hint{font-size:13px;color:var(--muted)}a{color:var(--g)}@media(max-width:600px){.formgrid{grid-template-columns:1fr}.wide{grid-column:auto}.lessonrow{align-items:flex-start;flex-direction:column}}
+</style></head>
+<body><div class="wrap">
+<header><h1>PED SAN — لوحة إدارة الدروس</h1><p>إضافة وتعديل وحذف الدروس المخزنة في Firebase.</p><div class="actions"><a class="btn" href="index.html">العودة للموقع</a></div></header>
+<div id="message" class="msg hidden"></div>
+<section id="loginPanel" class="panel"><h2>دخول المشرف</h2><p class="hint">استخدم بريد وكلمة مرور حساب المشرف الذي أنشأته في Firebase Authentication.</p>
+<form id="loginForm"><div class="formgrid"><div class="field wide"><label for="email">البريد الإلكتروني</label><input id="email" type="email" autocomplete="username" required></div><div class="field wide"><label for="password">كلمة المرور</label><input id="password" type="password" autocomplete="current-password" required></div></div><div class="actions"><button type="submit">تسجيل الدخول</button></div></form></section>
+<section id="editorPanel" class="panel hidden"><h2 id="formTitle">إضافة درس جديد</h2>
+<form id="lessonForm"><input id="lessonId" type="hidden"><div class="formgrid">
+<div class="field"><label for="title">عنوان الدرس *</label><input id="title" maxlength="120" required></div>
+<div class="field"><label for="category">القسم *</label><input id="category" maxlength="60" placeholder="مثال: برمجة التطبيقات" required></div>
+<div class="field wide"><label for="summary">ملخص قصير</label><input id="summary" maxlength="250" placeholder="نبذة تظهر في بطاقة الدرس"></div>
+<div class="field wide"><label for="content">محتوى الدرس *</label><textarea id="content" maxlength="50000" required placeholder="اكتب الشرح هنا. اترك سطراً فارغاً بين الفقرات."></textarea></div>
+</div><div class="actions"><button type="submit" id="saveBtn">حفظ الدرس</button><button type="button" class="secondary" id="resetBtn">درس جديد / إلغاء التعديل</button><button type="button" class="danger" id="logoutBtn">تسجيل الخروج</button></div></form></section>
+<section id="listPanel" class="panel hidden"><h2>الدروس الحالية</h2><div id="lessonList"><p class="hint">جاري التحميل…</p></div></section>
+</div>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+import { getDatabase, ref, onValue, push, set, update, remove } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+import { firebaseConfig } from "./firebase-config.js";
+const msg=document.getElementById("message"), loginPanel=document.getElementById("loginPanel"), editorPanel=document.getElementById("editorPanel"), listPanel=document.getElementById("listPanel");
+let auth,db,currentUser=null,lessonCache={};
+function message(t,err=false){msg.textContent=t;msg.classList.remove("hidden","error");if(err)msg.classList.add("error")}
+function clearMessage(){msg.classList.add("hidden")}
+function escapeErr(e){const code=e?.code||"";const map={"auth/invalid-credential":"البريد أو كلمة المرور غير صحيحة.","auth/invalid-email":"صيغة البريد الإلكتروني غير صحيحة.","auth/too-many-requests":"محاولات كثيرة. انتظر قليلاً ثم حاول مرة أخرى.","PERMISSION_DENIED":"الصلاحيات لا تسمح بالعملية. راجع ADMIN_UID في قواعد Firebase."};return map[code]||("حدث خطأ: "+(e?.message||code||"غير معروف"))}
+function resetForm(){document.getElementById("lessonForm").reset();document.getElementById("lessonId").value="";document.getElementById("formTitle").textContent="إضافة درس جديد";document.getElementById("saveBtn").textContent="حفظ الدرس"}
+function renderList(){
+ const host=document.getElementById("lessonList");host.replaceChildren();
+ const entries=Object.entries(lessonCache).sort((a,b)=>String(b[1].updatedAt||b[1].createdAt||0).localeCompare(String(a[1].updatedAt||a[1].createdAt||0)));
+ if(!entries.length){const p=document.createElement("p");p.className="hint";p.textContent="لا توجد دروس حتى الآن.";host.appendChild(p);return}
+ entries.forEach(([id,item])=>{const row=document.createElement("div");row.className="lessonrow";const info=document.createElement("div");const strong=document.createElement("strong");strong.textContent=item.title||"بدون عنوان";const small=document.createElement("small");small.textContent=(item.category||"عام")+" — "+(item.summary||"بدون ملخص");info.append(strong,small);const actions=document.createElement("div");actions.className="rowactions";const edit=document.createElement("button");edit.className="secondary";edit.textContent="تعديل";edit.onclick=()=>editLesson(id,item);const del=document.createElement("button");del.className="danger";del.textContent="حذف";del.onclick=()=>deleteLesson(id,item.title);actions.append(edit,del);row.append(info,actions);host.appendChild(row)});
+}
+function editLesson(id,item){document.getElementById("lessonId").value=id;document.getElementById("title").value=item.title||"";document.getElementById("category").value=item.category||"";document.getElementById("summary").value=item.summary||"";document.getElementById("content").value=item.content||"";document.getElementById("formTitle").textContent="تعديل الدرس";document.getElementById("saveBtn").textContent="حفظ التعديلات";window.scrollTo({top:0,behavior:"smooth"})}
+async function deleteLesson(id,title){if(!confirm('متأكد من حذف الدرس "'+(title||"")+'"؟'))return;try{await remove(ref(db,"lessons/"+id));message("تم حذف الدرس.");}catch(e){message(escapeErr(e),true)}}
+try{
+ const app=initializeApp(firebaseConfig);auth=getAuth(app);db=getDatabase(app);
+ document.getElementById("loginForm").addEventListener("submit",async e=>{e.preventDefault();clearMessage();try{await signInWithEmailAndPassword(auth,document.getElementById("email").value.trim(),document.getElementById("password").value)}catch(err){message(escapeErr(err),true)}});
+ onAuthStateChanged(auth,user=>{currentUser=user;loginPanel.classList.toggle("hidden",!!user);editorPanel.classList.toggle("hidden",!user);listPanel.classList.toggle("hidden",!user);if(user){message("تم تسجيل الدخول. إذا تعذرت الكتابة، تأكد أن UID الخاص بك موجود في قواعد قاعدة البيانات.");onValue(ref(db,"lessons"),snap=>{lessonCache=snap.val()||{};renderList()},err=>message(escapeErr(err),true))}else{clearMessage()}});
+ document.getElementById("lessonForm").addEventListener("submit",async e=>{e.preventDefault();if(!currentUser)return;clearMessage();const id=document.getElementById("lessonId").value;const now=Date.now();const old=id?lessonCache[id]:null;const item={title:document.getElementById("title").value.trim(),category:document.getElementById("category").value.trim(),summary:document.getElementById("summary").value.trim(),content:document.getElementById("content").value.trim(),createdAt:old?.createdAt||now,updatedAt:now};if(!item.title||!item.category||!item.content){message("أكمل عنوان الدرس والقسم والمحتوى.",true);return}try{if(id){await update(ref(db,"lessons/"+id),item);message("تم تحديث الدرس بنجاح.")}else{const newRef=push(ref(db,"lessons"));await set(newRef,item);message("تمت إضافة الدرس بنجاح.")}resetForm()}catch(err){message(escapeErr(err),true)}});
+ document.getElementById("resetBtn").onclick=resetForm;
+ document.getElementById("logoutBtn").onclick=async()=>{await signOut(auth);resetForm();message("تم تسجيل الخروج.")};
+}catch(e){message("أكمل إعداد firebase-config.js أولاً. "+(e?.message||""),true)}
+</script></body></html>

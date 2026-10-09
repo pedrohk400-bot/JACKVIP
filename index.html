@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#087f5b">
+<title>PED SAN | التعليم بلا حدود</title>
+<style>
+:root{--green:#087f5b;--green2:#0ba678;--dark:#12352b;--bg:#f4faf7;--card:#fff;--muted:#6b7c75;--line:#e2eee8;--shadow:0 12px 35px #0b5a3d12}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#eaf8f1 0,#f7fbf9 320px,var(--bg) 100%);font-family:Tahoma,Arial,sans-serif;color:var(--dark);line-height:1.7}
+header{padding:24px 16px 35px;background:linear-gradient(135deg,#07583f,#0b9c70);color:white;border-radius:0 0 30px 30px}
+.wrap{max-width:1050px;margin:auto;padding:0 16px}.top{display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{display:flex;align-items:center;gap:12px}.logo{width:48px;height:48px;border-radius:16px;background:#ffffff24;display:grid;place-items:center;font-size:19px;font-weight:900;border:1px solid #ffffff40}.brand h1{font-size:20px;margin:0}.brand small{display:block;opacity:.8}.adminlink{color:white;text-decoration:none;border:1px solid #ffffff66;border-radius:12px;padding:8px 13px;font-size:13px}
+.hero{padding:35px 0 12px}.hero h2{font-size:clamp(28px,5vw,43px);line-height:1.3;margin:0 0 12px}.hero p{margin:0;max-width:650px;color:#e5fff4}.searchbox{margin-top:23px;display:flex;gap:10px;background:white;padding:8px;border-radius:17px;box-shadow:var(--shadow)}input,select,textarea,button{font:inherit}input,select,textarea{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;color:var(--dark);min-width:0} .searchbox input{border:0;flex:1;outline:none}
+button,.btn{border:0;border-radius:12px;padding:11px 16px;background:var(--green);color:#fff;cursor:pointer;font-weight:bold;text-decoration:none;display:inline-block}button:hover,.btn:hover{filter:brightness(1.05)}button.secondary{background:#eaf7f1;color:var(--green)}button.danger{background:#b42332}
+main{padding:26px 0 50px}.sectionhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:10px 0 16px}.sectionhead h3{margin:0;font-size:21px}.muted{color:var(--muted);font-size:13px}.filters{display:flex;gap:8px;overflow:auto;padding:4px 0 15px}.chip{white-space:nowrap;border:1px solid var(--line);border-radius:999px;padding:8px 14px;background:white;color:var(--dark);cursor:pointer}.chip.active{background:#dff6ea;color:#066746;border-color:#b5e6ce}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:14px}.lesson{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:19px;box-shadow:var(--shadow);display:flex;flex-direction:column;min-height:210px}.tag{display:inline-flex;background:#e5f8ee;color:#08764f;border-radius:9px;padding:4px 9px;font-size:12px;align-self:flex-start}.lesson h4{font-size:18px;margin:13px 0 6px}.lesson p{color:var(--muted);margin:0 0 18px;font-size:14px;white-space:pre-wrap}.lesson button{margin-top:auto;align-self:flex-start}.empty,.notice{background:white;border:1px solid var(--line);border-radius:16px;padding:18px;color:var(--muted)}.status{font-size:13px;color:#eafff5;margin-top:12px}dialog{border:0;border-radius:22px;padding:0;width:min(720px,calc(100% - 24px));max-height:85vh;box-shadow:0 20px 70px #001b1233}dialog::backdrop{background:#062b20a8}.modalhead{padding:18px 20px;background:#e8f8ef;display:flex;justify-content:space-between;gap:10px;align-items:center}.modalhead h3{margin:0}.modalbody{padding:22px;white-space:pre-wrap;overflow-wrap:anywhere}.close{background:#d7efe2;color:#07583f;padding:6px 12px}footer{text-align:center;padding:22px;color:var(--muted);font-size:13px}
+@media(max-width:520px){.top{align-items:flex-start}.brand h1{font-size:17px}.adminlink{padding:7px 10px}.searchbox{flex-direction:column}.searchbox button{width:100%}.hero{padding-top:27px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="top"><div class="brand"><div class="logo">PS</div><div><h1>PED SAN</h1><small>منصة التعليم والشروحات</small></div></div><a class="adminlink" href="admin.html">لوحة الإدارة ↗</a></div>
+  <div class="hero"><h2>اتعلّم اليوم، واصنع مستقبلك.</h2><p>شروحات مبسطة في البرمجة وتصميم التطبيقات والمواقع ومجالات تقنية متنوعة، في مكان واحد.</p>
+    <div class="searchbox"><input id="search" type="search" placeholder="ابحث عن درس أو مجال..." aria-label="البحث"><button id="clearSearch" class="secondary">مسح البحث</button></div>
+    <div id="status" class="status">جاري الاتصال بقاعدة الدروس…</div>
+  </div>
+</div></header>
+<main class="wrap">
+  <div class="sectionhead"><h3>استكشف الدروس</h3><span id="count" class="muted">0 درس</span></div>
+  <div id="filters" class="filters"><button class="chip active" data-category="الكل">الكل</button></div>
+  <div id="lessons" class="grid"><div class="empty">جاري تحميل الدروس…</div></div>
+</main>
+<footer>© <span id="year"></span> PED SAN — التعلّم مستمر، والتطوير ما بوقف.</footer>
+<dialog id="lessonDialog"><div class="modalhead"><h3 id="modalTitle">عنوان الدرس</h3><button class="close" id="closeModal">إغلاق</button></div><div id="modalCategory" style="padding:10px 22px 0"></div><div class="modalbody" id="modalContent"></div></dialog>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+import { firebaseConfig } from "./firebase-config.js";
+const statusEl=document.getElementById("status"), lessonsEl=document.getElementById("lessons"), filtersEl=document.getElementById("filters");
+let allLessons=[], category="الكل";
+document.getElementById("year").textContent=new Date().getFullYear();
+function safeText(v){return String(v??"")}
+function setStatus(t){statusEl.textContent=t}
+function renderFilters(){
+ const cats=["الكل",...new Set(allLessons.map(x=>safeText(x.category).trim()).filter(Boolean))];
+ filtersEl.replaceChildren();
+ cats.forEach(c=>{const b=document.createElement("button");b.className="chip"+(c===category?" active":"");b.textContent=c;b.dataset.category=c;b.onclick=()=>{category=c;renderFilters();renderLessons()};filtersEl.appendChild(b)});
+}
+function renderLessons(){
+ const q=document.getElementById("search").value.trim().toLocaleLowerCase();
+ const filtered=allLessons.filter(x=>(category==="الكل"||x.category===category)&&[x.title,x.summary,x.category,x.content].some(v=>safeText(v).toLocaleLowerCase().includes(q)));
+ document.getElementById("count").textContent=filtered.length+" درس";
+ lessonsEl.replaceChildren();
+ if(!filtered.length){const d=document.createElement("div");d.className="empty";d.textContent=allLessons.length?"ما لقينا درس مطابق للبحث.":"لسه ما تمت إضافة دروس. تابعنا قريباً.";lessonsEl.appendChild(d);return}
+ filtered.sort((a,b)=>(Number(b.updatedAt||b.createdAt||0)-Number(a.updatedAt||a.createdAt||0)));
+ filtered.forEach(item=>{
+   const card=document.createElement("article");card.className="lesson";
+   const tag=document.createElement("span");tag.className="tag";tag.textContent=safeText(item.category||"عام");
+   const h=document.createElement("h4");h.textContent=safeText(item.title||"درس بدون عنوان");
+   const p=document.createElement("p");p.textContent=safeText(item.summary||"افتح الدرس لقراءة الشرح الكامل.");
+   const btn=document.createElement("button");btn.textContent="اقرأ الدرس";btn.onclick=()=>openLesson(item);
+   card.append(tag,h,p,btn);lessonsEl.appendChild(card);
+ });
+}
+function openLesson(item){
+ document.getElementById("modalTitle").textContent=safeText(item.title);
+ document.getElementById("modalCategory").textContent="المجال: "+safeText(item.category||"عام");
+ document.getElementById("modalContent").textContent=safeText(item.content);
+ document.getElementById("lessonDialog").showModal();
+}
+document.getElementById("closeModal").onclick=()=>document.getElementById("lessonDialog").close();
+document.getElementById("search").addEventListener("input",renderLessons);
+document.getElementById("clearSearch").onclick=()=>{document.getElementById("search").value="";renderLessons()};
+try{
+ const app=initializeApp(firebaseConfig), db=getDatabase(app);
+ onValue(ref(db,"lessons"),snap=>{
+   const val=snap.val()||{};
+   allLessons=Object.entries(val).map(([id,v])=>({...v,id}));
+   setStatus("متصل بقاعدة البيانات — يتم تحديث الدروس تلقائياً.");
+   renderFilters();renderLessons();
+ },err=>{setStatus("تعذّر تحميل الدروس. راجع إعدادات Firebase والصلاحيات.");lessonsEl.innerHTML='<div class="empty">تعذّر الاتصال بقاعدة البيانات. تأكد من إعداد firebase-config.js وقواعد Realtime Database.</div>';console.error(err)});
+}catch(e){setStatus("إعداد Firebase غير مكتمل.");lessonsEl.innerHTML='<div class="empty">أكمل بيانات firebase-config.js أولاً، ثم ارفع الملفات إلى GitHub Pages.</div>';console.error(e)}
+</script>
+</body></html>
