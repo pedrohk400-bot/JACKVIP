@@ -1,92 +1,411 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#087f5b">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080708">
 <title>PED SAN | التعليم بلا حدود</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
-:root{--red:#ff1838;--red2:#b90022;--red-glow:#ff183855;--bg:#050506;--panel:rgba(20,10,12,.78);--panel2:rgba(30,8,12,.76);--line:rgba(255,35,62,.42);--white:#f7f7fb;--muted:#aaa5ad;--shadow:0 10px 32px #ff002015}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% 0%,#30050b 0,transparent 44%),linear-gradient(180deg,#080708,#030304 72%);font-family:'Cairo',Tahoma,Arial,sans-serif;color:var(--white);line-height:1.85}
-button,input,select,textarea{font:inherit}a{color:inherit}.wrap{max-width:1150px;margin:auto;padding:0 18px}
-header{padding:17px 0 29px;background:radial-gradient(ellipse at 55% 50%,#61000e66,transparent 45%),linear-gradient(120deg,#080708,#120507 60%,#070607);border-bottom:1px solid #ff183833;position:relative;overflow:hidden}
-header:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 35%,#ff0b2610 50%,transparent 68%)}
-.top{position:relative;display:flex;align-items:center;justify-content:space-between;gap:14px;border:1px solid #ff243b55;border-radius:22px;padding:10px 15px;background:#090708bb;backdrop-filter:blur(18px);box-shadow:0 0 25px #ff00200b}
-.brand{display:flex;align-items:center;gap:11px}.logo{width:46px;height:46px;border-radius:15px;background:linear-gradient(145deg,#ff2946,#760014);display:grid;place-items:center;font:900 17px 'Tajawal',sans-serif;box-shadow:0 0 22px #ff183855}.brand h1{font:900 22px 'Tajawal',sans-serif;margin:0;letter-spacing:.3px}.brand h1 span{color:var(--red)}.brand small{display:block;color:#aaa;font-size:11px;line-height:1.5}.adminlink{color:#fff;text-decoration:none;border:1px solid #ff244866;border-radius:13px;padding:8px 15px;background:#ff183814;box-shadow:inset 0 0 18px #ff18380b;transition:.2s}.adminlink:hover{background:#ff18382b;box-shadow:0 0 20px #ff183833}
-.hero{position:relative;padding:45px 0 21px}.hero h2{font:900 clamp(30px,5vw,54px)/1.25 'Tajawal',sans-serif;margin:12px 0;color:#fff;text-shadow:0 0 26px #ff183822}.hero h2 span{color:var(--red)}.hero p{margin:0;max-width:720px;color:#c3bcc3;font-size:16px}.hero .welcome{display:inline-block;border:1px solid #ff183866;border-radius:999px;padding:3px 13px;color:#ff8b9a;background:#ff183811;font-size:12px}
-.searchbox{margin-top:23px;display:flex;gap:10px;background:#100a0c;border:1px solid #ff18384d;padding:8px;border-radius:16px;box-shadow:0 0 28px #ff002010}.searchbox input{border:0;flex:1;outline:none;background:transparent;color:#fff;min-width:0}.searchbox input::placeholder{color:#88818a}
-button,.btn{border:1px solid #ff344f88;border-radius:13px;padding:10px 16px;background:linear-gradient(135deg,#e8002a9c,#680015a8);color:#fff;cursor:pointer;font-weight:800;box-shadow:inset 0 0 18px #ff183814,0 0 17px #ff183817;transition:transform .18s,box-shadow .18s,background .18s}button:hover,.btn:hover{transform:translateY(-1px);box-shadow:0 0 24px #ff18384a;background:linear-gradient(135deg,#ff2448,#8e001b)}button.secondary{background:#ff183812;color:#ffd9df;border-color:#ff344f55;box-shadow:none}button.danger{background:#5c0614;border-color:#ff1838}
-main{padding:27px 0 50px}.sectionhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:13px 0 17px}.sectionhead h3{font:800 24px 'Tajawal',sans-serif;margin:0}.muted{color:var(--muted);font-size:13px}.filters{display:flex;gap:9px;overflow:auto;padding:4px 0 17px}.chip{white-space:nowrap;border:1px solid #ff18383b;border-radius:999px;padding:7px 15px;background:#11090b;color:#ddd;cursor:pointer;box-shadow:none}.chip.active{background:#ff183827;color:#ff9eab;border-color:#ff1838;box-shadow:0 0 16px #ff18381b}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:15px}.lesson{background:linear-gradient(145deg,#160b0eeb,#090809f5);border:1px solid #ff263d4a;border-radius:20px;padding:18px;box-shadow:var(--shadow);display:flex;flex-direction:column;min-height:215px;position:relative;overflow:hidden}.lesson:before{content:"";height:1px;position:absolute;left:10%;right:10%;top:0;background:linear-gradient(90deg,transparent,#ff1838,transparent)}.tag{display:inline-flex;background:#ff18381b;color:#ff8c9d;border:1px solid #ff183844;border-radius:9px;padding:3px 9px;font-size:12px;align-self:flex-start}.lesson h4{font:800 20px/1.5 'Tajawal',sans-serif;margin:12px 0 5px;color:#fff}.lesson p{color:#b8b0b8;margin:0 0 18px;font-size:14px;white-space:pre-wrap}.lesson button{margin-top:auto;align-self:flex-start}.empty,.notice{background:#100a0c;border:1px solid #ff183833;border-radius:16px;padding:18px;color:#bcb4bc}
-dialog{border:1px solid #ff183866;border-radius:22px;padding:0;width:min(760px,calc(100% - 24px));max-height:85vh;background:#090708;color:#fff;box-shadow:0 20px 70px #000d,0 0 40px #ff00201c}dialog::backdrop{background:#020203d9;backdrop-filter:blur(5px)}.modalhead{padding:17px 20px;background:linear-gradient(100deg,#31060d,#12080a);border-bottom:1px solid #ff183833;display:flex;justify-content:space-between;gap:10px;align-items:center}.modalhead h3{font:800 23px 'Tajawal',sans-serif;margin:0}.modalbody{padding:22px;white-space:pre-wrap;overflow-wrap:anywhere;color:#e8e3e8;line-height:2;font-size:16px}.close{background:#ff18381b;color:#ffbdc6;padding:6px 12px}
-footer{text-align:center;padding:22px;color:#858087;font-size:13px;border-top:1px solid #ff183822}
-@media(max-width:600px){.wrap{padding:0 13px}.top{align-items:center;padding:9px 10px}.brand h1{font-size:19px}.logo{width:41px;height:41px}.adminlink{padding:7px 10px;font-size:12px}.hero{padding-top:32px}.hero p{font-size:14px}.searchbox{flex-direction:column}.searchbox button{width:100%}.sectionhead h3{font-size:21px}.grid{grid-template-columns:1fr}.lesson{min-height:190px}}
-
+:root{
+--red:#ff1838;
+--bg:#050506;
+--white:#f7f7fb;
+--muted:#aaa5ad;
+--line:#ff183855;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+margin:0;
+background:radial-gradient(ellipse at 50% 0%,#30050b,transparent 44%),linear-gradient(180deg,#080708,#030304 72%);
+font-family:'Cairo',Tahoma,Arial,sans-serif;
+color:var(--white);
+line-height:1.85;
+}
+button,input{font:inherit}
+a{color:inherit}
+.wrap{max-width:1150px;margin:auto;padding:0 18px}
+header{
+padding:17px 0 29px;
+background:linear-gradient(120deg,#080708,#120507,#070607);
+border-bottom:1px solid #ff183833;
+}
+.top{
+display:flex;align-items:center;justify-content:space-between;gap:14px;
+border:1px solid var(--line);border-radius:22px;padding:10px 15px;
+background:#090708bb;
+}
+.brand{display:flex;align-items:center;gap:11px}
+.logo{
+width:46px;height:46px;border-radius:15px;
+background:linear-gradient(145deg,#ff2946,#760014);
+display:grid;place-items:center;font-weight:900;
+}
+.brand h1{font:900 22px 'Tajawal',sans-serif;margin:0}
+.brand h1 span,.hero h2 span{color:var(--red)}
+.brand small{display:block;color:#aaa;font-size:11px}
+.adminlink,button{
+border:1px solid #ff344f88;border-radius:13px;
+padding:9px 15px;background:linear-gradient(135deg,#e8002a9c,#680015a8);
+color:#fff;cursor:pointer;font-weight:800;text-decoration:none;
+}
+.hero{padding:40px 0 18px}
+.welcome{
+display:inline-block;border:1px solid #ff183866;border-radius:999px;
+padding:3px 13px;color:#ff8b9a;background:#ff183811;font-size:12px;
+}
+.hero h2{font:900 clamp(30px,5vw,54px)/1.3 'Tajawal',sans-serif;margin:12px 0}
+.hero p{max-width:720px;color:#c3bcc3}
+.searchbox{
+margin-top:22px;display:flex;gap:10px;background:#100a0c;
+border:1px solid var(--line);padding:8px;border-radius:16px;
+}
+.searchbox input{
+border:0;flex:1;outline:none;background:transparent;color:#fff;
+min-width:0;padding:8px;
+}
+button.secondary{background:#ff183812}
+main{padding:27px 0 50px}
+.sectionhead{
+display:flex;align-items:center;justify-content:space-between;gap:12px;
+margin:13px 0 17px;
+}
+.sectionhead h3{font:800 24px 'Tajawal',sans-serif;margin:0}
+.muted{color:var(--muted);font-size:13px}
+.status{font-size:13px;color:#ff9eab;margin-top:12px}
+.filters{display:flex;gap:9px;overflow:auto;padding:4px 0 17px}
+.chip{
+white-space:nowrap;border:1px solid #ff18383b;border-radius:999px;
+padding:7px 15px;background:#11090b;color:#ddd;
+}
+.chip.active{background:#ff183827;color:#ff9eab;border-color:var(--red)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:15px}
+.lesson{
+background:linear-gradient(145deg,#160b0eeb,#090809f5);
+border:1px solid #ff263d4a;border-radius:20px;padding:18px;
+display:flex;flex-direction:column;min-height:215px;
+}
+.tag{
+display:inline-flex;background:#ff18381b;color:#ff8c9d;
+border:1px solid #ff183844;border-radius:9px;padding:3px 9px;
+font-size:12px;align-self:flex-start;
+}
+.lesson h4{font:800 20px/1.5 'Tajawal',sans-serif;margin:12px 0 5px}
+.lesson p{color:#b8b0b8;margin:0 0 18px;font-size:14px;white-space:pre-wrap}
+.lesson button{margin-top:auto;align-self:flex-start}
+.empty{
+background:#100a0c;border:1px solid #ff183833;border-radius:16px;
+padding:18px;color:#bcb4bc;grid-column:1/-1;
+}
+dialog{
+border:1px solid #ff183866;border-radius:22px;padding:0;
+width:min(760px,calc(100% - 24px));max-height:85vh;
+background:#090708;color:#fff;
+}
+dialog::backdrop{background:#020203d9}
+.modalhead{
+padding:17px 20px;background:#20060b;
+border-bottom:1px solid #ff183833;
+display:flex;justify-content:space-between;gap:10px;align-items:center;
+}
+.modalhead h3{font:800 23px 'Tajawal',sans-serif;margin:0}
+.modalbody{
+padding:22px;white-space:pre-wrap;overflow-wrap:anywhere;
+color:#e8e3e8;line-height:2;font-size:16px;
+}
+footer{
+text-align:center;padding:22px;color:#858087;font-size:13px;
+border-top:1px solid #ff183822;
+}
+@media(max-width:600px){
+.wrap{padding:0 13px}
+.top{padding:9px 10px}
+.brand h1{font-size:19px}
+.logo{width:41px;height:41px}
+.adminlink{padding:7px 10px;font-size:12px}
+.hero{padding-top:30px}
+.hero p{font-size:14px}
+.searchbox{flex-direction:column}
+.searchbox button{width:100%}
+.sectionhead h3{font-size:21px}
+.grid{grid-template-columns:1fr}
+.lesson{min-height:190px}
+}
 </style>
 </head>
+
 <body>
-<header><div class="wrap">
-  <div class="top"><div class="brand"><div class="logo">PS</div><div><h1>PED <span>SAN</span></h1><small>منصة التعليم والشروحات</small></div></div><a class="adminlink" href="admin.html">لوحة الإدارة ↗</a></div>
-  <div class="hero"><span class="welcome">مرحباً بك في</span><h2>PED <span style="color:var(--red)">SAN</span><br>اتعلّم اليوم، واصنع مستقبلك.</h2><p>شروحات مبسطة في البرمجة وتصميم التطبيقات والمواقع ومجالات تقنية متنوعة، في مكان واحد.</p>
-    <div class="searchbox"><input id="search" type="search" placeholder="ابحث عن درس أو مجال..." aria-label="البحث"><button id="clearSearch" class="secondary">مسح البحث</button></div>
+<header>
+<div class="wrap">
+  <div class="top">
+    <div class="brand">
+      <div class="logo">PS</div>
+      <div>
+        <h1>PED <span>SAN</span></h1>
+        <small>منصة التعليم والشروحات</small>
+      </div>
+    </div>
+    <a class="adminlink" href="admin.html">لوحة الإدارة ↗</a>
+  </div>
+
+  <div class="hero">
+    <span class="welcome">مرحباً بك في</span>
+    <h2>PED <span>SAN</span><br>اتعلّم اليوم، واصنع مستقبلك.</h2>
+    <p>شروحات مبسطة في البرمجة وتصميم التطبيقات والمواقع ومجالات تقنية متنوعة، في مكان واحد.</p>
+    <div class="searchbox">
+      <input id="search" type="search" placeholder="ابحث عن درس أو مجال..." aria-label="البحث">
+      <button id="clearSearch" class="secondary">مسح البحث</button>
+    </div>
     <div id="status" class="status">جاري الاتصال بقاعدة الدروس…</div>
   </div>
-</div></header>
+</div>
+</header>
+
 <main class="wrap">
-  <div class="sectionhead"><h3>استكشف الدروس</h3><span id="count" class="muted">0 درس</span></div>
-  <div id="filters" class="filters"><button class="chip active" data-category="الكل">الكل</button></div>
-  <div id="lessons" class="grid"><div class="empty">جاري تحميل الدروس…</div></div>
+  <div class="sectionhead">
+    <h3>استكشف الدروس</h3>
+    <span id="count" class="muted">0 درس</span>
+  </div>
+  <div id="filters" class="filters"></div>
+  <div id="lessons" class="grid">
+    <div class="empty">جاري تحميل الدروس…</div>
+  </div>
 </main>
-<footer>© <span id="year"></span> PED SAN — التعلّم مستمر، والتطوير ما بوقف.</footer>
-<dialog id="lessonDialog"><div class="modalhead"><h3 id="modalTitle">عنوان الدرس</h3><button class="close" id="closeModal">إغلاق</button></div><div id="modalCategory" style="padding:10px 22px 0"></div><div class="modalbody" id="modalContent"></div></dialog>
+
+<footer>
+© <span id="year"></span> PED SAN — التعلّم مستمر، والتطوير ما بوقف.
+</footer>
+
+<dialog id="lessonDialog">
+  <div class="modalhead">
+    <h3 id="modalTitle">عنوان الدرس</h3>
+    <button id="closeModal">إغلاق</button>
+  </div>
+  <div id="modalCategory" style="padding:10px 22px 0"></div>
+  <div class="modalbody" id="modalContent"></div>
+</dialog>
+
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
-import { firebaseConfig } from "./firebase-config.js";
-const statusEl=document.getElementById("status"), lessonsEl=document.getElementById("lessons"), filtersEl=document.getElementById("filters");
-let allLessons=[], category="الكل";
-document.getElementById("year").textContent=new Date().getFullYear();
-function safeText(v){return String(v??"")}
-function setStatus(t){statusEl.textContent=t}
-function renderFilters(){
- const cats=["الكل",...new Set(allLessons.map(x=>safeText(x.category).trim()).filter(Boolean))];
- filtersEl.replaceChildren();
- cats.forEach(c=>{const b=document.createElement("button");b.className="chip"+(c===category?" active":"");b.textContent=c;b.dataset.category=c;b.onclick=()=>{category=c;renderFilters();renderLessons()};filtersEl.appendChild(b)});
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+  getDatabase,
+  ref,
+  onValue
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+
+/* إعدادات مشروع PED SAN */
+const firebaseConfig = {
+  apiKey: "AIzaSyC393Ko1pqXlXQGP3iyoXau9zDm8JLlQUA",
+  authDomain: "ped-37b14.firebaseapp.com",
+  databaseURL: "https://ped-37b14-default-rtdb.firebaseio.com",
+  projectId: "ped-37b14",
+  storageBucket: "ped-37b14.firebasestorage.app",
+  messagingSenderId: "816967461547",
+  appId: "1:816967461547:web:7ab95806fa57c1c56b65ee",
+  measurementId: "G-52M3SHV3LD"
+};
+
+const statusEl = document.getElementById("status");
+const lessonsEl = document.getElementById("lessons");
+const filtersEl = document.getElementById("filters");
+
+let allLessons = [];
+let category = "الكل";
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+function setStatus(message) {
+  statusEl.textContent = message;
 }
-function renderLessons(){
- const q=document.getElementById("search").value.trim().toLocaleLowerCase();
- const filtered=allLessons.filter(x=>(category==="الكل"||x.category===category)&&[x.title,x.summary,x.category,x.content].some(v=>safeText(v).toLocaleLowerCase().includes(q)));
- document.getElementById("count").textContent=filtered.length+" درس";
- lessonsEl.replaceChildren();
- if(!filtered.length){const d=document.createElement("div");d.className="empty";d.textContent=allLessons.length?"ما لقينا درس مطابق للبحث.":"لسه ما تمت إضافة دروس. تابعنا قريباً.";lessonsEl.appendChild(d);return}
- filtered.sort((a,b)=>(Number(b.updatedAt||b.createdAt||0)-Number(a.updatedAt||a.createdAt||0)));
- filtered.forEach(item=>{
-   const card=document.createElement("article");card.className="lesson";
-   const tag=document.createElement("span");tag.className="tag";tag.textContent=safeText(item.category||"عام");
-   const h=document.createElement("h4");h.textContent=safeText(item.title||"درس بدون عنوان");
-   const p=document.createElement("p");p.textContent=safeText(item.summary||"افتح الدرس لقراءة الشرح الكامل.");
-   const btn=document.createElement("button");btn.textContent="اقرأ الدرس";btn.onclick=()=>openLesson(item);
-   card.append(tag,h,p,btn);lessonsEl.appendChild(card);
- });
+
+function safeText(value) {
+  return String(value ?? "");
 }
-function openLesson(item){
- document.getElementById("modalTitle").textContent=safeText(item.title);
- document.getElementById("modalCategory").textContent="المجال: "+safeText(item.category||"عام");
- document.getElementById("modalContent").textContent=safeText(item.content);
- document.getElementById("lessonDialog").showModal();
+
+function renderFilters() {
+  const categories = [
+    "الكل",
+    ...new Set(
+      allLessons
+        .map(item => safeText(item.category).trim())
+        .filter(Boolean)
+    )
+  ];
+
+  filtersEl.replaceChildren();
+
+  categories.forEach(name => {
+    const button = document.createElement("button");
+    button.className =
+      "chip" + (name === category ? " active" : "");
+    button.textContent = name;
+
+    button.onclick = () => {
+      category = name;
+      renderFilters();
+      renderLessons();
+    };
+
+    filtersEl.appendChild(button);
+  });
 }
-document.getElementById("closeModal").onclick=()=>document.getElementById("lessonDialog").close();
-document.getElementById("search").addEventListener("input",renderLessons);
-document.getElementById("clearSearch").onclick=()=>{document.getElementById("search").value="";renderLessons()};
-try{
- const app=initializeApp(firebaseConfig), db=getDatabase(app);
- onValue(ref(db,"lessons"),snap=>{
-   const val=snap.val()||{};
-   allLessons=Object.entries(val).map(([id,v])=>({...v,id}));
-   setStatus("متصل بقاعدة البيانات — يتم تحديث الدروس تلقائياً.");
-   renderFilters();renderLessons();
- },err=>{setStatus("تعذّر تحميل الدروس. راجع إعدادات Firebase والصلاحيات.");lessonsEl.innerHTML='<div class="empty">تعذّر الاتصال بقاعدة البيانات. تأكد من إعداد firebase-config.js وقواعد Realtime Database.</div>';console.error(err)});
-}catch(e){setStatus("إعداد Firebase غير مكتمل.");lessonsEl.innerHTML='<div class="empty">أكمل بيانات firebase-config.js أولاً، ثم ارفع الملفات إلى GitHub Pages.</div>';console.error(e)}
+
+function renderLessons() {
+  const query = document.getElementById("search")
+    .value.trim().toLocaleLowerCase();
+
+  const filtered = allLessons.filter(item => {
+    const matchesCategory =
+      category === "الكل" || item.category === category;
+
+    const matchesSearch = [
+      item.title,
+      item.summary,
+      item.category,
+      item.content
+    ].some(value =>
+      safeText(value).toLocaleLowerCase().includes(query)
+    );
+
+    return matchesCategory && matchesSearch;
+  });
+
+  document.getElementById("count").textContent =
+    filtered.length + " درس";
+
+  lessonsEl.replaceChildren();
+
+  if (!filtered.length) {
+    const empty = document.createElement("div");
+    empty.className = "empty";
+    empty.textContent = allLessons.length
+      ? "ما لقينا درس مطابق للبحث."
+      : "لسه ما تمت إضافة دروس. تابعنا قريباً.";
+
+    lessonsEl.appendChild(empty);
+    return;
+  }
+
+  filtered.sort((a, b) =>
+    Number(b.updatedAt || b.createdAt || 0) -
+    Number(a.updatedAt || a.createdAt || 0)
+  );
+
+  filtered.forEach(item => {
+    const card = document.createElement("article");
+    card.className = "lesson";
+
+    const tag = document.createElement("span");
+    tag.className = "tag";
+    tag.textContent = safeText(item.category || "عام");
+
+    const title = document.createElement("h4");
+    title.textContent = safeText(item.title || "درس بدون عنوان");
+
+    const summary = document.createElement("p");
+    summary.textContent = safeText(
+      item.summary || "افتح الدرس لقراءة الشرح الكامل."
+    );
+
+    const button = document.createElement("button");
+    button.textContent = "اقرأ الدرس";
+    button.onclick = () => openLesson(item);
+
+    card.append(tag, title, summary, button);
+    lessonsEl.appendChild(card);
+  });
+}
+
+function openLesson(item) {
+  document.getElementById("modalTitle").textContent =
+    safeText(item.title || "الدرس");
+
+  document.getElementById("modalCategory").textContent =
+    "المجال: " + safeText(item.category || "عام");
+
+  document.getElementById("modalContent").textContent =
+    safeText(item.content || item.summary || "لا يوجد محتوى.");
+
+  document.getElementById("lessonDialog").showModal();
+}
+
+document.getElementById("closeModal").onclick = () => {
+  document.getElementById("lessonDialog").close();
+};
+
+document.getElementById("search").addEventListener(
+  "input",
+  renderLessons
+);
+
+document.getElementById("clearSearch").onclick = () => {
+  document.getElementById("search").value = "";
+  renderLessons();
+};
+
+/* الاتصال بقاعدة بيانات Firebase */
+try {
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+
+  onValue(
+    ref(database, "lessons"),
+    snapshot => {
+      const data = snapshot.val() || {};
+
+      allLessons = Object.entries(data)
+        .filter(([id, value]) =>
+          value && typeof value === "object"
+        )
+        .map(([id, value]) => ({
+          ...value,
+          id
+        }));
+
+      setStatus(
+        "متصل بقاعدة البيانات — يتم تحديث الدروس تلقائياً."
+      );
+
+      renderFilters();
+      renderLessons();
+    },
+    error => {
+      console.error("Firebase database error:", error);
+
+      setStatus(
+        "تعذّر تحميل الدروس: " + error.message
+      );
+
+      lessonsEl.replaceChildren();
+
+      const message = document.createElement("div");
+      message.className = "empty";
+      message.textContent =
+        "فشل تحميل الدروس. راجع قواعد Realtime Database واتصال الإنترنت.";
+
+      lessonsEl.appendChild(message);
+    }
+  );
+} catch (error) {
+  console.error("Firebase initialization error:", error);
+
+  setStatus("تعذّر تشغيل Firebase: " + error.message);
+
+  lessonsEl.replaceChildren();
+
+  const message = document.createElement("div");
+  message.className = "empty";
+  message.textContent =
+    "تعذّر تهيئة Firebase. تحقق من إعدادات المشروع واتصال الإنترنت.";
+
+  lessonsEl.appendChild(message);
+}
 </script>
-</body></html>
+</body>
+</html>
