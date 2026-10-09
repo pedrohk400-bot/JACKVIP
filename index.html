@@ -4,113 +4,492 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#080708">
+<meta name="theme-color" content="#050810">
 <title>PED SAN | التعليم بلا حدود</title>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&display=swap');
 
-:root{--red:#ff1838;--bg:#050506;--white:#f7f7fb;--muted:#aaa5ad;--line:#ff183855}
+:root{
+  --blue:#168bff;
+  --blue2:#00c8ff;
+  --bg:#05070d;
+  --white:#f4f8ff;
+  --muted:#9caac0;
+  --line:#168bff50;
+  --glass:#0a1322;
+}
+
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:radial-gradient(ellipse at 50% 0%,#30050b,transparent 44%),linear-gradient(180deg,#080708,#030304 72%);font-family:Cairo,Tahoma,Arial,sans-serif;color:var(--white);line-height:1.85}
+
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:15px;
+}
+
+body{
+  margin:0;
+  background:
+    radial-gradient(ellipse at 50% 0%,#071e40 0%,transparent 48%),
+    radial-gradient(ellipse at 100% 45%,#061329 0%,transparent 40%),
+    linear-gradient(180deg,#070a12,#03050a 75%);
+  font-family:Cairo,Tahoma,Arial,sans-serif;
+  color:var(--white);
+  line-height:1.85;
+  min-height:100vh;
+}
+
 button,input{font:inherit}
-a{color:inherit}
-.wrap{max-width:1150px;margin:auto;padding:0 18px}
-header{padding:17px 0 29px;background:linear-gradient(120deg,#080708,#120507,#070607);border-bottom:1px solid #ff183833}
-.top{display:flex;align-items:center;justify-content:space-between;gap:14px;border:1px solid var(--line);border-radius:22px;padding:10px 15px;background:#090708bb}
-.brand{display:flex;align-items:center;gap:11px}
-.logo{width:46px;height:46px;border-radius:15px;background:linear-gradient(145deg,#ff2946,#760014);display:grid;place-items:center;font-weight:900}
-.brand h1{font:900 22px 'Tajawal',sans-serif;margin:0}
-.brand h1 span,.hero h2 span{color:var(--red)}
-.brand small{display:block;color:#aaa;font-size:11px}
-.adminlink,button{border:1px solid #ff344f88;border-radius:13px;padding:9px 15px;background:linear-gradient(135deg,#e8002a9c,#680015a8);color:#fff;cursor:pointer;font-weight:800;text-decoration:none}
-button.secondary{background:#ff183812}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+
+.wrap{
+  max-width:1150px;
+  margin:auto;
+  padding:0 18px;
+}
+
+header{
+  padding:17px 0 27px;
+  background:linear-gradient(120deg,#060a13,#07162b,#060810);
+  border-bottom:1px solid var(--line);
+}
+
+.top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:10px 15px;
+  background:#0a1220c9;
+  backdrop-filter:blur(16px);
+  box-shadow:0 8px 35px #0004;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+
+.logo{
+  width:46px;
+  height:46px;
+  border-radius:15px;
+  background:linear-gradient(145deg,var(--blue2),#0752d4);
+  display:grid;
+  place-items:center;
+  font-weight:900;
+  color:#fff;
+  box-shadow:0 0 22px #168bff40;
+}
+
+.brand h1{
+  font:900 22px 'Tajawal',sans-serif;
+  margin:0;
+}
+
+.brand h1 span,
+.hero h2 span{color:var(--blue2)}
+
+.brand small{
+  display:block;
+  color:#9eacc3;
+  font-size:11px;
+}
+
+button,.adminlink{
+  border:1px solid #168bff90;
+  border-radius:13px;
+  padding:9px 15px;
+  background:linear-gradient(135deg,#087bffc9,#0841a8c9);
+  color:#fff;
+  font-weight:800;
+  text-decoration:none;
+  transition:transform .2s,box-shadow .2s,border-color .2s;
+}
+
+button:hover,.adminlink:hover{
+  box-shadow:0 0 20px #168bff30;
+  border-color:var(--blue2);
+}
+
+button:active{transform:scale(.97)}
+
+button.secondary{
+  background:#168bff12;
+  border-color:#168bff60;
+  color:#9fd6ff;
+}
+
 .hero{padding:40px 0 18px}
-.welcome{display:inline-block;border:1px solid #ff183866;border-radius:999px;padding:3px 13px;color:#ff8b9a;background:#ff183811;font-size:12px}
-.hero h2{font:900 clamp(30px,5vw,54px)/1.3 'Tajawal',sans-serif;margin:12px 0}
-.hero p{max-width:720px;color:#c3bcc3}
-.searchbox{margin-top:22px;display:flex;gap:10px;background:#100a0c;border:1px solid var(--line);padding:8px;border-radius:16px}
-.searchbox input{border:0;flex:1;outline:none;background:transparent;color:#fff;min-width:0;padding:8px}
+
+.welcome{
+  display:inline-block;
+  border:1px solid #168bff70;
+  border-radius:999px;
+  padding:3px 13px;
+  color:#82c8ff;
+  background:#168bff12;
+  font-size:12px;
+}
+
+.hero h2{
+  font:900 clamp(30px,5vw,54px)/1.4 'Tajawal',sans-serif;
+  margin:12px 0;
+}
+
+.hero p{
+  max-width:720px;
+  color:#b5c3d8;
+}
+
+.searchbox{
+  margin-top:22px;
+  display:flex;
+  gap:10px;
+  background:#0b1220d9;
+  border:1px solid var(--line);
+  padding:8px;
+  border-radius:16px;
+  backdrop-filter:blur(12px);
+}
+
+.searchbox input{
+  border:0;
+  flex:1;
+  outline:none;
+  background:transparent;
+  color:#fff;
+  min-width:0;
+  padding:8px;
+}
+
+.searchbox input::placeholder{color:#8293ad}
+
+.status{
+  font-size:13px;
+  color:#77c9ff;
+  margin-top:12px;
+}
+
 main{padding:27px 0 50px}
-.sectionhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:13px 0 17px}
-.sectionhead h3{font:800 24px 'Tajawal',sans-serif;margin:0}
+
+.sectionhead{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin:13px 0 17px;
+}
+
+.sectionhead h3{
+  font:800 24px 'Tajawal',sans-serif;
+  margin:0;
+}
+
 .muted{color:var(--muted);font-size:13px}
-.status{font-size:13px;color:#ff9eab;margin-top:12px}
-.filters{display:flex;gap:9px;overflow:auto;padding:4px 0 17px}
-.chip{white-space:nowrap;border:1px solid #ff18383b;border-radius:999px;padding:7px 15px;background:#11090b;color:#ddd}
-.chip.active{background:#ff183827;color:#ff9eab;border-color:var(--red)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:15px}
-.lesson{background:linear-gradient(145deg,#160b0eeb,#090809f5);border:1px solid #ff263d4a;border-radius:20px;padding:18px;display:flex;flex-direction:column;min-height:215px}
-.tag{display:inline-flex;background:#ff18381b;color:#ff8c9d;border:1px solid #ff183844;border-radius:9px;padding:3px 9px;font-size:12px;align-self:flex-start}
-.lesson h4{font:800 20px/1.5 'Tajawal',sans-serif;margin:12px 0 5px}
-.lesson p{color:#b8b0b8;margin:0 0 18px;font-size:14px;white-space:pre-wrap}
-.lesson button{margin-top:auto;align-self:flex-start}
-.empty{background:#100a0c;border:1px solid #ff183833;border-radius:16px;padding:18px;color:#bcb4bc;grid-column:1/-1}
-dialog{border:1px solid #ff183866;border-radius:22px;padding:0;width:min(760px,calc(100% - 24px));max-height:85vh;background:#090708;color:#fff}
-dialog::backdrop{background:#020203d9}
-.modalhead{padding:17px 20px;background:#20060b;border-bottom:1px solid #ff183833;display:flex;justify-content:space-between;gap:10px;align-items:center}
-.modalhead h3{font:800 23px 'Tajawal',sans-serif;margin:0}
-.modalbody{padding:22px;white-space:pre-wrap;overflow-wrap:anywhere;color:#e8e3e8;line-height:2;font-size:16px}
-.modalactions{padding:0 22px 22px;display:flex;gap:10px;flex-wrap:wrap}
-footer{text-align:center;padding:22px;color:#858087;font-size:13px;border-top:1px solid #ff183822}
-@media(max-width:600px){.wrap{padding:0 13px}.top{padding:9px 10px}.brand h1{font-size:19px}.logo{width:41px;height:41px}.adminlink{padding:7px 10px;font-size:12px}.hero{padding-top:30px}.hero p{font-size:14px}.searchbox{flex-direction:column}.searchbox button{width:100%}.sectionhead h3{font-size:21px}.grid{grid-template-columns:1fr}.lesson{min-height:190px}}
+
+.filters{
+  display:flex;
+  gap:9px;
+  overflow-x:auto;
+  padding:4px 0 17px;
+  scrollbar-width:thin;
+}
+
+.chip{
+  white-space:nowrap;
+  border:1px solid #168bff40;
+  border-radius:999px;
+  padding:7px 15px;
+  background:#0a1220;
+  color:#d6e5fb;
+}
+
+.chip.active{
+  background:#168bff25;
+  color:#8bd6ff;
+  border-color:var(--blue);
+  box-shadow:0 0 14px #168bff18;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(235px,1fr));
+  gap:15px;
+}
+
+.lesson{
+  background:linear-gradient(145deg,#0e1b30ed,#080c16f5);
+  border:1px solid #168bff48;
+  border-radius:20px;
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  min-height:225px;
+  box-shadow:0 8px 28px #0002;
+  transition:transform .2s,border-color .2s;
+}
+
+.lesson:hover{
+  transform:translateY(-3px);
+  border-color:#168bffb0;
+}
+
+.tag{
+  display:inline-flex;
+  background:#168bff18;
+  color:#85d2ff;
+  border:1px solid #168bff50;
+  border-radius:9px;
+  padding:3px 9px;
+  font-size:12px;
+  align-self:flex-start;
+}
+
+.lesson h4{
+  font:800 20px/1.5 'Tajawal',sans-serif;
+  margin:12px 0 5px;
+  overflow-wrap:anywhere;
+}
+
+.lesson p{
+  color:#afbed3;
+  margin:0 0 18px;
+  font-size:14px;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+
+.lesson button{
+  margin-top:auto;
+  align-self:flex-start;
+}
+
+.empty{
+  background:#0b1220;
+  border:1px solid #168bff35;
+  border-radius:16px;
+  padding:18px;
+  color:#b9c9df;
+  grid-column:1/-1;
+}
+
+/* صفحة الدرس المستقلة داخل الموقع */
+
+.detail-page{
+  animation:appear .25s ease;
+}
+
+@keyframes appear{
+  from{opacity:0;transform:translateY(8px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.backbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:18px;
+}
+
+.detail-card{
+  border:1px solid #168bff65;
+  border-radius:23px;
+  overflow:hidden;
+  background:linear-gradient(150deg,#0c182b,#070b14 75%);
+  box-shadow:0 15px 50px #0003;
+}
+
+.detail-banner{
+  padding:25px 23px;
+  background:
+    radial-gradient(ellipse at 90% 0%,#0752a455,transparent 65%),
+    linear-gradient(135deg,#0b1d36,#09101d);
+  border-bottom:1px solid #168bff38;
+}
+
+.detail-banner h2{
+  font:900 clamp(25px,4vw,38px)/1.5 'Tajawal',sans-serif;
+  margin:13px 0 5px;
+  overflow-wrap:anywhere;
+}
+
+.detail-banner p{
+  color:#9fb4ce;
+  margin:5px 0 0;
+  font-size:13px;
+}
+
+.detail-content{
+  padding:25px 23px;
+  color:#e0eaff;
+  font-size:16px;
+  line-height:2.2;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  word-break:normal;
+  min-height:170px;
+  user-select:text;
+  -webkit-user-select:text;
+}
+
+.detail-content:empty{display:none}
+
+.detail-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  padding:0 23px 23px;
+}
+
+.detail-note{
+  color:#8499b6;
+  font-size:12px;
+  margin-top:18px;
+  text-align:center;
+}
+
+footer{
+  text-align:center;
+  padding:22px;
+  color:#75839b;
+  font-size:13px;
+  border-top:1px solid #168bff25;
+}
+
+/* تحسين الهاتف */
+
+@media(max-width:600px){
+  .wrap{padding:0 13px}
+  .top{padding:9px 10px}
+  .brand h1{font-size:19px}
+  .logo{width:41px;height:41px}
+  .adminlink{padding:7px 10px;font-size:12px}
+  .hero{padding-top:30px}
+  .hero p{font-size:14px}
+  .searchbox{flex-direction:column}
+  .searchbox button{width:100%}
+  .sectionhead h3{font-size:21px}
+  .grid{grid-template-columns:1fr}
+  .lesson{min-height:190px}
+  .detail-banner{padding:20px 17px}
+  .detail-content{padding:20px 17px;font-size:15px;line-height:2.1}
+  .detail-actions{padding:0 17px 20px;flex-direction:column}
+  .detail-actions button{width:100%}
+  .backbar button{padding:8px 11px;font-size:13px}
+}
+
+[hidden]{display:none!important}
 </style>
 </head>
+
 <body>
+
 <header>
-<div class="wrap">
-  <div class="top">
-    <div class="brand">
-      <div class="logo">PS</div>
-      <div>
-        <h1>PED <span>SAN</span></h1>
-        <small>منصة التعليم والشروحات</small>
+  <div class="wrap">
+    <div class="top">
+      <a class="brand" href="#home" aria-label="الرئيسية">
+        <div class="logo">PS</div>
+        <div>
+          <h1>PED <span>SAN</span></h1>
+          <small>منصة التعليم والشروحات</small>
+        </div>
+      </a>
+
+      <a class="adminlink" href="admin.html">لوحة الإدارة ↗</a>
+    </div>
+
+    <div class="hero" id="hero">
+      <span class="welcome">مرحباً بك في</span>
+      <h2>PED <span>SAN</span><br>اتعلّم اليوم، واصنع مستقبلك.</h2>
+      <p>
+        شروحات مبسطة في البرمجة وتصميم التطبيقات والمواقع
+        ومجالات تقنية متنوعة، في مكان واحد.
+      </p>
+
+      <div class="searchbox">
+        <input
+          id="search"
+          type="search"
+          placeholder="ابحث عن درس أو مجال..."
+          aria-label="البحث عن درس"
+        >
+        <button id="clearSearch" class="secondary">مسح البحث</button>
+      </div>
+
+      <div id="status" class="status" role="status">
+        جاري الاتصال بقاعدة الدروس…
       </div>
     </div>
-    <a class="adminlink" href="admin.html">لوحة الإدارة ↗</a>
   </div>
-  <div class="hero">
-    <span class="welcome">مرحباً بك في</span>
-    <h2>PED <span>SAN</span><br>اتعلّم اليوم، واصنع مستقبلك.</h2>
-    <p>شروحات مبسطة في البرمجة وتصميم التطبيقات والمواقع ومجالات تقنية متنوعة، في مكان واحد.</p>
-    <div class="searchbox">
-      <input id="search" type="search" placeholder="ابحث عن درس أو مجال..." aria-label="البحث">
-      <button id="clearSearch" class="secondary">مسح البحث</button>
-    </div>
-    <div id="status" class="status">جاري الاتصال بقاعدة الدروس…</div>
-  </div>
-</div>
 </header>
 
 <main class="wrap">
-  <div class="sectionhead">
-    <h3>استكشف الدروس</h3>
-    <span id="count" class="muted">0 درس</span>
-  </div>
-  <div id="filters" class="filters"></div>
-  <div id="lessons" class="grid">
-    <div class="empty">جاري تحميل الدروس…</div>
-  </div>
+
+  <!-- الصفحة الرئيسية -->
+
+  <section id="homePage">
+    <div class="sectionhead">
+      <h3>استكشف الدروس</h3>
+      <span id="count" class="muted">0 درس</span>
+    </div>
+
+    <div id="filters" class="filters"></div>
+
+    <div id="lessons" class="grid">
+      <div class="empty">جاري تحميل الدروس…</div>
+    </div>
+  </section>
+
+  <!-- صفحة شرح الدرس المستقلة -->
+
+  <section id="detailPage" class="detail-page" hidden>
+    <div class="backbar">
+      <button id="backButton" class="secondary">→ العودة للدروس</button>
+      <span class="muted">PED SAN / شرح الدرس</span>
+    </div>
+
+    <article class="detail-card">
+      <div class="detail-banner">
+        <span id="detailCategory" class="tag">المجال</span>
+        <h2 id="detailTitle">عنوان الدرس</h2>
+        <p>منصة PED SAN التعليمية</p>
+      </div>
+
+      <div id="detailContent" class="detail-content"></div>
+
+      <div class="detail-actions">
+        <button id="copyLesson">📋 نسخ الشرح بالكامل</button>
+        <button id="copyTitle" class="secondary">نسخ عنوان الدرس</button>
+        <button id="shareLesson" class="secondary">مشاركة الدرس ↗</button>
+      </div>
+    </article>
+
+    <div class="detail-note">
+      © <span id="detailYear"></span> PED SAN — التعلّم مستمر، والتطوير ما بوقف.
+    </div>
+  </section>
+
 </main>
 
-<footer>© <span id="year"></span> PED SAN — التعلّم مستمر، والتطوير ما بوقف.</footer>
-
-<dialog id="lessonDialog">
-  <div class="modalhead">
-    <h3 id="modalTitle">عنوان الدرس</h3>
-    <button id="closeModal">إغلاق</button>
-  </div>
-  <div id="modalCategory" style="padding:10px 22px 0"></div>
-  <div class="modalbody" id="modalContent"></div>
-  <div class="modalactions">
-    <button id="copyLesson">📋 نسخ شرح الدرس</button>
-    <button id="copyTitle" class="secondary">نسخ عنوان الدرس</button>
-  </div>
-</dialog>
+<footer>
+  © <span id="year"></span> PED SAN — التعلّم مستمر، والتطوير ما بوقف.
+</footer>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+import { initializeApp }
+  from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import { getDatabase, ref, onValue }
+  from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+
+/* إعدادات Firebase الخاصة بمشروع PED SAN */
 
 const firebaseConfig = {
   apiKey: "AIzaSyC393Ko1pqXlXQGP3iyoXau9zDm8JLlQUA",
@@ -126,66 +505,111 @@ const firebaseConfig = {
 const statusEl = document.getElementById("status");
 const lessonsEl = document.getElementById("lessons");
 const filtersEl = document.getElementById("filters");
+const homePage = document.getElementById("homePage");
+const detailPage = document.getElementById("detailPage");
+const hero = document.getElementById("hero");
+
 let allLessons = [];
 let category = "الكل";
+let currentLesson = null;
+let databaseReady = false;
 
-document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("year").textContent =
+  new Date().getFullYear();
 
-function setStatus(message) {
-  statusEl.textContent = message;
-}
+document.getElementById("detailYear").textContent =
+  new Date().getFullYear();
 
 function safeText(value) {
   return String(value ?? "");
 }
 
+function setStatus(message) {
+  statusEl.textContent = message;
+}
+
+/* التصنيفات */
+
 function renderFilters() {
   const categories = [
     "الكل",
-    ...new Set(allLessons.map(item => safeText(item.category).trim()).filter(Boolean))
+    ...new Set(
+      allLessons
+        .map(item => safeText(item.category).trim())
+        .filter(Boolean)
+    )
   ];
+
+  if (!categories.includes(category)) {
+    category = "الكل";
+  }
 
   filtersEl.replaceChildren();
 
   categories.forEach(name => {
     const button = document.createElement("button");
-    button.className = "chip" + (name === category ? " active" : "");
+
+    button.className =
+      "chip" + (name === category ? " active" : "");
+
     button.textContent = name;
+
     button.onclick = () => {
       category = name;
       renderFilters();
       renderLessons();
     };
+
     filtersEl.appendChild(button);
   });
 }
 
+/* عرض قائمة الدروس */
+
 function renderLessons() {
-  const query = document.getElementById("search").value.trim().toLocaleLowerCase();
+  const query = document
+    .getElementById("search")
+    .value
+    .trim()
+    .toLocaleLowerCase();
 
-  const filtered = allLessons.filter(item => {
-    const matchesCategory = category === "الكل" || item.category === category;
-    const matchesSearch = [item.title, item.summary, item.category, item.content]
-      .some(value => safeText(value).toLocaleLowerCase().includes(query));
-    return matchesCategory && matchesSearch;
-  });
+  const filtered = allLessons
+    .filter(item => {
+      const matchesCategory =
+        category === "الكل" || safeText(item.category) === category;
 
-  document.getElementById("count").textContent = filtered.length + " درس";
+      const matchesSearch = [
+        item.title,
+        item.summary,
+        item.category,
+        item.content
+      ].some(value =>
+        safeText(value).toLocaleLowerCase().includes(query)
+      );
+
+      return matchesCategory && matchesSearch;
+    })
+    .sort((a, b) =>
+      Number(b.updatedAt || b.createdAt || 0) -
+      Number(a.updatedAt || a.createdAt || 0)
+    );
+
+  document.getElementById("count").textContent =
+    filtered.length + " درس";
+
   lessonsEl.replaceChildren();
 
   if (!filtered.length) {
     const empty = document.createElement("div");
     empty.className = "empty";
+
     empty.textContent = allLessons.length
       ? "ما لقينا درس مطابق للبحث."
       : "لسه ما تمت إضافة دروس. تابعنا قريباً.";
+
     lessonsEl.appendChild(empty);
     return;
   }
-
-  filtered.sort((a, b) =>
-    Number(b.updatedAt || b.createdAt || 0) - Number(a.updatedAt || a.createdAt || 0)
-  );
 
   filtered.forEach(item => {
     const card = document.createElement("article");
@@ -199,10 +623,13 @@ function renderLessons() {
     title.textContent = safeText(item.title || "درس بدون عنوان");
 
     const summary = document.createElement("p");
-    summary.textContent = safeText(item.summary || "افتح الدرس لقراءة الشرح الكامل.");
+    summary.textContent = safeText(
+      item.summary || "افتح الدرس لقراءة الشرح الكامل."
+    );
 
     const button = document.createElement("button");
-    button.textContent = "اقرأ الدرس";
+    button.textContent = "اقرأ الدرس ←";
+
     button.onclick = () => openLesson(item);
 
     card.append(tag, title, summary, button);
@@ -210,12 +637,154 @@ function renderLessons() {
   });
 }
 
-function openLesson(item) {
-  document.getElementById("modalTitle").textContent = safeText(item.title || "الدرس");
-  document.getElementById("modalCategory").textContent = "المجال: " + safeText(item.category || "عام");
-  document.getElementById("modalContent").textContent = safeText(item.content || item.summary || "لا يوجد محتوى.");
-  document.getElementById("lessonDialog").showModal();
+/* تحديد صفحة الدرس من الرابط الداخلي */
+
+function getLessonIdFromHash() {
+  const match = location.hash.match(/^#lesson\/(.+)$/);
+
+  if (!match) return null;
+
+  try {
+    return decodeURIComponent(match[1]);
+  } catch (error) {
+    return null;
+  }
 }
+
+/* فتح الشرح كصفحة مستقلة داخل نفس الموقع */
+
+function openLesson(item) {
+  if (!item || !item.id) return;
+
+  currentLesson = item;
+
+  document.getElementById("detailTitle").textContent =
+    safeText(item.title || "الدرس");
+
+  document.getElementById("detailCategory").textContent =
+    "المجال: " + safeText(item.category || "عام");
+
+  document.getElementById("detailContent").textContent =
+    safeText(
+      item.content ||
+      item.summary ||
+      "لا يوجد محتوى لهذا الدرس حتى الآن."
+    );
+
+  homePage.hidden = true;
+  detailPage.hidden = false;
+  hero.hidden = true;
+
+  const targetHash = "#lesson/" + encodeURIComponent(item.id);
+
+  if (location.hash !== targetHash) {
+    history.pushState(
+      { lessonId: item.id },
+      "",
+      targetHash
+    );
+  }
+
+  window.scrollTo(0, 0);
+}
+
+/* العودة للقائمة مع الاحتفاظ بالبحث والتصنيف */
+
+function goHome() {
+  if (location.hash) {
+    history.pushState({}, "", location.pathname + location.search);
+  }
+
+  currentLesson = null;
+
+  detailPage.hidden = true;
+  homePage.hidden = false;
+  hero.hidden = false;
+
+  renderFilters();
+  renderLessons();
+
+  window.scrollTo(0, 0);
+}
+
+document.getElementById("backButton").onclick = goHome;
+
+document.querySelector(".brand").onclick = event => {
+  event.preventDefault();
+  goHome();
+};
+
+/* التعامل مع زر الرجوع في المتصفح */
+
+function syncPageWithUrl() {
+  const id = getLessonIdFromHash();
+
+  if (!id) {
+    currentLesson = null;
+    detailPage.hidden = true;
+    homePage.hidden = false;
+    hero.hidden = false;
+    return;
+  }
+
+  const item = allLessons.find(
+    lesson => String(lesson.id) === id
+  );
+
+  if (item) {
+    currentLesson = item;
+
+    document.getElementById("detailTitle").textContent =
+      safeText(item.title || "الدرس");
+
+    document.getElementById("detailCategory").textContent =
+      "المجال: " + safeText(item.category || "عام");
+
+    document.getElementById("detailContent").textContent =
+      safeText(
+        item.content ||
+        item.summary ||
+        "لا يوجد محتوى لهذا الدرس حتى الآن."
+      );
+
+    homePage.hidden = true;
+    detailPage.hidden = false;
+    hero.hidden = true;
+  } else if (databaseReady) {
+    currentLesson = null;
+    detailPage.hidden = false;
+    homePage.hidden = true;
+    hero.hidden = true;
+
+    document.getElementById("detailTitle").textContent =
+      "الدرس غير موجود";
+
+    document.getElementById("detailCategory").textContent =
+      "غير متوفر";
+
+    document.getElementById("detailContent").textContent =
+      "قد يكون الدرس قد حُذف أو أن الرابط غير صحيح.";
+
+  } else {
+    currentLesson = null;
+    detailPage.hidden = false;
+    homePage.hidden = true;
+    hero.hidden = true;
+
+    document.getElementById("detailTitle").textContent =
+      "جاري تحميل الدرس";
+
+    document.getElementById("detailContent").textContent =
+      "انتظر قليلاً حتى يتم الاتصال بقاعدة البيانات.";
+  }
+
+  window.scrollTo(0, 0);
+}
+
+window.addEventListener("popstate", syncPageWithUrl);
+window.addEventListener("hashchange", syncPageWithUrl);
+
+/* نسخ النصوص */
 
 async function copyText(text) {
   try {
@@ -223,77 +792,169 @@ async function copyText(text) {
       await navigator.clipboard.writeText(text);
     } else {
       const area = document.createElement("textarea");
+
       area.value = text;
+      area.setAttribute("readonly", "");
       area.style.position = "fixed";
       area.style.top = "0";
       area.style.right = "100%";
+
       document.body.appendChild(area);
       area.focus();
       area.select();
+      area.setSelectionRange(0, area.value.length);
+
       const success = document.execCommand("copy");
+
       area.remove();
-      if (!success) throw new Error("copy failed");
+
+      if (!success) {
+        throw new Error("copy failed");
+      }
     }
 
     alert("تم النسخ بنجاح ✅");
+
   } catch (error) {
-    alert("تعذر النسخ. حاول فتح الموقع عبر HTTPS ثم أعد المحاولة.");
+    console.error("Copy error:", error);
+
+    alert(
+      "تعذر النسخ تلقائياً. حاول مرة أخرى أو حدّد النص وانسخه يدوياً."
+    );
   }
 }
 
 document.getElementById("copyLesson").onclick = () => {
-  const title = document.getElementById("modalTitle").textContent;
-  const categoryText = document.getElementById("modalCategory").textContent;
-  const content = document.getElementById("modalContent").textContent;
+  if (!currentLesson) return;
+
+  const title = safeText(currentLesson.title || "الدرس");
+  const categoryText =
+    "المجال: " + safeText(currentLesson.category || "عام");
+
+  const content = safeText(
+    currentLesson.content ||
+    currentLesson.summary ||
+    "لا يوجد محتوى."
+  );
+
   copyText(title + "\n" + categoryText + "\n\n" + content);
 };
 
 document.getElementById("copyTitle").onclick = () => {
-  copyText(document.getElementById("modalTitle").textContent);
+  if (!currentLesson) return;
+
+  copyText(safeText(currentLesson.title || "الدرس"));
 };
 
-document.getElementById("closeModal").onclick = () => {
-  document.getElementById("lessonDialog").close();
+/* مشاركة رابط الدرس */
+
+document.getElementById("shareLesson").onclick = async () => {
+  if (!currentLesson) return;
+
+  const shareUrl = location.href;
+  const title = safeText(currentLesson.title || "درس PED SAN");
+
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: title,
+        text: "شاهد هذا الدرس من منصة PED SAN",
+        url: shareUrl
+      });
+    } catch (error) {
+      if (error.name !== "AbortError") {
+        console.error("Share error:", error);
+      }
+    }
+  } else {
+    await copyText(shareUrl);
+  }
 };
 
-document.getElementById("search").addEventListener("input", renderLessons);
+/* البحث ومسح البحث */
+
+document.getElementById("search").addEventListener(
+  "input",
+  renderLessons
+);
 
 document.getElementById("clearSearch").onclick = () => {
   document.getElementById("search").value = "";
   renderLessons();
 };
 
+/* الاتصال بقاعدة Firebase */
+
 try {
   const app = initializeApp(firebaseConfig);
   const database = getDatabase(app);
 
-  onValue(ref(database, "lessons"), snapshot => {
-    const data = snapshot.val() || {};
-    allLessons = Object.entries(data)
-      .filter(([id, value]) => value && typeof value === "object")
-      .map(([id, value]) => ({...value, id}));
+  onValue(
+    ref(database, "lessons"),
 
-    setStatus("متصل بقاعدة البيانات — يتم تحديث الدروس تلقائياً.");
-    renderFilters();
-    renderLessons();
-  }, error => {
-    console.error("Firebase database error:", error);
-    setStatus("تعذّر تحميل الدروس: " + error.message);
-    lessonsEl.replaceChildren();
-    const message = document.createElement("div");
-    message.className = "empty";
-    message.textContent = "فشل تحميل الدروس. راجع قواعد Realtime Database واتصال الإنترنت.";
-    lessonsEl.appendChild(message);
-  });
+    snapshot => {
+      const data = snapshot.val() || {};
+
+      allLessons = Object.entries(data)
+        .filter(([id, value]) =>
+          value && typeof value === "object"
+        )
+        .map(([id, value]) => ({
+          ...value,
+          id: id
+        }));
+
+      databaseReady = true;
+
+      setStatus(
+        "متصل بقاعدة البيانات — يتم تحديث الدروس تلقائياً."
+      );
+
+      renderFilters();
+      renderLessons();
+
+      // تحديث صفحة الشرح المفتوحة إذا تغيّر الدرس في Firebase.
+      syncPageWithUrl();
+    },
+
+    error => {
+      console.error("Firebase database error:", error);
+
+      setStatus(
+        "تعذّر تحميل الدروس: " + error.message
+      );
+
+      lessonsEl.replaceChildren();
+
+      const message = document.createElement("div");
+      message.className = "empty";
+      message.textContent =
+        "فشل تحميل الدروس. راجع قواعد Realtime Database واتصال الإنترنت.";
+
+      lessonsEl.appendChild(message);
+    }
+  );
+
 } catch (error) {
   console.error("Firebase initialization error:", error);
-  setStatus("تعذّر تشغيل Firebase: " + error.message);
+
+  setStatus(
+    "تعذّر تشغيل Firebase: " + error.message
+  );
+
   lessonsEl.replaceChildren();
+
   const message = document.createElement("div");
   message.className = "empty";
-  message.textContent = "تعذّر تهيئة Firebase. تحقق من إعدادات المشروع واتصال الإنترنت.";
+  message.textContent =
+    "تعذّر تهيئة Firebase. تحقق من إعدادات المشروع واتصال الإنترنت.";
+
   lessonsEl.appendChild(message);
 }
+
+// دعم فتح رابط درس مباشرة بعد تحميل الصفحة.
+syncPageWithUrl();
 </script>
+
 </body>
 </html>
