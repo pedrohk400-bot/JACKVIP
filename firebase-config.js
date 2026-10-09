@@ -1,4 +1,5 @@
-export const firebaseConfig = {
+
+const firebaseConfig = {
   apiKey: "AIzaSyC393Ko1pqXlXQGP3iyoXau9zDm8JLlQUA",
   authDomain: "ped-37b14.firebaseapp.com",
   databaseURL: "https://ped-37b14-default-rtdb.firebaseio.com",
