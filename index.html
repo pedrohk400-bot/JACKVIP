@@ -7,6 +7,18 @@
   <title>PED SAN | منصة التعليم والشروحات</title>
 
   <style>
+    /* =====================================
+       الخط الأصلي
+       يجب وجود bikegular.ttf بجانب index.html
+    ===================================== */
+    @font-face {
+      font-family: 'Bikegular';
+      src: url('./bikegular.ttf') format('truetype');
+      font-weight: 100 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root {
       --bg: #050914;
       --panel: rgba(13, 24, 45, .78);
@@ -19,6 +31,7 @@
 
     * {
       box-sizing: border-box;
+      font-family: 'Bikegular', Arial, Tahoma, sans-serif;
     }
 
     html {
@@ -33,15 +46,17 @@
         radial-gradient(ellipse at 10% 0%, #07366b55, transparent 40%),
         radial-gradient(ellipse at 100% 30%, #064b7750, transparent 35%),
         linear-gradient(145deg, #03060d, #071326 55%, #02050b);
-      font-family: Arial, Tahoma, sans-serif;
       line-height: 1.8;
     }
 
-    button, input {
+    button,
+    input,
+    textarea {
       font: inherit;
     }
 
-    button, a {
+    button,
+    a {
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -106,7 +121,7 @@
 
     h1 {
       font-size: clamp(30px, 6vw, 53px);
-      line-height: 1.35;
+      line-height: 1.5;
       margin: 18px 0 8px;
       font-weight: 900;
     }
@@ -171,12 +186,6 @@
       border-color: var(--border);
     }
 
-    .btn:disabled {
-      opacity: .5;
-      cursor: not-allowed;
-      transform: none;
-    }
-
     .status {
       text-align: center;
       color: var(--muted);
@@ -206,7 +215,11 @@
 
     .lesson-card {
       border: 1px solid var(--border);
-      background: linear-gradient(145deg, rgba(14, 30, 54, .91), rgba(5, 12, 25, .94));
+      background: linear-gradient(
+        145deg,
+        rgba(14, 30, 54, .91),
+        rgba(5, 12, 25, .94)
+      );
       border-radius: 20px;
       padding: 20px;
       box-shadow: 0 10px 35px #0003;
@@ -234,7 +247,7 @@
 
     .lesson-card h3 {
       font-size: 19px;
-      line-height: 1.6;
+      line-height: 1.7;
       margin: 0 0 9px;
     }
 
@@ -250,6 +263,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
       gap: 8px;
       color: var(--cyan);
       font-size: 12px;
@@ -276,7 +290,11 @@
 
     .detail-box {
       border: 1px solid var(--border);
-      background: linear-gradient(145deg, rgba(12, 27, 49, .95), rgba(4, 10, 22, .96));
+      background: linear-gradient(
+        145deg,
+        rgba(12, 27, 49, .95),
+        rgba(4, 10, 22, .96)
+      );
       border-radius: 22px;
       padding: clamp(18px, 4vw, 34px);
       box-shadow: 0 15px 50px #0004;
@@ -292,7 +310,7 @@
 
     .detail-title {
       font-size: clamp(25px, 5vw, 39px);
-      line-height: 1.5;
+      line-height: 1.7;
       margin: 12px 0;
       overflow-wrap: anywhere;
     }
@@ -300,7 +318,7 @@
     .detail-content {
       color: #dce9f8;
       font-size: 16px;
-      line-height: 2.1;
+      line-height: 2.2;
       white-space: pre-wrap;
       overflow-wrap: anywhere;
       word-break: break-word;
@@ -308,6 +326,12 @@
 
     .detail-content a {
       color: var(--cyan);
+    }
+
+    .detail-summary {
+      color: var(--muted);
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
     }
 
     .app-link {
@@ -325,16 +349,6 @@
 
     .app-link[hidden] {
       display: none !important;
-    }
-
-    .app-link:hover {
-      filter: brightness(1.15);
-    }
-
-    .detail-summary {
-      color: var(--muted);
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
     }
 
     footer {
@@ -409,10 +423,13 @@
     <section id="homePage" class="page active">
       <div class="hero">
         <span class="hero-badge">منصة التعليم والشروحات</span>
+
         <h1>مرحباً بك في <span>PED SAN</span></h1>
+
         <p>
           اتعلّم اليوم، واصنع مستقبلك.
-          شروحات مبسطة في البرمجة وتصميم التطبيقات والمواقع ومجالات تقنية متنوعة، في مكان واحد.
+          شروحات مبسطة في البرمجة وتصميم التطبيقات والمواقع
+          ومجالات تقنية متنوعة، في مكان واحد.
         </p>
 
         <div class="search-wrap">
@@ -423,6 +440,7 @@
             autocomplete="off"
             aria-label="ابحث عن درس أو مجال"
           >
+
           <button id="clearSearch" class="btn secondary" type="button">
             مسح البحث
           </button>
@@ -434,6 +452,7 @@
       </div>
 
       <h2 class="section-title">📚 الدروس المتاحة</h2>
+
       <div id="lessonsGrid" class="lessons-grid">
         <div class="empty">جارٍ تحميل الدروس...</div>
       </div>
@@ -444,15 +463,19 @@
         <button id="backButton" class="btn secondary" type="button">
           ← رجوع للدروس
         </button>
+
         <button id="copyTitleButton" class="btn secondary" type="button">
           نسخ العنوان
         </button>
+
         <button id="copyContentButton" class="btn secondary" type="button">
           نسخ الشرح
         </button>
+
         <button id="shareButton" class="btn secondary" type="button">
           مشاركة الدرس
         </button>
+
         <a
           id="openAppLink"
           class="app-link"
@@ -465,8 +488,11 @@
 
       <article class="detail-box">
         <span id="detailCategory" class="lesson-category">درس</span>
+
         <h1 id="detailTitle" class="detail-title">عنوان الدرس</h1>
+
         <p id="detailSummary" class="detail-summary"></p>
+
         <div class="detail-content" id="detailContent"></div>
       </article>
     </section>
@@ -479,7 +505,10 @@
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+
     import {
       getDatabase,
       ref,
@@ -508,22 +537,26 @@
     let currentLesson = null;
     let toastTimer = null;
 
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
 
     function showToast(message) {
       const toast = document.getElementById("toast");
+
       toast.textContent = message;
       toast.classList.add("show");
 
       clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => {
+
+      toastTimer = setTimeout(function() {
         toast.classList.remove("show");
       }, 2500);
     }
 
     function setStatus(message, type) {
       connectionStatus.textContent = message;
-      connectionStatus.className = "status" + (type ? " " + type : "");
+      connectionStatus.className =
+        "status" + (type ? " " + type : "");
     }
 
     function safeText(value) {
@@ -531,7 +564,8 @@
     }
 
     function normalizeLesson(id, item) {
-      const lesson = item && typeof item === "object" ? item : {};
+      const lesson =
+        item && typeof item === "object" ? item : {};
 
       return {
         id: String(id),
@@ -547,16 +581,24 @@
     function validHttpUrl(value) {
       try {
         const parsed = new URL(value);
-        return parsed.protocol === "https:" || parsed.protocol === "http:"
-          ? parsed.href
-          : "";
+
+        if (
+          parsed.protocol === "https:" ||
+          parsed.protocol === "http:"
+        ) {
+          return parsed.href;
+        }
+
+        return "";
       } catch (error) {
         return "";
       }
     }
 
     function updateAppLink(item) {
-      const safeUrl = item ? validHttpUrl(item.appUrl) : "";
+      const safeUrl = item
+        ? validHttpUrl(item.appUrl)
+        : "";
 
       if (safeUrl) {
         openAppLink.href = safeUrl;
@@ -570,7 +612,7 @@
     function renderLessons() {
       const query = searchInput.value.trim().toLowerCase();
 
-      const filtered = lessons.filter(item => {
+      const filtered = lessons.filter(function(item) {
         const text = (
           item.title + " " +
           item.category + " " +
@@ -585,20 +627,27 @@
 
       if (filtered.length === 0) {
         const empty = document.createElement("div");
+
         empty.className = "empty";
+
         empty.textContent = query
           ? "ما لقينا درس مطابق للبحث."
           : "لا توجد دروس حالياً. ستظهر الدروس هنا عند إضافتها من لوحة الإدارة.";
+
         lessonsGrid.appendChild(empty);
         return;
       }
 
-      filtered.forEach(item => {
+      filtered.forEach(function(item) {
         const card = document.createElement("article");
+
         card.className = "lesson-card";
         card.tabIndex = 0;
         card.setAttribute("role", "button");
-        card.setAttribute("aria-label", "فتح الدرس: " + item.title);
+        card.setAttribute(
+          "aria-label",
+          "فتح الدرس: " + item.title
+        );
 
         const category = document.createElement("span");
         category.className = "lesson-category";
@@ -608,7 +657,8 @@
         title.textContent = item.title;
 
         const summary = document.createElement("p");
-        summary.textContent = item.summary || "اضغط لفتح الدرس وقراءة الشرح الكامل.";
+        summary.textContent = item.summary ||
+          "اضغط لفتح الدرس وقراءة الشرح الكامل.";
 
         const footer = document.createElement("div");
         footer.className = "card-footer";
@@ -626,10 +676,15 @@
 
         card.append(category, title, summary, footer);
 
-        card.addEventListener("click", () => openLesson(item));
+        card.addEventListener("click", function() {
+          openLesson(item);
+        });
 
-        card.addEventListener("keydown", event => {
-          if (event.key === "Enter" || event.key === " ") {
+        card.addEventListener("keydown", function(event) {
+          if (
+            event.key === "Enter" ||
+            event.key === " "
+          ) {
             event.preventDefault();
             openLesson(item);
           }
@@ -642,8 +697,11 @@
     function showHome() {
       homePage.classList.add("active");
       detailPage.classList.remove("active");
+
       currentLesson = null;
+
       updateAppLink(null);
+
       window.scrollTo(0, 0);
     }
 
@@ -655,17 +713,23 @@
 
       currentLesson = item;
 
-      document.getElementById("detailTitle").textContent = item.title;
-      document.getElementById("detailCategory").textContent = item.category;
-      document.getElementById("detailSummary").textContent = item.summary;
+      document.getElementById("detailTitle").textContent =
+        item.title;
 
-      const content = document.getElementById("detailContent");
-      content.textContent = item.content || "لا يوجد شرح لهذا الدرس حتى الآن.";
+      document.getElementById("detailCategory").textContent =
+        item.category;
+
+      document.getElementById("detailSummary").textContent =
+        item.summary;
+
+      document.getElementById("detailContent").textContent =
+        item.content || "لا يوجد شرح لهذا الدرس حتى الآن.";
 
       updateAppLink(item);
 
       homePage.classList.remove("active");
       detailPage.classList.add("active");
+
       document.title = item.title + " | PED SAN";
 
       window.scrollTo(0, 0);
@@ -674,7 +738,8 @@
     function openLesson(item) {
       if (!item) return;
 
-      const newHash = "#lesson/" + encodeURIComponent(item.id);
+      const newHash =
+        "#lesson/" + encodeURIComponent(item.id);
 
       if (window.location.hash === newHash) {
         showLesson(item);
@@ -688,33 +753,45 @@
 
       if (!hash.startsWith("#lesson/")) {
         showHome();
-        document.title = "PED SAN | منصة التعليم والشروحات";
+        document.title =
+          "PED SAN | منصة التعليم والشروحات";
         return;
       }
 
       let id;
 
       try {
-        id = decodeURIComponent(hash.substring("#lesson/".length));
+        id = decodeURIComponent(
+          hash.substring("#lesson/".length)
+        );
       } catch (error) {
         showHome();
         return;
       }
 
-      const item = lessons.find(lesson => lesson.id === id);
+      const item = lessons.find(function(lesson) {
+        return lesson.id === id;
+      });
 
       if (item) {
         showLesson(item);
       } else {
         homePage.classList.remove("active");
         detailPage.classList.add("active");
+
         currentLesson = null;
 
-        document.getElementById("detailTitle").textContent = "الدرس غير موجود";
-        document.getElementById("detailCategory").textContent = "تنبيه";
+        document.getElementById("detailTitle").textContent =
+          "الدرس غير موجود";
+
+        document.getElementById("detailCategory").textContent =
+          "تنبيه";
+
         document.getElementById("detailSummary").textContent =
           "قد يكون الدرس محذوفاً أو أن الرابط غير صحيح.";
+
         document.getElementById("detailContent").textContent = "";
+
         updateAppLink(null);
 
         window.scrollTo(0, 0);
@@ -733,79 +810,101 @@
       } catch (error) {
         try {
           const textarea = document.createElement("textarea");
+
           textarea.value = text;
           textarea.style.position = "fixed";
           textarea.style.opacity = "0";
+
           document.body.appendChild(textarea);
+
           textarea.focus();
           textarea.select();
 
           const copied = document.execCommand("copy");
+
           textarea.remove();
 
-          showToast(copied ? successMessage : "تعذر النسخ. حاول مرة أخرى.");
+          showToast(
+            copied
+              ? successMessage
+              : "تعذر النسخ. حاول مرة أخرى."
+          );
         } catch (fallbackError) {
           showToast("تعذر النسخ في هذا المتصفح.");
         }
       }
     }
 
-    document.getElementById("backButton").addEventListener("click", () => {
-      if (window.location.hash.startsWith("#lesson/")) {
-        history.back();
-      } else {
-        window.location.hash = "#home";
-      }
-    });
-
-    document.getElementById("copyTitleButton").addEventListener("click", () => {
-      if (currentLesson) {
-        copyText(currentLesson.title, "تم نسخ عنوان الدرس ✅");
-      }
-    });
-
-    document.getElementById("copyContentButton").addEventListener("click", () => {
-      if (currentLesson) {
-        const text = currentLesson.title + "\n\n" +
-          (currentLesson.summary ? currentLesson.summary + "\n\n" : "") +
-          currentLesson.content;
-
-        copyText(text, "تم نسخ شرح الدرس ✅");
-      }
-    });
-
-    document.getElementById("shareButton").addEventListener("click", async () => {
-      if (!currentLesson) return;
-
-      const shareData = {
-        title: currentLesson.title,
-        text: currentLesson.summary || currentLesson.title,
-        url: window.location.href
-      };
-
-      try {
-        if (navigator.share) {
-          await navigator.share(shareData);
+    document.getElementById("backButton")
+      .addEventListener("click", function() {
+        if (window.location.hash.startsWith("#lesson/")) {
+          history.back();
         } else {
-          await copyText(
-            currentLesson.title + "\n" + window.location.href,
-            "تم نسخ رابط الدرس للمشاركة ✅"
+          window.location.hash = "#home";
+        }
+      });
+
+    document.getElementById("copyTitleButton")
+      .addEventListener("click", function() {
+        if (currentLesson) {
+          copyText(
+            currentLesson.title,
+            "تم نسخ عنوان الدرس ✅"
           );
         }
-      } catch (error) {
-        if (error && error.name !== "AbortError") {
-          showToast("تعذرت المشاركة.");
+      });
+
+    document.getElementById("copyContentButton")
+      .addEventListener("click", function() {
+        if (currentLesson) {
+          const text =
+            currentLesson.title + "\n\n" +
+            (
+              currentLesson.summary
+                ? currentLesson.summary + "\n\n"
+                : ""
+            ) +
+            currentLesson.content;
+
+          copyText(text, "تم نسخ شرح الدرس ✅");
         }
-      }
-    });
+      });
+
+    document.getElementById("shareButton")
+      .addEventListener("click", async function() {
+        if (!currentLesson) return;
+
+        const shareData = {
+          title: currentLesson.title,
+          text: currentLesson.summary || currentLesson.title,
+          url: window.location.href
+        };
+
+        try {
+          if (navigator.share) {
+            await navigator.share(shareData);
+          } else {
+            await copyText(
+              currentLesson.title + "\n" +
+              window.location.href,
+              "تم نسخ رابط الدرس للمشاركة ✅"
+            );
+          }
+        } catch (error) {
+          if (error && error.name !== "AbortError") {
+            showToast("تعذرت المشاركة.");
+          }
+        }
+      });
 
     searchInput.addEventListener("input", renderLessons);
 
-    document.getElementById("clearSearch").addEventListener("click", () => {
-      searchInput.value = "";
-      renderLessons();
-      searchInput.focus();
-    });
+    document.getElementById("clearSearch")
+      .addEventListener("click", function() {
+        searchInput.value = "";
+        renderLessons();
+        searchInput.focus();
+      });
 
     window.addEventListener("hashchange", syncPageWithUrl);
 
@@ -816,32 +915,48 @@
 
       onValue(
         lessonsRef,
-        snapshot => {
+        function(snapshot) {
           const data = snapshot.val() || {};
 
           lessons = Object.entries(data)
-            .filter(([id, item]) => item && typeof item === "object")
-            .map(([id, item]) => normalizeLesson(id, item));
+            .filter(function(entry) {
+              return entry[1] &&
+                typeof entry[1] === "object";
+            })
+            .map(function(entry) {
+              return normalizeLesson(entry[0], entry[1]);
+            });
 
-          lessons.sort((a, b) => {
+          lessons.sort(function(a, b) {
             const timeA = Number(a.createdAt) || 0;
             const timeB = Number(b.createdAt) || 0;
+
             return timeB - timeA;
           });
 
-          setStatus("متصل بقاعدة البيانات — يتم تحديث الدروس تلقائياً ✅", "online");
+          setStatus(
+            "متصل بقاعدة البيانات — يتم تحديث الدروس تلقائياً ✅",
+            "online"
+          );
+
           renderLessons();
           syncPageWithUrl();
         },
-        error => {
+        function(error) {
           console.error("Firebase read error:", error);
-          setStatus("تعذر تحميل الدروس. تحقق من اتصال الإنترنت وقواعد Firebase.", "error");
+
+          setStatus(
+            "تعذر تحميل الدروس. تحقق من الإنترنت وقواعد Firebase.",
+            "error"
+          );
+
           lessonsGrid.replaceChildren();
 
           const message = document.createElement("div");
           message.className = "empty";
           message.textContent =
             "تعذر تحميل الدروس. تأكد من اتصال الإنترنت وأن قواعد القراءة في Firebase تسمح بالوصول المطلوب.";
+
           lessonsGrid.appendChild(message);
 
           syncPageWithUrl();
@@ -849,7 +964,11 @@
       );
     } catch (error) {
       console.error("Firebase initialization error:", error);
-      setStatus("حدث خطأ أثناء تهيئة الاتصال بقاعدة البيانات.", "error");
+
+      setStatus(
+        "حدث خطأ أثناء تهيئة الاتصال بقاعدة البيانات.",
+        "error"
+      );
     }
   </script>
 </body>
