@@ -4,395 +4,724 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#080708">
+<meta name="theme-color" content="#050810">
 <title>PED SAN | لوحة الإدارة</title>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@500;700;800;900&display=swap');
-:root{--red:#ff1838;--bg:#080708;--panel:#110a0c;--line:#ff183855;--white:#f7f7fb;--muted:#aaa5ad}
+
+:root{
+  --blue:#168bff;
+  --cyan:#00c8ff;
+  --bg:#050810;
+  --panel:#0b1220;
+  --line:#168bff55;
+  --white:#f4f8ff;
+  --muted:#9caac0;
+}
+
 *{box-sizing:border-box}
-body{margin:0;background:radial-gradient(ellipse at 50% 0%,#30050b,transparent 44%),linear-gradient(180deg,#080708,#030304 80%);font-family:Cairo,Tahoma,sans-serif;color:var(--white);line-height:1.8}
+
+body{
+  margin:0;
+  background:
+    radial-gradient(ellipse at 50% 0%,#071e40,transparent 48%),
+    linear-gradient(180deg,#070a12,#03050a 80%);
+  font-family:Cairo,Tahoma,sans-serif;
+  color:var(--white);
+  line-height:1.8;
+}
+
 .wrap{max-width:900px;margin:auto;padding:18px}
-header,.panel{border:1px solid var(--line);border-radius:20px;background:#10090bee;padding:20px;margin-bottom:16px;box-shadow:0 10px 32px #ff002012}
-header{background:linear-gradient(130deg,#20060b,#090708)}
+
+header,.panel{
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:#0a1220ee;
+  padding:20px;
+  margin-bottom:16px;
+  box-shadow:0 10px 32px #168bff0c;
+}
+
+header{
+  background:linear-gradient(130deg,#0b2040,#080c16);
+}
+
 h1,h2,h3{font-family:Tajawal,sans-serif}
 h1{margin:0;font-size:27px}
-h1 span{color:var(--red)}
+h1 span{color:var(--cyan)}
 h2{font-size:22px;margin:0 0 12px}
-p{color:#c4bbc3}
+p{color:#c0cee2}
+
 .hint{font-size:13px;color:var(--muted)}
-input,textarea{display:block;width:100%;background:#080708;color:white;border:1px solid #ff18384d;border-radius:12px;padding:12px;outline:none;font:inherit;margin-top:5px}
-input:focus,textarea:focus{border-color:var(--red);box-shadow:0 0 12px #ff183822}
+
+input,textarea{
+  display:block;
+  width:100%;
+  background:#070c16;
+  color:white;
+  border:1px solid #168bff4d;
+  border-radius:12px;
+  padding:12px;
+  outline:none;
+  font:inherit;
+  margin-top:5px;
+}
+
+input:focus,textarea:focus{
+  border-color:var(--cyan);
+  box-shadow:0 0 12px #168bff22;
+}
+
 textarea{min-height:220px;resize:vertical}
 label{font-weight:700;font-size:14px}
 .field{margin-bottom:15px}
-button,.btn{display:inline-block;border:1px solid #ff344f88;border-radius:12px;padding:10px 15px;background:linear-gradient(135deg,#e8002a,#680015);color:#fff;cursor:pointer;font:700 14px Cairo,sans-serif;text-decoration:none}
-button.secondary,.btn.secondary{background:#ff183812}
-button.danger{background:#5c0614}
-.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
+
+button,.btn{
+  display:inline-block;
+  border:1px solid #168bff88;
+  border-radius:12px;
+  padding:10px 15px;
+  background:linear-gradient(135deg,#087bff,#0841a8);
+  color:#fff;
+  cursor:pointer;
+  font:700 14px Cairo,sans-serif;
+  text-decoration:none;
+  transition:.2s;
+}
+
+button:hover,.btn:hover{
+  border-color:var(--cyan);
+  box-shadow:0 0 18px #168bff25;
+}
+
+button:disabled{opacity:.6;cursor:wait}
+
+button.secondary,.btn.secondary{
+  background:#168bff12;
+  color:#a4dcff;
+}
+
+button.danger{background:#17253b;border-color:#42658f}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  margin-top:14px;
+}
+
 .hidden{display:none!important}
-.msg{padding:12px 14px;margin-bottom:15px;border:1px solid #ff183855;background:#160a0d;border-radius:12px;overflow-wrap:anywhere}
-.msg.error{border-color:#ff5269;color:#ff9baa}
-.lessonrow{border:1px solid #ff183833;background:#0b0809;border-radius:14px;padding:14px;margin:12px 0;display:flex;justify-content:space-between;align-items:center;gap:12px}
+
+.msg{
+  padding:12px 14px;
+  margin-bottom:15px;
+  border:1px solid #168bff55;
+  background:#0b1729;
+  border-radius:12px;
+  overflow-wrap:anywhere;
+}
+
+.msg.error{
+  border-color:#ff5269;
+  color:#ff9baa;
+}
+
+.optional{
+  color:#7fcaff;
+  font-size:12px;
+  font-weight:400;
+}
+
+.lessonrow{
+  border:1px solid #168bff33;
+  background:#080d18;
+  border-radius:14px;
+  padding:14px;
+  margin:12px 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+
 .lessonrow strong{display:block}
-.lessonrow small{display:block;color:var(--muted);overflow-wrap:anywhere}
-.rowactions{display:flex;flex-wrap:wrap;gap:7px;flex-shrink:0}
-footer{text-align:center;color:#858087;font-size:12px;padding:12px}
-@media(max-width:550px){.wrap{padding:12px}.lessonrow{align-items:stretch;flex-direction:column}.rowactions button{flex:1}h1{font-size:23px}}
+.lessonrow small{
+  display:block;
+  color:var(--muted);
+  overflow-wrap:anywhere;
+}
+
+.rowactions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  flex-shrink:0;
+}
+
+.appbadge{
+  display:inline-block;
+  margin-top:7px;
+  padding:2px 9px;
+  border-radius:8px;
+  border:1px solid #168bff45;
+  color:#82d4ff;
+  background:#168bff12;
+  font-size:11px;
+}
+
+footer{
+  text-align:center;
+  color:#8492a9;
+  font-size:12px;
+  padding:12px;
+}
+
+@media(max-width:550px){
+  .wrap{padding:12px}
+  .lessonrow{align-items:stretch;flex-direction:column}
+  .rowactions button{flex:1}
+  h1{font-size:23px}
+  .actions button{flex:1}
+}
 </style>
 </head>
+
 <body>
 <div class="wrap">
+
 <header>
-<h1>PED <span>SAN</span> — لوحة إدارة الدروس</h1>
-<p>أضف شروحاتك، عدّلها أو احذفها. التغييرات تظهر في الموقع الرئيسي.</p>
-<a class="btn secondary" href="index.html">العودة للموقع</a>
+  <h1>PED <span>SAN</span> — لوحة إدارة الدروس</h1>
+  <p>أضف شروحاتك وروابط تطبيقاتك، وعدّل الدروس أو احذفها.</p>
+  <a class="btn secondary" href="index.html">العودة للموقع</a>
 </header>
 
 <div id="message" class="msg hidden" role="status"></div>
 
 <section id="loginPanel" class="panel">
-<h2>دخول المشرف</h2>
-<p class="hint">استخدم البريد وكلمة المرور لحساب المدير الذي أنشأته في Firebase Authentication.</p>
-<form id="loginForm">
-<div class="field">
-<label for="email">البريد الإلكتروني</label>
-<input id="email" type="email" autocomplete="username" required>
-</div>
-<div class="field">
-<label for="password">كلمة المرور</label>
-<input id="password" type="password" autocomplete="current-password" required>
-</div>
-<button id="loginBtn" type="submit">تسجيل الدخول</button>
-</form>
+  <h2>دخول المشرف</h2>
+  <p class="hint">
+    استخدم البريد وكلمة المرور لحساب المدير في Firebase Authentication.
+  </p>
+
+  <form id="loginForm">
+    <div class="field">
+      <label for="email">البريد الإلكتروني</label>
+      <input id="email" type="email" autocomplete="username" required>
+    </div>
+
+    <div class="field">
+      <label for="password">كلمة المرور</label>
+      <input id="password" type="password"
+             autocomplete="current-password" required>
+    </div>
+
+    <button id="loginBtn" type="submit">تسجيل الدخول</button>
+  </form>
 </section>
 
 <section id="editorPanel" class="panel hidden">
-<h2 id="formTitle">إضافة درس جديد</h2>
-<form id="lessonForm">
-<input id="lessonId" type="hidden">
-<div class="field">
-<label for="title">عنوان الدرس *</label>
-<input id="title" maxlength="120" required>
-</div>
-<div class="field">
-<label for="category">القسم أو المجال *</label>
-<input id="category" maxlength="60" placeholder="مثال: برمجة التطبيقات" required>
-</div>
-<div class="field">
-<label for="summary">ملخص الدرس</label>
-<input id="summary" maxlength="250" placeholder="نبذة قصيرة تظهر في بطاقة الدرس">
-</div>
-<div class="field">
-<label for="content">شرح الدرس بالكامل *</label>
-<textarea id="content" maxlength="50000" placeholder="اكتب الشرح هنا..." required></textarea>
-</div>
-<div class="actions">
-<button id="saveBtn" type="submit">حفظ الدرس</button>
-<button id="resetBtn" class="secondary" type="button">درس جديد / إلغاء التعديل</button>
-<button id="logoutBtn" class="danger" type="button">تسجيل الخروج</button>
-</div>
-</form>
+  <h2 id="formTitle">إضافة درس جديد</h2>
+
+  <form id="lessonForm">
+    <input id="lessonId" type="hidden">
+
+    <div class="field">
+      <label for="title">عنوان الدرس *</label>
+      <input id="title" maxlength="120" required
+             placeholder="اكتب عنوان الدرس">
+    </div>
+
+    <div class="field">
+      <label for="category">القسم أو المجال *</label>
+      <input id="category" maxlength="60" required
+             placeholder="مثال: برمجة التطبيقات">
+    </div>
+
+    <div class="field">
+      <label for="summary">ملخص الدرس</label>
+      <input id="summary" maxlength="250"
+             placeholder="نبذة قصيرة تظهر في بطاقة الدرس">
+    </div>
+
+    <div class="field">
+      <label for="content">شرح الدرس بالكامل *</label>
+      <textarea id="content" maxlength="50000" required
+                placeholder="اكتب الشرح هنا..."></textarea>
+    </div>
+
+    <div class="field">
+      <label for="appUrl">
+        رابط التطبيق <span class="optional">(اختياري)</span>
+      </label>
+      <input
+        id="appUrl"
+        type="url"
+        maxlength="2000"
+        inputmode="url"
+        placeholder="https://example.com/app.apk"
+      >
+      <p class="hint">
+        يمكنك وضع رابط تنزيل APK أو رابط صفحة التطبيق.
+        اترك الحقل فارغًا إذا لم يكن للدرس تطبيق.
+      </p>
+    </div>
+
+    <div class="actions">
+      <button id="saveBtn" type="submit">حفظ الدرس</button>
+      <button id="resetBtn" class="secondary" type="button">
+        درس جديد / إلغاء التعديل
+      </button>
+      <button id="logoutBtn" class="danger" type="button">
+        تسجيل الخروج
+      </button>
+    </div>
+  </form>
 </section>
 
 <section id="listPanel" class="panel hidden">
-<h2>الدروس الحالية</h2>
-<div id="lessonList"><p class="hint">جاري تحميل الدروس...</p></div>
+  <h2>الدروس الحالية</h2>
+  <div id="lessonList">
+    <p class="hint">جاري تحميل الدروس...</p>
+  </div>
 </section>
 
-<footer>© <span id="year"></span> PED SAN — لوحة الإدارة</footer>
+<footer>
+  © <span id="year"></span> PED SAN — لوحة الإدارة
+</footer>
+
 </div>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { initializeApp }
+  from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
 import {
- getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
 import {
- getDatabase, ref, onValue, push, set, update, remove
+  getDatabase,
+  ref,
+  onValue,
+  push,
+  set,
+  update,
+  remove
 } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
 
 const firebaseConfig = {
- apiKey: "AIzaSyC393Ko1pqXlXQGP3iyoXau9zDm8JLlQUA",
- authDomain: "ped-37b14.firebaseapp.com",
- databaseURL: "https://ped-37b14-default-rtdb.firebaseio.com",
- projectId: "ped-37b14",
- storageBucket: "ped-37b14.firebasestorage.app",
- messagingSenderId: "816967461547",
- appId: "1:816967461547:web:7ab95806fa57c1c56b65ee",
- measurementId: "G-52M3SHV3LD"
+  apiKey: "AIzaSyC393Ko1pqXlXQGP3iyoXau9zDm8JLlQUA",
+  authDomain: "ped-37b14.firebaseapp.com",
+  databaseURL: "https://ped-37b14-default-rtdb.firebaseio.com",
+  projectId: "ped-37b14",
+  storageBucket: "ped-37b14.firebasestorage.app",
+  messagingSenderId: "816967461547",
+  appId: "1:816967461547:web:7ab95806fa57c1c56b65ee",
+  measurementId: "G-52M3SHV3LD"
 };
 
 /* UID المدير المصرّح له */
 const ADMIN_UID = "Ujqwlhvf3gZui8PdueF84PuTiyA3";
 
 const $ = id => document.getElementById(id);
+
 const msg = $("message");
 const loginPanel = $("loginPanel");
 const editorPanel = $("editorPanel");
 const listPanel = $("listPanel");
 
-let auth, db, currentUser = null, lessonCache = {};
+let auth;
+let db;
+let currentUser = null;
+let lessonCache = {};
 let stopListening = null;
 let busy = false;
 
 $("year").textContent = new Date().getFullYear();
 
 function message(text, error = false) {
- msg.textContent = text;
- msg.classList.remove("hidden", "error");
- if (error) msg.classList.add("error");
+  msg.textContent = text;
+  msg.classList.remove("hidden", "error");
+
+  if (error) msg.classList.add("error");
 }
 
 function clearMessage() {
- msg.classList.add("hidden");
- msg.classList.remove("error");
+  msg.classList.add("hidden");
+  msg.classList.remove("error");
 }
 
 function errorText(e) {
- const code = e?.code || "";
- const messages = {
-  "auth/invalid-credential": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
-  "auth/invalid-email": "صيغة البريد الإلكتروني غير صحيحة.",
-  "auth/too-many-requests": "محاولات كثيرة. انتظر قليلاً ثم حاول مجدداً.",
-  "auth/network-request-failed": "تحقق من اتصال الإنترنت.",
-  "PERMISSION_DENIED": "Firebase رفض العملية. تحقق من قواعد قاعدة البيانات وUID المدير.",
-  "permission-denied": "Firebase رفض العملية. تحقق من قواعد قاعدة البيانات وUID المدير."
- };
- return messages[code] || ("حدث خطأ: " + (e?.message || code || "غير معروف"));
+  const code = e?.code || "";
+
+  const messages = {
+    "auth/invalid-credential":
+      "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
+    "auth/invalid-email":
+      "صيغة البريد الإلكتروني غير صحيحة.",
+    "auth/too-many-requests":
+      "محاولات كثيرة. انتظر قليلاً ثم حاول مجدداً.",
+    "auth/network-request-failed":
+      "تحقق من اتصال الإنترنت.",
+    "PERMISSION_DENIED":
+      "Firebase رفض العملية. تحقق من قواعد قاعدة البيانات وUID المدير.",
+    "permission-denied":
+      "Firebase رفض العملية. تحقق من قواعد قاعدة البيانات وUID المدير."
+  };
+
+  return messages[code] ||
+    ("حدث خطأ: " + (e?.message || code || "غير معروف"));
 }
 
 function setBusy(value) {
- busy = value;
- $("saveBtn").disabled = value;
- $("loginBtn").disabled = value;
- $("saveBtn").textContent = value ? "جارٍ الحفظ..." :
-  ($("lessonId").value ? "حفظ التعديلات" : "حفظ الدرس");
- $("loginBtn").textContent = value ? "جارٍ الدخول..." : "تسجيل الدخول";
+  busy = value;
+  $("saveBtn").disabled = value;
+  $("loginBtn").disabled = value;
+
+  $("saveBtn").textContent = value
+    ? "جارٍ الحفظ..."
+    : ($("lessonId").value ? "حفظ التعديلات" : "حفظ الدرس");
+
+  $("loginBtn").textContent = value
+    ? "جارٍ الدخول..."
+    : "تسجيل الدخول";
 }
 
 function resetForm() {
- $("lessonForm").reset();
- $("lessonId").value = "";
- $("formTitle").textContent = "إضافة درس جديد";
- $("saveBtn").textContent = "حفظ الدرس";
+  $("lessonForm").reset();
+  $("lessonId").value = "";
+  $("formTitle").textContent = "إضافة درس جديد";
+  $("saveBtn").textContent = "حفظ الدرس";
 }
+
+/* قبول روابط HTTP/HTTPS فقط */
+
+function validateAppUrl(value) {
+  const text = value.trim();
+
+  if (!text) return "";
+
+  let url;
+
+  try {
+    url = new URL(text);
+  } catch (e) {
+    throw new Error(
+      "رابط التطبيق غير صحيح. اكتب الرابط كاملًا، مثل https://example.com/app.apk"
+    );
+  }
+
+  if (url.protocol !== "https:" && url.protocol !== "http:") {
+    throw new Error("الرابط يجب أن يبدأ بـ https:// أو http://");
+  }
+
+  if (!url.hostname || !url.hostname.includes(".")) {
+    throw new Error("عنوان الموقع في رابط التطبيق غير صحيح.");
+  }
+
+  return url.href;
+}
+
+/* عرض الدروس في لوحة الإدارة */
 
 function renderList() {
- const host = $("lessonList");
- host.replaceChildren();
+  const host = $("lessonList");
+  host.replaceChildren();
 
- const entries = Object.entries(lessonCache).filter(
-  ([id, item]) => item && typeof item === "object"
- ).sort((a, b) =>
-  Number(b[1].updatedAt || b[1].createdAt || 0) -
-  Number(a[1].updatedAt || a[1].createdAt || 0)
- );
+  const entries = Object.entries(lessonCache)
+    .filter(([id, item]) => item && typeof item === "object")
+    .sort((a, b) =>
+      Number(b[1].updatedAt || b[1].createdAt || 0) -
+      Number(a[1].updatedAt || a[1].createdAt || 0)
+    );
 
- if (!entries.length) {
-  const p = document.createElement("p");
-  p.className = "hint";
-  p.textContent = "لا توجد دروس حتى الآن. أضف أول درس من النموذج أعلاه.";
-  host.appendChild(p);
-  return;
- }
+  if (!entries.length) {
+    const p = document.createElement("p");
+    p.className = "hint";
+    p.textContent =
+      "لا توجد دروس حتى الآن. أضف أول درس من النموذج أعلاه.";
 
- entries.forEach(([id, item]) => {
-  const row = document.createElement("div");
-  row.className = "lessonrow";
+    host.appendChild(p);
+    return;
+  }
 
-  const info = document.createElement("div");
-  const title = document.createElement("strong");
-  title.textContent = item.title || "درس بدون عنوان";
+  entries.forEach(([id, item]) => {
+    const row = document.createElement("div");
+    row.className = "lessonrow";
 
-  const small = document.createElement("small");
-  small.textContent = (item.category || "عام") + " — " +
-   (item.summary || "بدون ملخص");
+    const info = document.createElement("div");
 
-  info.append(title, small);
+    const title = document.createElement("strong");
+    title.textContent = item.title || "درس بدون عنوان";
 
-  const actions = document.createElement("div");
-  actions.className = "rowactions";
+    const small = document.createElement("small");
+    small.textContent =
+      (item.category || "عام") + " — " +
+      (item.summary || "بدون ملخص");
 
-  const edit = document.createElement("button");
-  edit.className = "secondary";
-  edit.textContent = "تعديل";
-  edit.onclick = () => editLesson(id, item);
+    info.append(title, small);
 
-  const del = document.createElement("button");
-  del.className = "danger";
-  del.textContent = "حذف";
-  del.onclick = () => deleteLesson(id, item.title || "");
+    if (item.appUrl) {
+      const badge = document.createElement("span");
+      badge.className = "appbadge";
+      badge.textContent = "يوجد رابط تطبيق";
 
-  actions.append(edit, del);
-  row.append(info, actions);
-  host.appendChild(row);
- });
+      info.appendChild(badge);
+    }
+
+    const actions = document.createElement("div");
+    actions.className = "rowactions";
+
+    const edit = document.createElement("button");
+    edit.className = "secondary";
+    edit.textContent = "تعديل";
+    edit.onclick = () => editLesson(id, item);
+
+    const del = document.createElement("button");
+    del.className = "danger";
+    del.textContent = "حذف";
+    del.onclick = () => deleteLesson(id, item.title || "");
+
+    actions.append(edit, del);
+    row.append(info, actions);
+    host.appendChild(row);
+  });
 }
+
+/* تعديل درس موجود */
 
 function editLesson(id, item) {
- $("lessonId").value = id;
- $("title").value = item.title || "";
- $("category").value = item.category || "";
- $("summary").value = item.summary || "";
- $("content").value = item.content || "";
- $("formTitle").textContent = "تعديل الدرس";
- $("saveBtn").textContent = "حفظ التعديلات";
- window.scrollTo({top: 0, behavior: "smooth"});
- clearMessage();
+  $("lessonId").value = id;
+  $("title").value = item.title || "";
+  $("category").value = item.category || "";
+  $("summary").value = item.summary || "";
+  $("content").value = item.content || "";
+  $("appUrl").value = item.appUrl || "";
+
+  $("formTitle").textContent = "تعديل الدرس";
+  $("saveBtn").textContent = "حفظ التعديلات";
+
+  clearMessage();
+  window.scrollTo({top: 0, behavior: "smooth"});
 }
 
-async function deleteLesson(id, title) {
- if (!currentUser || currentUser.uid !== ADMIN_UID) {
-  message("هذا الحساب غير مخوّل لإدارة الدروس.", true);
-  return;
- }
- if (!confirm('هل أنت متأكد من حذف الدرس "' + title + '"؟')) return;
+/* حذف درس */
 
- try {
-  await remove(ref(db, "lessons/" + id));
-  message("تم حذف الدرس بنجاح.");
- } catch (e) {
-  message(errorText(e), true);
- }
+async function deleteLesson(id, title) {
+  if (!currentUser || currentUser.uid !== ADMIN_UID) {
+    message("هذا الحساب غير مخوّل لإدارة الدروس.", true);
+    return;
+  }
+
+  if (busy) return;
+
+  if (!confirm('هل أنت متأكد من حذف الدرس "' + title + '"؟')) {
+    return;
+  }
+
+  try {
+    await remove(ref(db, "lessons/" + id));
+    message("تم حذف الدرس بنجاح.");
+  } catch (e) {
+    message(errorText(e), true);
+  }
 }
 
 try {
- const app = initializeApp(firebaseConfig);
- auth = getAuth(app);
- db = getDatabase(app);
+  const app = initializeApp(firebaseConfig);
 
- $("loginForm").addEventListener("submit", async e => {
-  e.preventDefault();
-  clearMessage();
-  if (busy) return;
+  auth = getAuth(app);
+  db = getDatabase(app);
 
-  setBusy(true);
-  try {
-   await signInWithEmailAndPassword(
-    auth,
-    $("email").value.trim(),
-    $("password").value
-   );
-  } catch (err) {
-   message(errorText(err), true);
-  } finally {
-   setBusy(false);
-  }
- });
+  /* تسجيل الدخول */
 
- onAuthStateChanged(auth, user => {
-  currentUser = user;
+  $("loginForm").addEventListener("submit", async e => {
+    e.preventDefault();
+    clearMessage();
 
-  if (stopListening) {
-   stopListening();
-   stopListening = null;
-  }
+    if (busy) return;
 
-  if (!user) {
-   loginPanel.classList.remove("hidden");
-   editorPanel.classList.add("hidden");
-   listPanel.classList.add("hidden");
-   lessonCache = {};
-   clearMessage();
-   return;
-  }
+    setBusy(true);
 
-  if (user.uid !== ADMIN_UID) {
-   loginPanel.classList.add("hidden");
-   editorPanel.classList.add("hidden");
-   listPanel.classList.add("hidden");
-   message("تم تسجيل الدخول، لكن هذا الحساب ليس حساب المدير المصرّح له. سجّل الخروج واستخدم حساب المدير الصحيح.", true);
-   signOut(auth).catch(() => {});
-   return;
-  }
-
-  loginPanel.classList.add("hidden");
-  editorPanel.classList.remove("hidden");
-  listPanel.classList.remove("hidden");
-  message("تم تسجيل دخول المدير بنجاح.");
-
-  stopListening = onValue(ref(db, "lessons"), snapshot => {
-   lessonCache = snapshot.val() || {};
-   renderList();
-  }, err => {
-   message(errorText(err), true);
+    try {
+      await signInWithEmailAndPassword(
+        auth,
+        $("email").value.trim(),
+        $("password").value
+      );
+    } catch (err) {
+      message(errorText(err), true);
+    } finally {
+      setBusy(false);
+    }
   });
- });
 
- $("lessonForm").addEventListener("submit", async e => {
-  e.preventDefault();
+  /* التحقق من حساب المدير */
 
-  if (!currentUser || currentUser.uid !== ADMIN_UID) {
-   message("يجب تسجيل الدخول بحساب المدير المصرّح له.", true);
-   return;
-  }
-  if (busy) return;
+  onAuthStateChanged(auth, user => {
+    currentUser = user;
 
-  const id = $("lessonId").value;
-  const title = $("title").value.trim();
-  const category = $("category").value.trim();
-  const summary = $("summary").value.trim();
-  const content = $("content").value.trim();
+    if (stopListening) {
+      stopListening();
+      stopListening = null;
+    }
 
-  if (!title || !category || !content) {
-   message("أكمل عنوان الدرس والقسم والشرح.", true);
-   return;
-  }
+    if (!user) {
+      loginPanel.classList.remove("hidden");
+      editorPanel.classList.add("hidden");
+      listPanel.classList.add("hidden");
 
-  const now = Date.now();
-  const old = id ? lessonCache[id] : null;
+      lessonCache = {};
+      clearMessage();
+      return;
+    }
 
-  const item = {
-   title,
-   category,
-   summary,
-   content,
-   createdAt: old?.createdAt || now,
-   updatedAt: now
-  };
+    if (user.uid !== ADMIN_UID) {
+      loginPanel.classList.add("hidden");
+      editorPanel.classList.add("hidden");
+      listPanel.classList.add("hidden");
 
-  setBusy(true);
-  clearMessage();
+      message(
+        "هذا الحساب ليس حساب المدير المصرّح له. سجّل الخروج واستخدم حساب المدير الصحيح.",
+        true
+      );
 
-  try {
-   if (id) {
-    await update(ref(db, "lessons/" + id), item);
-    message("تم تعديل الدرس بنجاح، وسيظهر التحديث في الموقع.");
-   } else {
-    const newLesson = push(ref(db, "lessons"));
-    await set(newLesson, item);
-    message("تمت إضافة الدرس بنجاح، وسيظهر في الموقع.");
-   }
-   resetForm();
-  } catch (err) {
-   message(errorText(err), true);
-  } finally {
-   setBusy(false);
-  }
- });
+      signOut(auth).catch(() => {});
+      return;
+    }
 
- $("resetBtn").addEventListener("click", () => {
-  resetForm();
-  clearMessage();
- });
+    loginPanel.classList.add("hidden");
+    editorPanel.classList.remove("hidden");
+    listPanel.classList.remove("hidden");
 
- $("logoutBtn").addEventListener("click", async () => {
-  try {
-   if (stopListening) {
-    stopListening();
-    stopListening = null;
-   }
-   await signOut(auth);
-   resetForm();
-   message("تم تسجيل الخروج.");
-  } catch (err) {
-   message(errorText(err), true);
-  }
- });
+    message("تم تسجيل دخول المدير بنجاح.");
+
+    stopListening = onValue(
+      ref(db, "lessons"),
+
+      snapshot => {
+        lessonCache = snapshot.val() || {};
+        renderList();
+      },
+
+      err => {
+        message(errorText(err), true);
+      }
+    );
+  });
+
+  /* حفظ درس جديد أو تعديل درس */
+
+  $("lessonForm").addEventListener("submit", async e => {
+    e.preventDefault();
+
+    if (!currentUser || currentUser.uid !== ADMIN_UID) {
+      message("يجب تسجيل الدخول بحساب المدير المصرّح له.", true);
+      return;
+    }
+
+    if (busy) return;
+
+    const id = $("lessonId").value;
+    const title = $("title").value.trim();
+    const category = $("category").value.trim();
+    const summary = $("summary").value.trim();
+    const content = $("content").value.trim();
+
+    let appUrl = "";
+
+    if (!title || !category || !content) {
+      message("أكمل عنوان الدرس والقسم والشرح.", true);
+      return;
+    }
+
+    try {
+      appUrl = validateAppUrl($("appUrl").value);
+    } catch (err) {
+      message(err.message, true);
+      $("appUrl").focus();
+      return;
+    }
+
+    const now = Date.now();
+    const old = id ? lessonCache[id] : null;
+
+    const item = {
+      title: title,
+      category: category,
+      summary: summary,
+      content: content,
+      appUrl: appUrl,
+      createdAt: old?.createdAt || now,
+      updatedAt: now
+    };
+
+    setBusy(true);
+    clearMessage();
+
+    try {
+      if (id) {
+        await update(ref(db, "lessons/" + id), item);
+
+        message(
+          "تم تعديل الدرس بنجاح، وتم حفظ رابط التطبيق إذا أضفته."
+        );
+      } else {
+        const newLesson = push(ref(db, "lessons"));
+
+        await set(newLesson, item);
+
+        message("تمت إضافة الدرس بنجاح.");
+      }
+
+      resetForm();
+
+    } catch (err) {
+      message(errorText(err), true);
+    } finally {
+      setBusy(false);
+    }
+  });
+
+  /* مسح النموذج */
+
+  $("resetBtn").addEventListener("click", () => {
+    resetForm();
+    clearMessage();
+  });
+
+  /* تسجيل الخروج */
+
+  $("logoutBtn").addEventListener("click", async () => {
+    if (busy) return;
+
+    try {
+      if (stopListening) {
+        stopListening();
+        stopListening = null;
+      }
+
+      await signOut(auth);
+      resetForm();
+      message("تم تسجيل الخروج.");
+
+    } catch (err) {
+      message(errorText(err), true);
+    }
+  });
 
 } catch (err) {
- console.error(err);
- message("تعذّر تشغيل Firebase. تحقق من إعدادات المشروع واتصال الإنترنت. " + (err?.message || ""), true);
+  console.error(err);
+
+  message(
+    "تعذّر تشغيل Firebase. تحقق من إعدادات المشروع واتصال الإنترنت. " +
+    (err?.message || ""),
+    true
+  );
 }
 </script>
 </body>
