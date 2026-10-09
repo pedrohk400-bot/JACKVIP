@@ -1,11 +1,11 @@
-// بيانات تطبيق الويب من Firebase Console > Project settings > Your apps
-// هذه البيانات ليست كلمة مرور؛ الحماية الحقيقية في Authentication وDatabase Rules.
+
 export const firebaseConfig = {
-  apiKey: "PASTE_API_KEY_HERE",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  databaseURL: "PASTE_REALTIME_DATABASE_URL_HERE",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
-  messagingSenderId: "PASTE_MESSAGING_SENDER_ID_HERE",
-  appId: "PASTE_APP_ID_HERE"
+  apiKey: "AIzaSyC393Ko1pqXlXQGP3iyoXau9zDm8JLlQUA",
+  authDomain: "ped-37b14.firebaseapp.com",
+  databaseURL: "https://ped-37b14-default-rtdb.firebaseio.com",
+  projectId: "ped-37b14",
+  storageBucket: "ped-37b14.firebasestorage.app",
+  messagingSenderId: "816967461547",
+  appId: "1:816967461547:web:7ab95806fa57c1c56b65ee",
+  measurementId: "G-52M3SHV3LD"
 };
