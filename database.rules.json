@@ -1,0 +1,32 @@
+{
+  "rules": {
+    "lessons": {
+      ".read": true,
+      "$lessonId": {
+        ".write": "auth != null && auth.uid === 'REPLACE_WITH_ADMIN_UID'",
+        ".validate": "newData.hasChildren(['title','category','content'])",
+        "title": {
+          ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 120"
+        },
+        "category": {
+          ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 60"
+        },
+        "summary": {
+          ".validate": "newData.isString() && newData.val().length <= 250"
+        },
+        "content": {
+          ".validate": "newData.isString() && newData.val().length > 0 && newData.val().length <= 50000"
+        },
+        "createdAt": {
+          ".validate": "newData.isNumber()"
+        },
+        "updatedAt": {
+          ".validate": "newData.isNumber()"
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    }
+  }
+}
