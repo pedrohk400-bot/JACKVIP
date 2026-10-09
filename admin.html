@@ -1,67 +1,399 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#087f5b">
-<title>إدارة PED SAN</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080708">
+<title>PED SAN | لوحة الإدارة</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@500;700;800;900&display=swap');
+:root{--red:#ff1838;--bg:#080708;--panel:#110a0c;--line:#ff183855;--white:#f7f7fb;--muted:#aaa5ad}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 50% 0%,#30050b,transparent 44%),linear-gradient(180deg,#080708,#030304 80%);font-family:Cairo,Tahoma,sans-serif;color:var(--white);line-height:1.8}
+.wrap{max-width:900px;margin:auto;padding:18px}
+header,.panel{border:1px solid var(--line);border-radius:20px;background:#10090bee;padding:20px;margin-bottom:16px;box-shadow:0 10px 32px #ff002012}
+header{background:linear-gradient(130deg,#20060b,#090708)}
+h1,h2,h3{font-family:Tajawal,sans-serif}
+h1{margin:0;font-size:27px}
+h1 span{color:var(--red)}
+h2{font-size:22px;margin:0 0 12px}
+p{color:#c4bbc3}
+.hint{font-size:13px;color:var(--muted)}
+input,textarea{display:block;width:100%;background:#080708;color:white;border:1px solid #ff18384d;border-radius:12px;padding:12px;outline:none;font:inherit;margin-top:5px}
+input:focus,textarea:focus{border-color:var(--red);box-shadow:0 0 12px #ff183822}
+textarea{min-height:220px;resize:vertical}
+label{font-weight:700;font-size:14px}
+.field{margin-bottom:15px}
+button,.btn{display:inline-block;border:1px solid #ff344f88;border-radius:12px;padding:10px 15px;background:linear-gradient(135deg,#e8002a,#680015);color:#fff;cursor:pointer;font:700 14px Cairo,sans-serif;text-decoration:none}
+button.secondary,.btn.secondary{background:#ff183812}
+button.danger{background:#5c0614}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}
+.hidden{display:none!important}
+.msg{padding:12px 14px;margin-bottom:15px;border:1px solid #ff183855;background:#160a0d;border-radius:12px;overflow-wrap:anywhere}
+.msg.error{border-color:#ff5269;color:#ff9baa}
+.lessonrow{border:1px solid #ff183833;background:#0b0809;border-radius:14px;padding:14px;margin:12px 0;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.lessonrow strong{display:block}
+.lessonrow small{display:block;color:var(--muted);overflow-wrap:anywhere}
+.rowactions{display:flex;flex-wrap:wrap;gap:7px;flex-shrink:0}
+footer{text-align:center;color:#858087;font-size:12px;padding:12px}
+@media(max-width:550px){.wrap{padding:12px}.lessonrow{align-items:stretch;flex-direction:column}.rowactions button{flex:1}h1{font-size:23px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>PED <span>SAN</span> — لوحة إدارة الدروس</h1>
+<p>أضف شروحاتك، عدّلها أو احذفها. التغييرات تظهر في الموقع الرئيسي.</p>
+<a class="btn secondary" href="index.html">العودة للموقع</a>
+</header>
 
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
-:root{--red:#ff1838;--red2:#b90022;--red-glow:#ff183855;--bg:#050506;--panel:rgba(20,10,12,.78);--panel2:rgba(30,8,12,.76);--line:rgba(255,35,62,.42);--white:#f7f7fb;--muted:#aaa5ad;--shadow:0 10px 32px #ff002015}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 50% 0%,#30050b 0,transparent 44%),linear-gradient(180deg,#080708,#030304 72%);font-family:'Cairo',Tahoma,Arial,sans-serif;color:var(--white);line-height:1.85}
-button,input,select,textarea{font:inherit}a{color:inherit}.wrap{max-width:1150px;margin:auto;padding:0 18px}
-header{padding:17px 0 29px;background:radial-gradient(ellipse at 55% 50%,#61000e66,transparent 45%),linear-gradient(120deg,#080708,#120507 60%,#070607);border-bottom:1px solid #ff183833;position:relative;overflow:hidden}
-header:before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 35%,#ff0b2610 50%,transparent 68%)}
-.top{position:relative;display:flex;align-items:center;justify-content:space-between;gap:14px;border:1px solid #ff243b55;border-radius:22px;padding:10px 15px;background:#090708bb;backdrop-filter:blur(18px);box-shadow:0 0 25px #ff00200b}
-.brand{display:flex;align-items:center;gap:11px}.logo{width:46px;height:46px;border-radius:15px;background:linear-gradient(145deg,#ff2946,#760014);display:grid;place-items:center;font:900 17px 'Tajawal',sans-serif;box-shadow:0 0 22px #ff183855}.brand h1{font:900 22px 'Tajawal',sans-serif;margin:0;letter-spacing:.3px}.brand h1 span{color:var(--red)}.brand small{display:block;color:#aaa;font-size:11px;line-height:1.5}.adminlink{color:#fff;text-decoration:none;border:1px solid #ff244866;border-radius:13px;padding:8px 15px;background:#ff183814;box-shadow:inset 0 0 18px #ff18380b;transition:.2s}.adminlink:hover{background:#ff18382b;box-shadow:0 0 20px #ff183833}
-.hero{position:relative;padding:45px 0 21px}.hero h2{font:900 clamp(30px,5vw,54px)/1.25 'Tajawal',sans-serif;margin:12px 0;color:#fff;text-shadow:0 0 26px #ff183822}.hero h2 span{color:var(--red)}.hero p{margin:0;max-width:720px;color:#c3bcc3;font-size:16px}.hero .welcome{display:inline-block;border:1px solid #ff183866;border-radius:999px;padding:3px 13px;color:#ff8b9a;background:#ff183811;font-size:12px}
-.searchbox{margin-top:23px;display:flex;gap:10px;background:#100a0c;border:1px solid #ff18384d;padding:8px;border-radius:16px;box-shadow:0 0 28px #ff002010}.searchbox input{border:0;flex:1;outline:none;background:transparent;color:#fff;min-width:0}.searchbox input::placeholder{color:#88818a}
-button,.btn{border:1px solid #ff344f88;border-radius:13px;padding:10px 16px;background:linear-gradient(135deg,#e8002a9c,#680015a8);color:#fff;cursor:pointer;font-weight:800;box-shadow:inset 0 0 18px #ff183814,0 0 17px #ff183817;transition:transform .18s,box-shadow .18s,background .18s}button:hover,.btn:hover{transform:translateY(-1px);box-shadow:0 0 24px #ff18384a;background:linear-gradient(135deg,#ff2448,#8e001b)}button.secondary{background:#ff183812;color:#ffd9df;border-color:#ff344f55;box-shadow:none}button.danger{background:#5c0614;border-color:#ff1838}
-main{padding:27px 0 50px}.sectionhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:13px 0 17px}.sectionhead h3{font:800 24px 'Tajawal',sans-serif;margin:0}.muted{color:var(--muted);font-size:13px}.filters{display:flex;gap:9px;overflow:auto;padding:4px 0 17px}.chip{white-space:nowrap;border:1px solid #ff18383b;border-radius:999px;padding:7px 15px;background:#11090b;color:#ddd;cursor:pointer;box-shadow:none}.chip.active{background:#ff183827;color:#ff9eab;border-color:#ff1838;box-shadow:0 0 16px #ff18381b}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:15px}.lesson{background:linear-gradient(145deg,#160b0eeb,#090809f5);border:1px solid #ff263d4a;border-radius:20px;padding:18px;box-shadow:var(--shadow);display:flex;flex-direction:column;min-height:215px;position:relative;overflow:hidden}.lesson:before{content:"";height:1px;position:absolute;left:10%;right:10%;top:0;background:linear-gradient(90deg,transparent,#ff1838,transparent)}.tag{display:inline-flex;background:#ff18381b;color:#ff8c9d;border:1px solid #ff183844;border-radius:9px;padding:3px 9px;font-size:12px;align-self:flex-start}.lesson h4{font:800 20px/1.5 'Tajawal',sans-serif;margin:12px 0 5px;color:#fff}.lesson p{color:#b8b0b8;margin:0 0 18px;font-size:14px;white-space:pre-wrap}.lesson button{margin-top:auto;align-self:flex-start}.empty,.notice{background:#100a0c;border:1px solid #ff183833;border-radius:16px;padding:18px;color:#bcb4bc}
-dialog{border:1px solid #ff183866;border-radius:22px;padding:0;width:min(760px,calc(100% - 24px));max-height:85vh;background:#090708;color:#fff;box-shadow:0 20px 70px #000d,0 0 40px #ff00201c}dialog::backdrop{background:#020203d9;backdrop-filter:blur(5px)}.modalhead{padding:17px 20px;background:linear-gradient(100deg,#31060d,#12080a);border-bottom:1px solid #ff183833;display:flex;justify-content:space-between;gap:10px;align-items:center}.modalhead h3{font:800 23px 'Tajawal',sans-serif;margin:0}.modalbody{padding:22px;white-space:pre-wrap;overflow-wrap:anywhere;color:#e8e3e8;line-height:2;font-size:16px}.close{background:#ff18381b;color:#ffbdc6;padding:6px 12px}
-footer{text-align:center;padding:22px;color:#858087;font-size:13px;border-top:1px solid #ff183822}
-@media(max-width:600px){.wrap{padding:0 13px}.top{align-items:center;padding:9px 10px}.brand h1{font-size:19px}.logo{width:41px;height:41px}.adminlink{padding:7px 10px;font-size:12px}.hero{padding-top:32px}.hero p{font-size:14px}.searchbox{flex-direction:column}.searchbox button{width:100%}.sectionhead h3{font-size:21px}.grid{grid-template-columns:1fr}.lesson{min-height:190px}}
+<div id="message" class="msg hidden" role="status"></div>
 
-</style></head>
-<body><div class="wrap">
-<header><h1 style="font-family:Tajawal,sans-serif">PED <span style="color:#ff5269">SAN</span> — لوحة إدارة الدروس</h1><p>إضافة وتعديل وحذف الدروس المخزنة في Firebase.</p><div class="actions"><a class="btn" href="index.html">العودة للموقع</a></div></header>
-<div id="message" class="msg hidden"></div>
-<section id="loginPanel" class="panel"><h2>دخول المشرف</h2><p class="hint">استخدم بريد وكلمة مرور حساب المشرف الذي أنشأته في Firebase Authentication.</p>
-<form id="loginForm"><div class="formgrid"><div class="field wide"><label for="email">البريد الإلكتروني</label><input id="email" type="email" autocomplete="username" required></div><div class="field wide"><label for="password">كلمة المرور</label><input id="password" type="password" autocomplete="current-password" required></div></div><div class="actions"><button type="submit">تسجيل الدخول</button></div></form></section>
-<section id="editorPanel" class="panel hidden"><h2 id="formTitle">إضافة درس جديد</h2>
-<form id="lessonForm"><input id="lessonId" type="hidden"><div class="formgrid">
-<div class="field"><label for="title">عنوان الدرس *</label><input id="title" maxlength="120" required></div>
-<div class="field"><label for="category">القسم *</label><input id="category" maxlength="60" placeholder="مثال: برمجة التطبيقات" required></div>
-<div class="field wide"><label for="summary">ملخص قصير</label><input id="summary" maxlength="250" placeholder="نبذة تظهر في بطاقة الدرس"></div>
-<div class="field wide"><label for="content">محتوى الدرس *</label><textarea id="content" maxlength="50000" required placeholder="اكتب الشرح هنا. اترك سطراً فارغاً بين الفقرات."></textarea></div>
-</div><div class="actions"><button type="submit" id="saveBtn">حفظ الدرس</button><button type="button" class="secondary" id="resetBtn">درس جديد / إلغاء التعديل</button><button type="button" class="danger" id="logoutBtn">تسجيل الخروج</button></div></form></section>
-<section id="listPanel" class="panel hidden"><h2>الدروس الحالية</h2><div id="lessonList"><p class="hint">جاري التحميل…</p></div></section>
+<section id="loginPanel" class="panel">
+<h2>دخول المشرف</h2>
+<p class="hint">استخدم البريد وكلمة المرور لحساب المدير الذي أنشأته في Firebase Authentication.</p>
+<form id="loginForm">
+<div class="field">
+<label for="email">البريد الإلكتروني</label>
+<input id="email" type="email" autocomplete="username" required>
 </div>
+<div class="field">
+<label for="password">كلمة المرور</label>
+<input id="password" type="password" autocomplete="current-password" required>
+</div>
+<button id="loginBtn" type="submit">تسجيل الدخول</button>
+</form>
+</section>
+
+<section id="editorPanel" class="panel hidden">
+<h2 id="formTitle">إضافة درس جديد</h2>
+<form id="lessonForm">
+<input id="lessonId" type="hidden">
+<div class="field">
+<label for="title">عنوان الدرس *</label>
+<input id="title" maxlength="120" required>
+</div>
+<div class="field">
+<label for="category">القسم أو المجال *</label>
+<input id="category" maxlength="60" placeholder="مثال: برمجة التطبيقات" required>
+</div>
+<div class="field">
+<label for="summary">ملخص الدرس</label>
+<input id="summary" maxlength="250" placeholder="نبذة قصيرة تظهر في بطاقة الدرس">
+</div>
+<div class="field">
+<label for="content">شرح الدرس بالكامل *</label>
+<textarea id="content" maxlength="50000" placeholder="اكتب الشرح هنا..." required></textarea>
+</div>
+<div class="actions">
+<button id="saveBtn" type="submit">حفظ الدرس</button>
+<button id="resetBtn" class="secondary" type="button">درس جديد / إلغاء التعديل</button>
+<button id="logoutBtn" class="danger" type="button">تسجيل الخروج</button>
+</div>
+</form>
+</section>
+
+<section id="listPanel" class="panel hidden">
+<h2>الدروس الحالية</h2>
+<div id="lessonList"><p class="hint">جاري تحميل الدروس...</p></div>
+</section>
+
+<footer>© <span id="year"></span> PED SAN — لوحة الإدارة</footer>
+</div>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
-import { getDatabase, ref, onValue, push, set, update, remove } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
-import { firebaseConfig } from "./firebase-config.js";
-const msg=document.getElementById("message"), loginPanel=document.getElementById("loginPanel"), editorPanel=document.getElementById("editorPanel"), listPanel=document.getElementById("listPanel");
-let auth,db,currentUser=null,lessonCache={};
-function message(t,err=false){msg.textContent=t;msg.classList.remove("hidden","error");if(err)msg.classList.add("error")}
-function clearMessage(){msg.classList.add("hidden")}
-function escapeErr(e){const code=e?.code||"";const map={"auth/invalid-credential":"البريد أو كلمة المرور غير صحيحة.","auth/invalid-email":"صيغة البريد الإلكتروني غير صحيحة.","auth/too-many-requests":"محاولات كثيرة. انتظر قليلاً ثم حاول مرة أخرى.","PERMISSION_DENIED":"الصلاحيات لا تسمح بالعملية. راجع ADMIN_UID في قواعد Firebase."};return map[code]||("حدث خطأ: "+(e?.message||code||"غير معروف"))}
-function resetForm(){document.getElementById("lessonForm").reset();document.getElementById("lessonId").value="";document.getElementById("formTitle").textContent="إضافة درس جديد";document.getElementById("saveBtn").textContent="حفظ الدرس"}
-function renderList(){
- const host=document.getElementById("lessonList");host.replaceChildren();
- const entries=Object.entries(lessonCache).sort((a,b)=>String(b[1].updatedAt||b[1].createdAt||0).localeCompare(String(a[1].updatedAt||a[1].createdAt||0)));
- if(!entries.length){const p=document.createElement("p");p.className="hint";p.textContent="لا توجد دروس حتى الآن.";host.appendChild(p);return}
- entries.forEach(([id,item])=>{const row=document.createElement("div");row.className="lessonrow";const info=document.createElement("div");const strong=document.createElement("strong");strong.textContent=item.title||"بدون عنوان";const small=document.createElement("small");small.textContent=(item.category||"عام")+" — "+(item.summary||"بدون ملخص");info.append(strong,small);const actions=document.createElement("div");actions.className="rowactions";const edit=document.createElement("button");edit.className="secondary";edit.textContent="تعديل";edit.onclick=()=>editLesson(id,item);const del=document.createElement("button");del.className="danger";del.textContent="حذف";del.onclick=()=>deleteLesson(id,item.title);actions.append(edit,del);row.append(info,actions);host.appendChild(row)});
+import {
+ getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+import {
+ getDatabase, ref, onValue, push, set, update, remove
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+
+const firebaseConfig = {
+ apiKey: "AIzaSyC393Ko1pqXlXQGP3iyoXau9zDm8JLlQUA",
+ authDomain: "ped-37b14.firebaseapp.com",
+ databaseURL: "https://ped-37b14-default-rtdb.firebaseio.com",
+ projectId: "ped-37b14",
+ storageBucket: "ped-37b14.firebasestorage.app",
+ messagingSenderId: "816967461547",
+ appId: "1:816967461547:web:7ab95806fa57c1c56b65ee",
+ measurementId: "G-52M3SHV3LD"
+};
+
+/* UID المدير المصرّح له */
+const ADMIN_UID = "Ujqwlhvf3gZui8PdueF84PuTiyA3";
+
+const $ = id => document.getElementById(id);
+const msg = $("message");
+const loginPanel = $("loginPanel");
+const editorPanel = $("editorPanel");
+const listPanel = $("listPanel");
+
+let auth, db, currentUser = null, lessonCache = {};
+let stopListening = null;
+let busy = false;
+
+$("year").textContent = new Date().getFullYear();
+
+function message(text, error = false) {
+ msg.textContent = text;
+ msg.classList.remove("hidden", "error");
+ if (error) msg.classList.add("error");
 }
-function editLesson(id,item){document.getElementById("lessonId").value=id;document.getElementById("title").value=item.title||"";document.getElementById("category").value=item.category||"";document.getElementById("summary").value=item.summary||"";document.getElementById("content").value=item.content||"";document.getElementById("formTitle").textContent="تعديل الدرس";document.getElementById("saveBtn").textContent="حفظ التعديلات";window.scrollTo({top:0,behavior:"smooth"})}
-async function deleteLesson(id,title){if(!confirm('متأكد من حذف الدرس "'+(title||"")+'"؟'))return;try{await remove(ref(db,"lessons/"+id));message("تم حذف الدرس.");}catch(e){message(escapeErr(e),true)}}
-try{
- const app=initializeApp(firebaseConfig);auth=getAuth(app);db=getDatabase(app);
- document.getElementById("loginForm").addEventListener("submit",async e=>{e.preventDefault();clearMessage();try{await signInWithEmailAndPassword(auth,document.getElementById("email").value.trim(),document.getElementById("password").value)}catch(err){message(escapeErr(err),true)}});
- onAuthStateChanged(auth,user=>{currentUser=user;loginPanel.classList.toggle("hidden",!!user);editorPanel.classList.toggle("hidden",!user);listPanel.classList.toggle("hidden",!user);if(user){message("تم تسجيل الدخول. إذا تعذرت الكتابة، تأكد أن UID الخاص بك موجود في قواعد قاعدة البيانات.");onValue(ref(db,"lessons"),snap=>{lessonCache=snap.val()||{};renderList()},err=>message(escapeErr(err),true))}else{clearMessage()}});
- document.getElementById("lessonForm").addEventListener("submit",async e=>{e.preventDefault();if(!currentUser)return;clearMessage();const id=document.getElementById("lessonId").value;const now=Date.now();const old=id?lessonCache[id]:null;const item={title:document.getElementById("title").value.trim(),category:document.getElementById("category").value.trim(),summary:document.getElementById("summary").value.trim(),content:document.getElementById("content").value.trim(),createdAt:old?.createdAt||now,updatedAt:now};if(!item.title||!item.category||!item.content){message("أكمل عنوان الدرس والقسم والمحتوى.",true);return}try{if(id){await update(ref(db,"lessons/"+id),item);message("تم تحديث الدرس بنجاح.")}else{const newRef=push(ref(db,"lessons"));await set(newRef,item);message("تمت إضافة الدرس بنجاح.")}resetForm()}catch(err){message(escapeErr(err),true)}});
- document.getElementById("resetBtn").onclick=resetForm;
- document.getElementById("logoutBtn").onclick=async()=>{await signOut(auth);resetForm();message("تم تسجيل الخروج.")};
-}catch(e){message("أكمل إعداد firebase-config.js أولاً. "+(e?.message||""),true)}
-</script></body></html>
+
+function clearMessage() {
+ msg.classList.add("hidden");
+ msg.classList.remove("error");
+}
+
+function errorText(e) {
+ const code = e?.code || "";
+ const messages = {
+  "auth/invalid-credential": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
+  "auth/invalid-email": "صيغة البريد الإلكتروني غير صحيحة.",
+  "auth/too-many-requests": "محاولات كثيرة. انتظر قليلاً ثم حاول مجدداً.",
+  "auth/network-request-failed": "تحقق من اتصال الإنترنت.",
+  "PERMISSION_DENIED": "Firebase رفض العملية. تحقق من قواعد قاعدة البيانات وUID المدير.",
+  "permission-denied": "Firebase رفض العملية. تحقق من قواعد قاعدة البيانات وUID المدير."
+ };
+ return messages[code] || ("حدث خطأ: " + (e?.message || code || "غير معروف"));
+}
+
+function setBusy(value) {
+ busy = value;
+ $("saveBtn").disabled = value;
+ $("loginBtn").disabled = value;
+ $("saveBtn").textContent = value ? "جارٍ الحفظ..." :
+  ($("lessonId").value ? "حفظ التعديلات" : "حفظ الدرس");
+ $("loginBtn").textContent = value ? "جارٍ الدخول..." : "تسجيل الدخول";
+}
+
+function resetForm() {
+ $("lessonForm").reset();
+ $("lessonId").value = "";
+ $("formTitle").textContent = "إضافة درس جديد";
+ $("saveBtn").textContent = "حفظ الدرس";
+}
+
+function renderList() {
+ const host = $("lessonList");
+ host.replaceChildren();
+
+ const entries = Object.entries(lessonCache).filter(
+  ([id, item]) => item && typeof item === "object"
+ ).sort((a, b) =>
+  Number(b[1].updatedAt || b[1].createdAt || 0) -
+  Number(a[1].updatedAt || a[1].createdAt || 0)
+ );
+
+ if (!entries.length) {
+  const p = document.createElement("p");
+  p.className = "hint";
+  p.textContent = "لا توجد دروس حتى الآن. أضف أول درس من النموذج أعلاه.";
+  host.appendChild(p);
+  return;
+ }
+
+ entries.forEach(([id, item]) => {
+  const row = document.createElement("div");
+  row.className = "lessonrow";
+
+  const info = document.createElement("div");
+  const title = document.createElement("strong");
+  title.textContent = item.title || "درس بدون عنوان";
+
+  const small = document.createElement("small");
+  small.textContent = (item.category || "عام") + " — " +
+   (item.summary || "بدون ملخص");
+
+  info.append(title, small);
+
+  const actions = document.createElement("div");
+  actions.className = "rowactions";
+
+  const edit = document.createElement("button");
+  edit.className = "secondary";
+  edit.textContent = "تعديل";
+  edit.onclick = () => editLesson(id, item);
+
+  const del = document.createElement("button");
+  del.className = "danger";
+  del.textContent = "حذف";
+  del.onclick = () => deleteLesson(id, item.title || "");
+
+  actions.append(edit, del);
+  row.append(info, actions);
+  host.appendChild(row);
+ });
+}
+
+function editLesson(id, item) {
+ $("lessonId").value = id;
+ $("title").value = item.title || "";
+ $("category").value = item.category || "";
+ $("summary").value = item.summary || "";
+ $("content").value = item.content || "";
+ $("formTitle").textContent = "تعديل الدرس";
+ $("saveBtn").textContent = "حفظ التعديلات";
+ window.scrollTo({top: 0, behavior: "smooth"});
+ clearMessage();
+}
+
+async function deleteLesson(id, title) {
+ if (!currentUser || currentUser.uid !== ADMIN_UID) {
+  message("هذا الحساب غير مخوّل لإدارة الدروس.", true);
+  return;
+ }
+ if (!confirm('هل أنت متأكد من حذف الدرس "' + title + '"؟')) return;
+
+ try {
+  await remove(ref(db, "lessons/" + id));
+  message("تم حذف الدرس بنجاح.");
+ } catch (e) {
+  message(errorText(e), true);
+ }
+}
+
+try {
+ const app = initializeApp(firebaseConfig);
+ auth = getAuth(app);
+ db = getDatabase(app);
+
+ $("loginForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  clearMessage();
+  if (busy) return;
+
+  setBusy(true);
+  try {
+   await signInWithEmailAndPassword(
+    auth,
+    $("email").value.trim(),
+    $("password").value
+   );
+  } catch (err) {
+   message(errorText(err), true);
+  } finally {
+   setBusy(false);
+  }
+ });
+
+ onAuthStateChanged(auth, user => {
+  currentUser = user;
+
+  if (stopListening) {
+   stopListening();
+   stopListening = null;
+  }
+
+  if (!user) {
+   loginPanel.classList.remove("hidden");
+   editorPanel.classList.add("hidden");
+   listPanel.classList.add("hidden");
+   lessonCache = {};
+   clearMessage();
+   return;
+  }
+
+  if (user.uid !== ADMIN_UID) {
+   loginPanel.classList.add("hidden");
+   editorPanel.classList.add("hidden");
+   listPanel.classList.add("hidden");
+   message("تم تسجيل الدخول، لكن هذا الحساب ليس حساب المدير المصرّح له. سجّل الخروج واستخدم حساب المدير الصحيح.", true);
+   signOut(auth).catch(() => {});
+   return;
+  }
+
+  loginPanel.classList.add("hidden");
+  editorPanel.classList.remove("hidden");
+  listPanel.classList.remove("hidden");
+  message("تم تسجيل دخول المدير بنجاح.");
+
+  stopListening = onValue(ref(db, "lessons"), snapshot => {
+   lessonCache = snapshot.val() || {};
+   renderList();
+  }, err => {
+   message(errorText(err), true);
+  });
+ });
+
+ $("lessonForm").addEventListener("submit", async e => {
+  e.preventDefault();
+
+  if (!currentUser || currentUser.uid !== ADMIN_UID) {
+   message("يجب تسجيل الدخول بحساب المدير المصرّح له.", true);
+   return;
+  }
+  if (busy) return;
+
+  const id = $("lessonId").value;
+  const title = $("title").value.trim();
+  const category = $("category").value.trim();
+  const summary = $("summary").value.trim();
+  const content = $("content").value.trim();
+
+  if (!title || !category || !content) {
+   message("أكمل عنوان الدرس والقسم والشرح.", true);
+   return;
+  }
+
+  const now = Date.now();
+  const old = id ? lessonCache[id] : null;
+
+  const item = {
+   title,
+   category,
+   summary,
+   content,
+   createdAt: old?.createdAt || now,
+   updatedAt: now
+  };
+
+  setBusy(true);
+  clearMessage();
+
+  try {
+   if (id) {
+    await update(ref(db, "lessons/" + id), item);
+    message("تم تعديل الدرس بنجاح، وسيظهر التحديث في الموقع.");
+   } else {
+    const newLesson = push(ref(db, "lessons"));
+    await set(newLesson, item);
+    message("تمت إضافة الدرس بنجاح، وسيظهر في الموقع.");
+   }
+   resetForm();
+  } catch (err) {
+   message(errorText(err), true);
+  } finally {
+   setBusy(false);
+  }
+ });
+
+ $("resetBtn").addEventListener("click", () => {
+  resetForm();
+  clearMessage();
+ });
+
+ $("logoutBtn").addEventListener("click", async () => {
+  try {
+   if (stopListening) {
+    stopListening();
+    stopListening = null;
+   }
+   await signOut(auth);
+   resetForm();
+   message("تم تسجيل الخروج.");
+  } catch (err) {
+   message(errorText(err), true);
+  }
+ });
+
+} catch (err) {
+ console.error(err);
+ message("تعذّر تشغيل Firebase. تحقق من إعدادات المشروع واتصال الإنترنت. " + (err?.message || ""), true);
+}
+</script>
+</body>
+</html>
