@@ -43,16 +43,13 @@ header,.panel{
   box-shadow:0 10px 32px #168bff0c;
 }
 
-header{
-  background:linear-gradient(130deg,#0b2040,#080c16);
-}
+header{background:linear-gradient(130deg,#0b2040,#080c16)}
 
 h1,h2,h3{font-family:Tajawal,sans-serif}
 h1{margin:0;font-size:27px}
 h1 span{color:var(--cyan)}
 h2{font-size:22px;margin:0 0 12px}
 p{color:#c0cee2}
-
 .hint{font-size:13px;color:var(--muted)}
 
 input,textarea{
@@ -122,10 +119,7 @@ button.danger{background:#17253b;border-color:#42658f}
   overflow-wrap:anywhere;
 }
 
-.msg.error{
-  border-color:#ff5269;
-  color:#ff9baa;
-}
+.msg.error{border-color:#ff5269;color:#ff9baa}
 
 .optional{
   color:#7fcaff;
@@ -161,12 +155,23 @@ button.danger{background:#17253b;border-color:#42658f}
 
 .appbadge{
   display:inline-block;
-  margin-top:7px;
+  margin:7px 0 0 5px;
   padding:2px 9px;
   border-radius:8px;
   border:1px solid #168bff45;
   color:#82d4ff;
   background:#168bff12;
+  font-size:11px;
+}
+
+.videobadge{
+  display:inline-block;
+  margin:7px 0 0 5px;
+  padding:2px 9px;
+  border-radius:8px;
+  border:1px solid #00d6a344;
+  color:#72f5ce;
+  background:#00d6a310;
   font-size:11px;
 }
 
@@ -192,7 +197,7 @@ footer{
 
 <header>
   <h1>PED <span>SAN</span> — لوحة إدارة الدروس</h1>
-  <p>أضف شروحاتك وروابط تطبيقاتك، وعدّل الدروس أو احذفها.</p>
+  <p>أضف الشروحات والفيديوهات وروابط التطبيقات، وعدّل الدروس أو احذفها.</p>
   <a class="btn secondary" href="index.html">العودة للموقع</a>
 </header>
 
@@ -200,9 +205,7 @@ footer{
 
 <section id="loginPanel" class="panel">
   <h2>دخول المشرف</h2>
-  <p class="hint">
-    استخدم البريد وكلمة المرور لحساب المدير في Firebase Authentication.
-  </p>
+  <p class="hint">استخدم البريد وكلمة المرور لحساب المدير في Firebase Authentication.</p>
 
   <form id="loginForm">
     <div class="field">
@@ -212,8 +215,7 @@ footer{
 
     <div class="field">
       <label for="password">كلمة المرور</label>
-      <input id="password" type="password"
-             autocomplete="current-password" required>
+      <input id="password" type="password" autocomplete="current-password" required>
     </div>
 
     <button id="loginBtn" type="submit">تسجيل الدخول</button>
@@ -228,26 +230,40 @@ footer{
 
     <div class="field">
       <label for="title">عنوان الدرس *</label>
-      <input id="title" maxlength="120" required
-             placeholder="اكتب عنوان الدرس">
+      <input id="title" maxlength="120" required placeholder="اكتب عنوان الدرس">
     </div>
 
     <div class="field">
       <label for="category">القسم أو المجال *</label>
-      <input id="category" maxlength="60" required
-             placeholder="مثال: برمجة التطبيقات">
+      <input id="category" maxlength="60" required placeholder="مثال: برمجة التطبيقات">
     </div>
 
     <div class="field">
       <label for="summary">ملخص الدرس</label>
-      <input id="summary" maxlength="250"
-             placeholder="نبذة قصيرة تظهر في بطاقة الدرس">
+      <input id="summary" maxlength="250" placeholder="نبذة قصيرة تظهر في بطاقة الدرس">
     </div>
 
     <div class="field">
       <label for="content">شرح الدرس بالكامل *</label>
-      <textarea id="content" maxlength="50000" required
-                placeholder="اكتب الشرح هنا..."></textarea>
+      <textarea id="content" maxlength="50000" required placeholder="اكتب الشرح هنا..."></textarea>
+    </div>
+
+    <div class="field">
+      <label for="videoUrl">
+        رابط الفيديو <span class="optional">(اختياري)</span>
+      </label>
+      <input
+        id="videoUrl"
+        type="url"
+        maxlength="3000"
+        inputmode="url"
+        placeholder="https://example.com/video.mp4"
+      >
+      <p class="hint">
+        ضع رابط فيديو مباشر يدعمه مشغل Android، مثل MP4.
+        سيظهر الفيديو داخل نافذة الشرح في التطبيق. اترك الحقل فارغًا إذا لم يوجد فيديو.
+        روابط صفحات يوتيوب العادية لا تعمل عادةً مع VideoView.
+      </p>
     </div>
 
     <div class="field">
@@ -263,18 +279,13 @@ footer{
       >
       <p class="hint">
         يمكنك وضع رابط تنزيل APK أو رابط صفحة التطبيق.
-        اترك الحقل فارغًا إذا لم يكن للدرس تطبيق.
       </p>
     </div>
 
     <div class="actions">
       <button id="saveBtn" type="submit">حفظ الدرس</button>
-      <button id="resetBtn" class="secondary" type="button">
-        درس جديد / إلغاء التعديل
-      </button>
-      <button id="logoutBtn" class="danger" type="button">
-        تسجيل الخروج
-      </button>
+      <button id="resetBtn" class="secondary" type="button">درس جديد / إلغاء التعديل</button>
+      <button id="logoutBtn" class="danger" type="button">تسجيل الخروج</button>
     </div>
   </form>
 </section>
@@ -324,7 +335,7 @@ const firebaseConfig = {
   measurementId: "G-52M3SHV3LD"
 };
 
-/* UID المدير المصرّح له */
+/* UID المدير */
 const ADMIN_UID = "Ujqwlhvf3gZui8PdueF84PuTiyA3";
 
 const $ = id => document.getElementById(id);
@@ -346,7 +357,6 @@ $("year").textContent = new Date().getFullYear();
 function message(text, error = false) {
   msg.textContent = text;
   msg.classList.remove("hidden", "error");
-
   if (error) msg.classList.add("error");
 }
 
@@ -356,7 +366,7 @@ function clearMessage() {
 }
 
 function errorText(e) {
-  const code = e?.code || "";
+  const code = e && e.code ? e.code : "";
 
   const messages = {
     "auth/invalid-credential":
@@ -374,7 +384,7 @@ function errorText(e) {
   };
 
   return messages[code] ||
-    ("حدث خطأ: " + (e?.message || code || "غير معروف"));
+    ("حدث خطأ: " + (e && e.message ? e.message : code || "غير معروف"));
 }
 
 function setBusy(value) {
@@ -391,6 +401,7 @@ function setBusy(value) {
     : "تسجيل الدخول";
 }
 
+/* إعادة النموذج */
 function resetForm() {
   $("lessonForm").reset();
   $("lessonId").value = "";
@@ -398,9 +409,8 @@ function resetForm() {
   $("saveBtn").textContent = "حفظ الدرس";
 }
 
-/* قبول روابط HTTP/HTTPS فقط */
-
-function validateAppUrl(value) {
+/* التحقق من الرابط */
+function validateUrl(value, fieldName) {
   const text = value.trim();
 
   if (!text) return "";
@@ -411,23 +421,32 @@ function validateAppUrl(value) {
     url = new URL(text);
   } catch (e) {
     throw new Error(
-      "رابط التطبيق غير صحيح. اكتب الرابط كاملًا، مثل https://example.com/app.apk"
+      "رابط " + fieldName + " غير صحيح. اكتب الرابط كاملًا."
     );
   }
 
   if (url.protocol !== "https:" && url.protocol !== "http:") {
-    throw new Error("الرابط يجب أن يبدأ بـ https:// أو http://");
+    throw new Error(
+      "رابط " + fieldName + " يجب أن يبدأ بـ https:// أو http://"
+    );
   }
 
   if (!url.hostname || !url.hostname.includes(".")) {
-    throw new Error("عنوان الموقع في رابط التطبيق غير صحيح.");
+    throw new Error("عنوان الموقع في رابط " + fieldName + " غير صحيح.");
   }
 
   return url.href;
 }
 
-/* عرض الدروس في لوحة الإدارة */
+function validateAppUrl(value) {
+  return validateUrl(value, "التطبيق");
+}
 
+function validateVideoUrl(value) {
+  return validateUrl(value, "الفيديو");
+}
+
+/* عرض الدروس */
 function renderList() {
   const host = $("lessonList");
   host.replaceChildren();
@@ -442,9 +461,7 @@ function renderList() {
   if (!entries.length) {
     const p = document.createElement("p");
     p.className = "hint";
-    p.textContent =
-      "لا توجد دروس حتى الآن. أضف أول درس من النموذج أعلاه.";
-
+    p.textContent = "لا توجد دروس حتى الآن. أضف أول درس من النموذج أعلاه.";
     host.appendChild(p);
     return;
   }
@@ -465,11 +482,17 @@ function renderList() {
 
     info.append(title, small);
 
+    if (item.videoUrl) {
+      const badge = document.createElement("span");
+      badge.className = "videobadge";
+      badge.textContent = "يوجد فيديو ▶";
+      info.appendChild(badge);
+    }
+
     if (item.appUrl) {
       const badge = document.createElement("span");
       badge.className = "appbadge";
       badge.textContent = "يوجد رابط تطبيق";
-
       info.appendChild(badge);
     }
 
@@ -492,14 +515,14 @@ function renderList() {
   });
 }
 
-/* تعديل درس موجود */
-
+/* تعديل درس */
 function editLesson(id, item) {
   $("lessonId").value = id;
   $("title").value = item.title || "";
   $("category").value = item.category || "";
   $("summary").value = item.summary || "";
   $("content").value = item.content || "";
+  $("videoUrl").value = item.videoUrl || "";
   $("appUrl").value = item.appUrl || "";
 
   $("formTitle").textContent = "تعديل الدرس";
@@ -510,7 +533,6 @@ function editLesson(id, item) {
 }
 
 /* حذف درس */
-
 async function deleteLesson(id, title) {
   if (!currentUser || currentUser.uid !== ADMIN_UID) {
     message("هذا الحساب غير مخوّل لإدارة الدروس.", true);
@@ -533,18 +555,15 @@ async function deleteLesson(id, title) {
 
 try {
   const app = initializeApp(firebaseConfig);
-
   auth = getAuth(app);
   db = getDatabase(app);
 
   /* تسجيل الدخول */
-
   $("loginForm").addEventListener("submit", async e => {
     e.preventDefault();
     clearMessage();
 
     if (busy) return;
-
     setBusy(true);
 
     try {
@@ -561,7 +580,6 @@ try {
   });
 
   /* التحقق من حساب المدير */
-
   onAuthStateChanged(auth, user => {
     currentUser = user;
 
@@ -615,7 +633,6 @@ try {
   });
 
   /* حفظ درس جديد أو تعديل درس */
-
   $("lessonForm").addEventListener("submit", async e => {
     e.preventDefault();
 
@@ -633,6 +650,7 @@ try {
     const content = $("content").value.trim();
 
     let appUrl = "";
+    let videoUrl = "";
 
     if (!title || !category || !content) {
       message("أكمل عنوان الدرس والقسم والشرح.", true);
@@ -640,10 +658,10 @@ try {
     }
 
     try {
+      videoUrl = validateVideoUrl($("videoUrl").value);
       appUrl = validateAppUrl($("appUrl").value);
     } catch (err) {
       message(err.message, true);
-      $("appUrl").focus();
       return;
     }
 
@@ -655,8 +673,9 @@ try {
       category: category,
       summary: summary,
       content: content,
+      videoUrl: videoUrl,
       appUrl: appUrl,
-      createdAt: old?.createdAt || now,
+      createdAt: old && old.createdAt ? old.createdAt : now,
       updatedAt: now
     };
 
@@ -666,15 +685,10 @@ try {
     try {
       if (id) {
         await update(ref(db, "lessons/" + id), item);
-
-        message(
-          "تم تعديل الدرس بنجاح، وتم حفظ رابط التطبيق إذا أضفته."
-        );
+        message("تم تعديل الدرس وحفظ رابط الفيديو والتطبيق بنجاح.");
       } else {
         const newLesson = push(ref(db, "lessons"));
-
         await set(newLesson, item);
-
         message("تمت إضافة الدرس بنجاح.");
       }
 
@@ -688,14 +702,12 @@ try {
   });
 
   /* مسح النموذج */
-
   $("resetBtn").addEventListener("click", () => {
     resetForm();
     clearMessage();
   });
 
   /* تسجيل الخروج */
-
   $("logoutBtn").addEventListener("click", async () => {
     if (busy) return;
 
@@ -719,7 +731,7 @@ try {
 
   message(
     "تعذّر تشغيل Firebase. تحقق من إعدادات المشروع واتصال الإنترنت. " +
-    (err?.message || ""),
+    (err && err.message ? err.message : ""),
     true
   );
 }
